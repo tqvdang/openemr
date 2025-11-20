@@ -1495,6 +1495,16 @@ $oemr_ui = new OemrUI($arrOeUiSettings);
                         ];
                         echo $twig->getTwig()->render('patient/card/loader.html.twig', $viewArgs);
                     endwhile; // end while
+
+                    // AI-generated integration: Vietnamese PT Widget
+                    // Render Vietnamese Physiotherapy widget if module is enabled
+                    if (file_exists($GLOBALS['srcdir'] . '/../library/custom/vietnamese_pt_widget.php')) {
+                        require_once($GLOBALS['srcdir'] . '/../library/custom/vietnamese_pt_widget.php');
+                        if (function_exists('renderVietnamesePTWidget') && !empty($pid)) {
+                            echo renderVietnamesePTWidget($pid);
+                        }
+                    }
+                    // End AI-generated integration
                     ?>
                 </div> <!-- end left column div -->
                 <div class="col-md-4 px-2">

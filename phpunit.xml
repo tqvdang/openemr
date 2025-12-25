@@ -56,6 +56,22 @@ This file configures the kind that requires initialization.
       <directory>tests/Tests/Unit/Vietnamese</directory>
       <directory>tests/Tests/Services/Vietnamese</directory>
     </testsuite>
+    <testsuite name="vietnamese-e2e">
+      <directory>tests/Tests/E2e/VietnamesePT</directory>
+    </testsuite>
+    <testsuite name="vietnamese-api">
+      <directory>tests/Tests/Api/VietnamesePT</directory>
+    </testsuite>
+    <testsuite name="vietnamese-performance">
+      <directory>tests/Tests/Performance/VietnamesePT</directory>
+    </testsuite>
+    <testsuite name="vietnamese-pt">
+      <directory>tests/Tests/Unit/Vietnamese</directory>
+      <directory>tests/Tests/Services/Vietnamese</directory>
+      <directory>tests/Tests/E2e/VietnamesePT</directory>
+      <directory>tests/Tests/Api/VietnamesePT</directory>
+      <directory>tests/Tests/Performance/VietnamesePT</directory>
+    </testsuite>
     <testsuite name="common">
       <directory>tests/Tests/Common</directory>
     </testsuite>

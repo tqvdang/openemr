@@ -74,6 +74,25 @@ class ProcessingResult
         $this->validationMessages = $validationMessages;
     }
 
+    /**
+     * Adds a validation message for a field.
+     * @param string $field The field name with the validation error
+     * @param string $message The validation error message
+     */
+    public function addValidationMessage($field, $message)
+    {
+        if (!isset($this->validationMessages[$field])) {
+            $this->validationMessages[$field] = $message;
+        } else {
+            // If field already has an error, append to it or create array if needed
+            if (is_array($this->validationMessages[$field])) {
+                $this->validationMessages[$field][] = $message;
+            } else {
+                $this->validationMessages[$field] = [$this->validationMessages[$field], $message];
+            }
+        }
+    }
+
     public function getInternalErrors()
     {
         return $this->internalErrors;

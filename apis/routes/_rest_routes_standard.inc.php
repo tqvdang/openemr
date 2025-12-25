@@ -7576,6 +7576,29 @@ return array(
         RestConfig::request_authorization_check($request, "patients", "med");
         $return = (new \OpenEMR\RestControllers\VietnamesePT\PTAssessmentTemplateRestController())->delete($id);
         return $return;
+    },
+
+    /**
+     * Vietnamese PT Health Check and Monitoring Routes
+     * AI-GENERATED: Added for production monitoring and health checks
+     */
+    "GET /api/vietnamese-pt/health" => function (HttpRestRequest $request) {
+        // No authorization required for health checks (public endpoint)
+        $return = (new \OpenEMR\RestControllers\VietnamesePT\HealthCheckController())->getHealth();
+        return $return;
+    },
+
+    "GET /api/vietnamese-pt/health/detailed" => function (HttpRestRequest $request) {
+        // Require admin access for detailed health information
+        RestConfig::request_authorization_check($request, "admin", "super");
+        $return = (new \OpenEMR\RestControllers\VietnamesePT\HealthCheckController())->getDetailedHealth();
+        return $return;
+    },
+
+    "GET /api/vietnamese-pt/version" => function (HttpRestRequest $request) {
+        // No authorization required for version information
+        $return = (new \OpenEMR\RestControllers\VietnamesePT\HealthCheckController())->getVersion();
+        return $return;
     }
     // End Vietnamese PT Routes - AI-generated integration
 );

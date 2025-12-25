@@ -65,7 +65,15 @@ class UuidRegistry
         'questionnaire_response' => ['table_name' => 'questionnaire_response'],
         'patient_related_persons' => ['table_name' => 'patient_related_persons', 'table_id' => 'pid'],
         'form_history_sdoh' => ['table_name' => 'form_history_sdoh'],
-        'users' => ['table_name' => 'users']
+        'users' => ['table_name' => 'users'],
+        // AI-generated: Vietnamese PT module tables
+        'pt_assessments_bilingual' => ['table_name' => 'pt_assessments_bilingual'],
+        'pt_exercise_prescriptions' => ['table_name' => 'pt_exercise_prescriptions'],
+        'pt_treatment_plans' => ['table_name' => 'pt_treatment_plans'],
+        'pt_outcome_measures' => ['table_name' => 'pt_outcome_measures'],
+        'pt_treatment_sessions' => ['table_name' => 'pt_treatment_sessions'],
+        'pt_assessment_templates' => ['table_name' => 'pt_assessment_templates']
+        // End AI-generated
     ];
     // Maximum tries to create a unique uuid before failing (this should never happen)
     const MAX_TRIES = 100;

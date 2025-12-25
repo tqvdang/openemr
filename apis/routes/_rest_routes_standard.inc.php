@@ -46,7 +46,7 @@ use OpenEMR\Services\Search\SearchQueryConfig;
 // TODO: Remove this import when the OpenEMR\RestControllers\Config\RestConfig is no longer needed
 use OpenEMR\RestControllers\Config\RestConfig;
 
-return array(
+return [
     /**
      *  @OA\Get(
      *      path="/api/facility",
@@ -5807,7 +5807,9 @@ return array(
      *  )
      */
     "POST /api/patient/:pid/document" => function ($pid, HttpRestRequest $request) {
-        $return = (new DocumentRestController())->postWithPath($pid, $_GET['path'], $_FILES['document']);
+        $controller = new DocumentRestController();
+        $controller->setSession($request->getSession());
+        $return = $controller->postWithPath($pid, $_GET['path'], $_FILES['document']);
 
         return $return;
     },
@@ -7286,4 +7288,4 @@ return array(
 
         return $return;
     }
-);
+];

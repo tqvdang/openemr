@@ -19,7 +19,7 @@ use OpenEMR\RestControllers\RestControllerHelper;
 use OpenEMR\Services\VietnamesePT\PTAssessmentService;
 use OpenEMR\Services\VietnamesePT\PTExercisePrescriptionService;
 use OpenEMR\Services\VietnamesePT\PTTreatmentPlanService;
-use OpenEMR\Services\VietnamesePT\PTOutcomeMeasureService;
+use OpenEMR\Services\VietnamesePT\PTOutcomeMeasuresService;
 use OpenEMR\Validators\ProcessingResult;
 
 /**
@@ -255,7 +255,7 @@ class HealthCheckController
             'PTAssessmentService' => PTAssessmentService::class,
             'PTExercisePrescriptionService' => PTExercisePrescriptionService::class,
             'PTTreatmentPlanService' => PTTreatmentPlanService::class,
-            'PTOutcomeMeasureService' => PTOutcomeMeasureService::class
+            'PTOutcomeMeasuresService' => PTOutcomeMeasuresService::class
         ];
 
         $failedServices = [];
@@ -418,10 +418,10 @@ class HealthCheckController
             'PTAssessmentService',
             'PTExercisePrescriptionService',
             'PTTreatmentPlanService',
-            'PTOutcomeMeasureService',
-            'PTMedicalTerminologyService',
-            'PTInsuranceIntegrationService',
-            'PTSessionNotesService',
+            'PTOutcomeMeasuresService',
+            'VietnameseMedicalTermsService',
+            'VietnameseInsuranceService',
+            'PTConfigurationService',
             'PTAssessmentTemplateService'
         ];
 

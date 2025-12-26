@@ -22,7 +22,7 @@ echo -e "${BLUE}===========================================\033[0m"
 echo ""
 
 # Detect if running in Docker or locally
-if [ -f "/.dockerenv" ]; then
+if [[ -f "/.dockerenv" ]]; then
     # Running inside Docker container
     PHPUNIT="/openemr/vendor/bin/phpunit"
     TEST_PATH="/openemr/tests/Tests/E2e/VietnamesePT/AnatomySelectorTest.php"
@@ -41,33 +41,30 @@ else
 fi
 
 # Build command
-CMD="$PHPUNIT --colors=always --testdox"
+CMD="${PHPUNIT} --colors=always --testdox"
 
 # Handle arguments
-if [ "$1" = "--verbose" ] || [ "$1" = "-v" ]; then
-    CMD="$CMD --verbose"
+if [[ "$1" = "--verbose" ]] || [[ "$1" = "-v" ]]; then
+    CMD="${CMD} --verbose"
     shift
-elif [ -n "$1" ]; then
+elif [[ -n "$1" ]]; then
     # Specific test method or filter
-    CMD="$CMD --filter $1"
+    CMD="${CMD} --filter $1"
 fi
 
-CMD="$CMD $TEST_PATH"
+CMD="${CMD} ${TEST_PATH}"
 
 # Add Docker prefix if needed
-if [ -n "$DOCKER_CMD" ]; then
-    CMD="$DOCKER_CMD $CMD"
+if [[ -n "${DOCKER_CMD}" ]]; then
+    CMD="${DOCKER_CMD} ${CMD}"
 fi
 
 echo -e "${GREEN}Running command:${NC}"
-echo "$CMD"
+echo "${CMD}"
 echo ""
 
-# Run the tests
-eval $CMD
-
-# Check exit code
-if [ $? -eq 0 ]; then
+# Run the tests and capture exit code
+if eval "${CMD}"; then
     echo ""
     echo -e "${GREEN}===========================================\033[0m"
     echo -e "${GREEN}All tests passed!${NC}"

@@ -1,0 +1,202 @@
+<?xml version="1.0" encoding="UTF-8"?>
+<!-- AI-GENERATED: Claude Code -->
+<!--
+  Sacrum and Coccyx Region Detail - Interactive Anatomy Selector
+  Level 2: Shows sacrum and coccyx with associated structures
+  @package   OpenEMR
+  @author    Vietnamese PT Module
+  @copyright Copyright (c) 2025
+  @license   GNU General Public License 3
+-->
+<svg xmlns="http://www.w3.org/2000/svg" viewBox="0 0 400 500" width="400" height="500">
+  <title>Sacrum and Coccyx Anatomy</title>
+  <defs>
+    <style>
+      .bone { fill: #fff9c4; stroke: #8d6e63; stroke-width: 1.5; }
+      .muscle { fill: #ffcdd2; stroke: #c62828; stroke-width: 1; }
+      .joint { fill: #c8e6c9; stroke: #2e7d32; stroke-width: 1.5; }
+      .ligament { fill: #b2dfdb; stroke: #00695c; stroke-width: 2; }
+      .nerve { fill: #e1bee7; stroke: #7b1fa2; stroke-width: 2; }
+      .region { cursor: pointer; transition: all 0.2s ease; }
+      .region:hover { filter: brightness(1.1); stroke-width: 3; }
+      .label { font-family: Arial, sans-serif; font-size: 11px; fill: #333; pointer-events: none; }
+      .title-label { font-family: Arial, sans-serif; font-size: 14px; font-weight: bold; fill: #1976d2; }
+      .segment-label { font-family: Arial, sans-serif; font-size: 10px; font-weight: bold; fill: #5d4037; }
+    </style>
+  </defs>
+
+  <!-- Title -->
+  <text x="200" y="25" text-anchor="middle" class="title-label">Sacrum and Coccyx / Xuong cung va xuong cut</text>
+
+  <!-- L5 Vertebra (Reference) -->
+  <path d="M130 50 L270 50 L290 80 L285 110 L115 110 L110 80 Z"
+        class="bone region"
+        data-region="l5_vertebra"
+        data-structure-type="bone"
+        data-drill-down="false"
+        style="fill: #ffe0b2;"/>
+  <text x="200" y="85" text-anchor="middle" class="label">L5 Vertebra</text>
+
+  <!-- L5-S1 Disc -->
+  <ellipse cx="200" cy="125" rx="65" ry="12"
+           class="joint region"
+           data-region="l5_s1_disc"
+           data-structure-type="joint"
+           data-drill-down="false"
+           style="fill: #b3e5fc; stroke: #0277bd;"/>
+  <text x="290" y="130" class="label">L5-S1 Disc</text>
+
+  <!-- Bones Layer -->
+  <g id="bones-layer" data-layer="bone">
+    <!-- Sacrum -->
+    <path d="M110 140 L290 140 L280 170 L275 210 L260 260 L240 310 L220 360 L200 380 L180 360 L160 310 L140 260 L125 210 L120 170 Z"
+          class="bone region"
+          data-region="sacrum"
+          data-structure-type="bone"
+          data-drill-down="false"/>
+    <text x="200" y="260" text-anchor="middle" class="label">Sacrum / Xuong cung</text>
+
+    <!-- Sacral Segments Lines -->
+    <line x1="115" y1="175" x2="285" y2="175" style="stroke: #8d6e63; stroke-width: 1;"/>
+    <line x1="120" y1="215" x2="280" y2="215" style="stroke: #8d6e63; stroke-width: 1;"/>
+    <line x1="130" y1="260" x2="270" y2="260" style="stroke: #8d6e63; stroke-width: 1;"/>
+    <line x1="150" y1="310" x2="250" y2="310" style="stroke: #8d6e63; stroke-width: 1;"/>
+
+    <!-- Segment Labels -->
+    <text x="310" y="160" class="segment-label">S1</text>
+    <text x="310" y="195" class="segment-label">S2</text>
+    <text x="310" y="240" class="segment-label">S3</text>
+    <text x="310" y="285" class="segment-label">S4</text>
+    <text x="310" y="340" class="segment-label">S5</text>
+
+    <!-- Sacral Promontory -->
+    <ellipse cx="200" cy="145" rx="40" ry="12"
+             class="bone region"
+             data-region="sacral_promontory"
+             data-structure-type="bone"
+             data-drill-down="false"
+             style="fill: #ffecb3;"/>
+    <text x="60" y="150" class="label">Sacral Promontory</text>
+
+    <!-- Sacral Ala (Wings) -->
+    <ellipse cx="130" cy="160" rx="25" ry="20"
+             class="bone region"
+             data-region="sacral_ala_left"
+             data-structure-type="bone"
+             data-drill-down="false"/>
+    <ellipse cx="270" cy="160" rx="25" ry="20"
+             class="bone region"
+             data-region="sacral_ala_right"
+             data-structure-type="bone"
+             data-drill-down="false"/>
+    <text x="290" y="160" class="label">Ala</text>
+
+    <!-- Sacral Foramina -->
+    <circle cx="145" cy="185" r="8" class="bone region" data-region="sacral_foramen_s1_left" data-structure-type="bone" data-drill-down="false" style="fill: #fff3e0;"/>
+    <circle cx="255" cy="185" r="8" class="bone region" data-region="sacral_foramen_s1_right" data-structure-type="bone" data-drill-down="false" style="fill: #fff3e0;"/>
+    <circle cx="150" cy="225" r="7" class="bone region" data-region="sacral_foramen_s2_left" data-structure-type="bone" data-drill-down="false" style="fill: #fff3e0;"/>
+    <circle cx="250" cy="225" r="7" class="bone region" data-region="sacral_foramen_s2_right" data-structure-type="bone" data-drill-down="false" style="fill: #fff3e0;"/>
+    <circle cx="155" cy="268" r="6" class="bone region" data-region="sacral_foramen_s3_left" data-structure-type="bone" data-drill-down="false" style="fill: #fff3e0;"/>
+    <circle cx="245" cy="268" r="6" class="bone region" data-region="sacral_foramen_s3_right" data-structure-type="bone" data-drill-down="false" style="fill: #fff3e0;"/>
+    <circle cx="162" cy="305" r="5" class="bone region" data-region="sacral_foramen_s4_left" data-structure-type="bone" data-drill-down="false" style="fill: #fff3e0;"/>
+    <circle cx="238" cy="305" r="5" class="bone region" data-region="sacral_foramen_s4_right" data-structure-type="bone" data-drill-down="false" style="fill: #fff3e0;"/>
+    <text x="60" y="225" class="label">Sacral Foramina</text>
+    <text x="60" y="238" class="label">Lo cung</text>
+
+    <!-- Coccyx -->
+    <path d="M180 385 L220 385 L215 410 L210 440 L205 460 L200 470 L195 460 L190 440 L185 410 Z"
+          class="bone region"
+          data-region="coccyx"
+          data-structure-type="bone"
+          data-drill-down="false"/>
+    <text x="225" y="430" class="label">Coccyx / Xuong cut</text>
+
+    <!-- Coccyx Segments -->
+    <line x1="183" y1="405" x2="217" y2="405" style="stroke: #8d6e63; stroke-width: 1;"/>
+    <line x1="188" y1="430" x2="212" y2="430" style="stroke: #8d6e63; stroke-width: 1;"/>
+    <line x1="193" y1="455" x2="207" y2="455" style="stroke: #8d6e63; stroke-width: 1;"/>
+  </g>
+
+  <!-- Joints Layer -->
+  <g id="joints-layer" data-layer="joint">
+    <!-- Sacroiliac Joint (Left) -->
+    <ellipse cx="115" cy="180" rx="12" ry="40"
+             class="joint region"
+             data-region="si_joint_left"
+             data-structure-type="joint"
+             data-drill-down="false"/>
+    <text x="40" y="185" class="label">SI Joint</text>
+
+    <!-- Sacroiliac Joint (Right) -->
+    <ellipse cx="285" cy="180" rx="12" ry="40"
+             class="joint region"
+             data-region="si_joint_right"
+             data-structure-type="joint"
+             data-drill-down="false"/>
+
+    <!-- Sacrococcygeal Joint -->
+    <ellipse cx="200" cy="382" rx="20" ry="8"
+             class="joint region"
+             data-region="sacrococcygeal_joint"
+             data-structure-type="joint"
+             data-drill-down="false"/>
+    <text x="230" y="385" class="label">Sacrococcygeal Joint</text>
+  </g>
+
+  <!-- Ligaments Layer -->
+  <g id="ligaments-layer" data-layer="ligament">
+    <!-- Sacrotuberous Ligament -->
+    <path d="M160 320 Q130 380 100 420"
+          class="ligament region"
+          data-region="sacrotuberous_lig_left"
+          data-structure-type="ligament"
+          data-drill-down="false"
+          style="fill: none; stroke-width: 4;"/>
+    <path d="M240 320 Q270 380 300 420"
+          class="ligament region"
+          data-region="sacrotuberous_lig_right"
+          data-structure-type="ligament"
+          data-drill-down="false"
+          style="fill: none; stroke-width: 4;"/>
+    <text x="310" y="400" class="label">Sacrotuberous Lig</text>
+
+    <!-- Sacrospinous Ligament -->
+    <path d="M150 280 Q100 320 70 340"
+          class="ligament region"
+          data-region="sacrospinous_lig_left"
+          data-structure-type="ligament"
+          data-drill-down="false"
+          style="fill: none; stroke-width: 3;"/>
+    <path d="M250 280 Q300 320 330 340"
+          class="ligament region"
+          data-region="sacrospinous_lig_right"
+          data-structure-type="ligament"
+          data-drill-down="false"
+          style="fill: none; stroke-width: 3;"/>
+    <text x="340" y="340" class="label">Sacrospinous</text>
+  </g>
+
+  <!-- Nerves Layer -->
+  <g id="nerves-layer" data-layer="nerve">
+    <!-- Sacral Nerve Roots -->
+    <path d="M145 185 Q100 195 70 220" class="nerve region" data-region="s1_nerve_left" data-structure-type="nerve" data-drill-down="false" style="fill: none;"/>
+    <path d="M255 185 Q300 195 330 220" class="nerve region" data-region="s1_nerve_right" data-structure-type="nerve" data-drill-down="false" style="fill: none;"/>
+    <path d="M150 225 Q105 235 75 260" class="nerve region" data-region="s2_nerve_left" data-structure-type="nerve" data-drill-down="false" style="fill: none;"/>
+    <path d="M250 225 Q295 235 325 260" class="nerve region" data-region="s2_nerve_right" data-structure-type="nerve" data-drill-down="false" style="fill: none;"/>
+    <text x="340" y="250" class="label" style="fill: #7b1fa2;">Sacral Nerves</text>
+    <text x="340" y="263" class="label" style="fill: #7b1fa2;">TK cung</text>
+  </g>
+
+  <!-- Legend -->
+  <g id="legend" transform="translate(50, 475)">
+    <text x="0" y="0" class="label" style="font-weight: bold;">Legend / Chu thich:</text>
+    <rect x="0" y="10" width="12" height="10" class="bone"/>
+    <text x="16" y="18" class="label" style="font-size: 9px;">Bone</text>
+    <rect x="50" y="10" width="12" height="10" class="joint"/>
+    <text x="66" y="18" class="label" style="font-size: 9px;">Joint</text>
+    <rect x="100" y="10" width="12" height="10" class="ligament"/>
+    <text x="116" y="18" class="label" style="font-size: 9px;">Ligament</text>
+    <line x1="170" y1="15" x2="185" y2="15" class="nerve" style="stroke-width: 2;"/>
+    <text x="190" y="18" class="label" style="font-size: 9px;">Nerve</text>
+  </g>
+</svg>

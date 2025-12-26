@@ -1,0 +1,214 @@
+<?xml version="1.0" encoding="UTF-8"?>
+<!-- AI-GENERATED: Claude Code -->
+<!--
+  Lower Leg Region Detail - Interactive Anatomy Selector
+  Level 2: Shows lower leg with tibialis, peroneals, tibia, and fibula
+  @package   OpenEMR
+  @author    Vietnamese PT Module
+  @copyright Copyright (c) 2025
+  @license   GNU General Public License 3
+-->
+<svg xmlns="http://www.w3.org/2000/svg" viewBox="0 0 400 550" width="400" height="550">
+  <title>Lower Leg Anatomy</title>
+  <defs>
+    <style>
+      .bone { fill: #fff9c4; stroke: #8d6e63; stroke-width: 1.5; }
+      .muscle { fill: #ffcdd2; stroke: #c62828; stroke-width: 1; }
+      .joint { fill: #c8e6c9; stroke: #2e7d32; stroke-width: 1.5; }
+      .ligament { fill: #b2dfdb; stroke: #00695c; stroke-width: 2; }
+      .tendon { fill: #f0f4c3; stroke: #827717; stroke-width: 1; }
+      .nerve { fill: #e1bee7; stroke: #7b1fa2; stroke-width: 2; }
+      .region { cursor: pointer; transition: all 0.2s ease; }
+      .region:hover { filter: brightness(1.1); stroke-width: 3; }
+      .label { font-family: Arial, sans-serif; font-size: 11px; fill: #333; pointer-events: none; }
+      .title-label { font-family: Arial, sans-serif; font-size: 14px; font-weight: bold; fill: #1976d2; }
+    </style>
+  </defs>
+
+  <!-- Title -->
+  <text x="200" y="25" text-anchor="middle" class="title-label">Lower Leg Anatomy / Giai phau cang chan</text>
+
+  <!-- Bones Layer -->
+  <g id="bones-layer" data-layer="bone">
+    <!-- Tibia -->
+    <path d="M140 60 L220 60 L230 100 L235 250 L230 400 L225 480 L200 510 L160 510 L135 480 L130 400 L125 250 L130 100 Z"
+          class="bone region"
+          data-region="tibia"
+          data-structure-type="bone"
+          data-drill-down="false"/>
+    <text x="180" y="280" text-anchor="middle" class="label">Tibia / Xuong chay</text>
+
+    <!-- Tibial Tuberosity -->
+    <ellipse cx="185" cy="90" rx="20" ry="15"
+             class="bone region"
+             data-region="tibial_tuberosity"
+             data-structure-type="bone"
+             data-drill-down="false"/>
+    <text x="215" y="95" class="label">Tibial Tuberosity</text>
+
+    <!-- Fibula -->
+    <path d="M270 80 L300 85 L305 150 L310 300 L305 420 L300 480 L285 500 L265 495 L260 420 L255 300 L260 150 Z"
+          class="bone region"
+          data-region="fibula"
+          data-structure-type="bone"
+          data-drill-down="false"/>
+    <text x="315" y="280" class="label">Fibula</text>
+    <text x="315" y="293" class="label">Xuong mac</text>
+
+    <!-- Fibular Head -->
+    <ellipse cx="285" cy="85" rx="20" ry="18"
+             class="bone region"
+             data-region="fibular_head"
+             data-structure-type="bone"
+             data-drill-down="false"/>
+    <text x="315" y="90" class="label">Fibular Head</text>
+
+    <!-- Medial Malleolus -->
+    <ellipse cx="155" cy="505" rx="18" ry="22"
+             class="bone region"
+             data-region="medial_malleolus"
+             data-structure-type="bone"
+             data-drill-down="false"/>
+    <text x="90" y="510" class="label">Med Malleolus</text>
+
+    <!-- Lateral Malleolus -->
+    <ellipse cx="295" cy="500" rx="18" ry="22"
+             class="bone region"
+             data-region="lateral_malleolus"
+             data-structure-type="bone"
+             data-drill-down="false"/>
+    <text x="315" y="505" class="label">Lat Malleolus</text>
+  </g>
+
+  <!-- Muscles Layer -->
+  <g id="muscles-layer" data-layer="muscle">
+    <!-- Tibialis Anterior -->
+    <path d="M145 100 L180 95 L190 150 L195 280 L190 380 L175 420 L145 415 L135 380 L130 280 L135 150 Z"
+          class="muscle region"
+          data-region="tibialis_anterior"
+          data-structure-type="muscle"
+          data-drill-down="false"/>
+    <text x="45" y="250" class="label">Tibialis Anterior</text>
+    <text x="45" y="263" class="label">Co chay truoc</text>
+
+    <!-- Extensor Digitorum Longus -->
+    <path d="M190 110 L220 105 L230 160 L235 280 L230 380 L210 420 L190 415 L185 380 L180 280 L185 160 Z"
+          class="muscle region"
+          data-region="extensor_digitorum"
+          data-structure-type="muscle"
+          data-drill-down="false"
+          style="fill: #ef9a9a;"/>
+    <text x="45" y="330" class="label">Ext Digitorum</text>
+
+    <!-- Peroneus Longus -->
+    <path d="M255 100 L290 105 L300 160 L305 280 L300 400 L285 440 L260 435 L255 400 L250 280 L250 160 Z"
+          class="muscle region"
+          data-region="peroneus_longus"
+          data-structure-type="muscle"
+          data-drill-down="false"
+          style="fill: #e57373;"/>
+    <text x="315" y="350" class="label">Peroneus L.</text>
+    <text x="315" y="363" class="label">Co mac dai</text>
+
+    <!-- Peroneus Brevis -->
+    <path d="M265 200 L290 205 L295 280 L290 380 L275 420 L255 415 L250 380 L255 280 Z"
+          class="muscle region"
+          data-region="peroneus_brevis"
+          data-structure-type="muscle"
+          data-drill-down="false"
+          style="fill: #ffab91;"/>
+    <text x="315" y="400" class="label">Peroneus B.</text>
+
+    <!-- Gastrocnemius (Posterior - shown partially) -->
+    <path d="M100 80 L130 70 L140 120 L145 200 L140 300 L120 350 L95 340 L85 300 L80 200 L90 120 Z"
+          class="muscle region"
+          data-region="gastrocnemius_medial"
+          data-structure-type="muscle"
+          data-drill-down="false"
+          style="fill: #ffcdd2;"/>
+    <text x="20" y="200" class="label">Gastrocnemius</text>
+    <text x="20" y="213" class="label">Co bung chan</text>
+
+    <!-- Soleus -->
+    <path d="M115 280 L140 275 L145 350 L140 420 L125 450 L105 445 L100 420 L95 350 Z"
+          class="muscle region"
+          data-region="soleus"
+          data-structure-type="muscle"
+          data-drill-down="false"
+          style="fill: #e57373;"/>
+    <text x="45" y="380" class="label">Soleus</text>
+    <text x="45" y="393" class="label">Co dep</text>
+
+    <!-- Tibialis Posterior (Deep) -->
+    <path d="M180 200 L210 195 L215 280 L210 380 L195 400 L175 395 L170 380 L175 280 Z"
+          class="muscle region"
+          data-region="tibialis_posterior"
+          data-structure-type="muscle"
+          data-drill-down="false"
+          style="fill: none; stroke: #c62828; stroke-dasharray: 5,3;"/>
+    <text x="220" y="300" class="label" style="font-size: 9px;">Tib Post (deep)</text>
+  </g>
+
+  <!-- Tendons Layer -->
+  <g id="tendons-layer" data-layer="tendon">
+    <!-- Achilles Tendon -->
+    <path d="M115 420 L135 415 L140 480 L130 520 L120 520 L110 480 Z"
+          class="tendon region"
+          data-region="achilles_tendon"
+          data-structure-type="tendon"
+          data-drill-down="false"/>
+    <text x="45" y="470" class="label">Achilles</text>
+    <text x="45" y="483" class="label">Gan got</text>
+
+    <!-- Anterior Tibial Tendon -->
+    <path d="M170 420 L185 420 L190 490 L180 510 L165 505 L160 490 Z"
+          class="tendon region"
+          data-region="tibialis_anterior_tendon"
+          data-structure-type="tendon"
+          data-drill-down="false"/>
+
+    <!-- Peroneal Tendons -->
+    <path d="M270 440 L285 445 L290 490 L280 510 L265 505 L260 490 Z"
+          class="tendon region"
+          data-region="peroneal_tendons"
+          data-structure-type="tendon"
+          data-drill-down="false"/>
+    <text x="315" y="470" class="label">Peroneal Tendons</text>
+  </g>
+
+  <!-- Nerves Layer -->
+  <g id="nerves-layer" data-layer="nerve">
+    <!-- Common Peroneal Nerve -->
+    <path d="M280 80 Q295 120 285 200"
+          class="nerve region"
+          data-region="common_peroneal_nerve"
+          data-structure-type="nerve"
+          data-drill-down="false"
+          style="fill: none;"/>
+    <text x="315" y="150" class="label" style="fill: #7b1fa2;">Peroneal N.</text>
+    <text x="315" y="163" class="label" style="fill: #7b1fa2;">TK mac</text>
+
+    <!-- Tibial Nerve -->
+    <path d="M180 80 Q170 200 175 400"
+          class="nerve region"
+          data-region="tibial_nerve"
+          data-structure-type="nerve"
+          data-drill-down="false"
+          style="fill: none;"/>
+    <text x="45" y="150" class="label" style="fill: #7b1fa2;">Tibial N.</text>
+    <text x="45" y="163" class="label" style="fill: #7b1fa2;">TK chay</text>
+  </g>
+
+  <!-- Legend -->
+  <g id="legend" transform="translate(80, 535)">
+    <text x="0" y="-5" class="label" style="font-weight: bold;">Legend / Chu thich:</text>
+    <rect x="0" y="5" width="12" height="10" class="bone"/>
+    <text x="16" y="13" class="label" style="font-size: 9px;">Bone</text>
+    <rect x="50" y="5" width="12" height="10" class="muscle"/>
+    <text x="66" y="13" class="label" style="font-size: 9px;">Muscle</text>
+    <rect x="110" y="5" width="12" height="10" class="tendon"/>
+    <text x="126" y="13" class="label" style="font-size: 9px;">Tendon</text>
+    <line x1="175" y1="10" x2="190" y2="10" class="nerve" style="stroke-width: 2;"/>
+    <text x="195" y="13" class="label" style="font-size: 9px;">Nerve</text>
+  </g>
+</svg>

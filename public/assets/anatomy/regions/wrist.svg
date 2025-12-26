@@ -1,0 +1,245 @@
+<?xml version="1.0" encoding="UTF-8"?>
+<!-- AI-GENERATED: Claude Code -->
+<!--
+  Wrist Region Detail - Interactive Anatomy Selector
+  Level 2: Shows wrist with carpal bones, ligaments, and tendons
+  @package   OpenEMR
+  @author    Vietnamese PT Module
+  @copyright Copyright (c) 2025
+  @license   GNU General Public License 3
+-->
+<svg xmlns="http://www.w3.org/2000/svg" viewBox="0 0 400 450" width="400" height="450">
+  <title>Wrist Anatomy</title>
+  <defs>
+    <style>
+      .bone { fill: #fff9c4; stroke: #8d6e63; stroke-width: 1.5; }
+      .muscle { fill: #ffcdd2; stroke: #c62828; stroke-width: 1; }
+      .joint { fill: #c8e6c9; stroke: #2e7d32; stroke-width: 1.5; }
+      .ligament { fill: #b2dfdb; stroke: #00695c; stroke-width: 2; }
+      .tendon { fill: #f0f4c3; stroke: #827717; stroke-width: 1; }
+      .nerve { fill: #e1bee7; stroke: #7b1fa2; stroke-width: 2; }
+      .region { cursor: pointer; transition: all 0.2s ease; }
+      .region:hover { filter: brightness(1.1); stroke-width: 3; }
+      .label { font-family: Arial, sans-serif; font-size: 11px; fill: #333; pointer-events: none; }
+      .title-label { font-family: Arial, sans-serif; font-size: 14px; font-weight: bold; fill: #1976d2; }
+    </style>
+  </defs>
+
+  <!-- Title -->
+  <text x="200" y="25" text-anchor="middle" class="title-label">Wrist Anatomy / Giai phau co tay</text>
+
+  <!-- Bones Layer -->
+  <g id="bones-layer" data-layer="bone">
+    <!-- Radius (Distal) -->
+    <path d="M100 50 L180 50 L185 100 L180 150 L100 150 L95 100 Z"
+          class="bone region"
+          data-region="radius_distal"
+          data-structure-type="bone"
+          data-drill-down="false"/>
+    <text x="140" y="100" text-anchor="middle" class="label">Radius / X. quay</text>
+
+    <!-- Ulna (Distal) -->
+    <path d="M200 50 L270 50 L275 100 L270 150 L200 150 L195 100 Z"
+          class="bone region"
+          data-region="ulna_distal"
+          data-structure-type="bone"
+          data-drill-down="false"/>
+    <text x="235" y="100" text-anchor="middle" class="label">Ulna / X. tru</text>
+
+    <!-- Carpal Bones - Proximal Row -->
+    <!-- Scaphoid -->
+    <path d="M95 170 L130 165 L140 200 L130 230 L100 225 L90 195 Z"
+          class="bone region"
+          data-region="scaphoid"
+          data-structure-type="bone"
+          data-drill-down="false"/>
+    <text x="115" y="200" text-anchor="middle" class="label" style="font-size: 9px;">Scaphoid</text>
+
+    <!-- Lunate -->
+    <path d="M140 165 L185 165 L190 200 L180 230 L140 230 L135 200 Z"
+          class="bone region"
+          data-region="lunate"
+          data-structure-type="bone"
+          data-drill-down="false"/>
+    <text x="162" y="200" text-anchor="middle" class="label" style="font-size: 9px;">Lunate</text>
+
+    <!-- Triquetrum -->
+    <path d="M195 165 L235 165 L245 195 L235 225 L195 225 L185 195 Z"
+          class="bone region"
+          data-region="triquetrum"
+          data-structure-type="bone"
+          data-drill-down="false"/>
+    <text x="215" y="198" text-anchor="middle" class="label" style="font-size: 9px;">Triquetrum</text>
+
+    <!-- Pisiform -->
+    <circle cx="255" cy="190" r="18"
+            class="bone region"
+            data-region="pisiform"
+            data-structure-type="bone"
+            data-drill-down="false"/>
+    <text x="255" y="193" text-anchor="middle" class="label" style="font-size: 8px;">Pisiform</text>
+
+    <!-- Carpal Bones - Distal Row -->
+    <!-- Trapezium -->
+    <path d="M80 245 L115 240 L125 280 L110 310 L75 300 L70 265 Z"
+          class="bone region"
+          data-region="trapezium"
+          data-structure-type="bone"
+          data-drill-down="false"/>
+    <text x="95" y="280" text-anchor="middle" class="label" style="font-size: 9px;">Trapezium</text>
+
+    <!-- Trapezoid -->
+    <path d="M125 240 L160 240 L165 280 L155 305 L120 305 L115 275 Z"
+          class="bone region"
+          data-region="trapezoid"
+          data-structure-type="bone"
+          data-drill-down="false"/>
+    <text x="140" y="275" text-anchor="middle" class="label" style="font-size: 8px;">Trapezoid</text>
+
+    <!-- Capitate -->
+    <path d="M165 240 L205 240 L215 280 L205 320 L165 320 L155 280 Z"
+          class="bone region"
+          data-region="capitate"
+          data-structure-type="bone"
+          data-drill-down="false"/>
+    <text x="185" y="280" text-anchor="middle" class="label" style="font-size: 9px;">Capitate</text>
+
+    <!-- Hamate -->
+    <path d="M215 240 L260 240 L275 275 L265 320 L215 315 L205 280 Z"
+          class="bone region"
+          data-region="hamate"
+          data-structure-type="bone"
+          data-drill-down="false"/>
+    <text x="240" y="280" text-anchor="middle" class="label" style="font-size: 9px;">Hamate</text>
+
+    <!-- Metacarpal Bases -->
+    <rect x="80" y="325" width="195" height="40" rx="5"
+          class="bone region"
+          data-region="metacarpal_bases"
+          data-structure-type="bone"
+          data-drill-down="false"/>
+    <text x="177" y="350" text-anchor="middle" class="label">Metacarpal Bases / Nen xuong ban tay</text>
+  </g>
+
+  <!-- Joints Layer -->
+  <g id="joints-layer" data-layer="joint">
+    <!-- Radiocarpal Joint -->
+    <path d="M95 155 L270 155"
+          class="joint region"
+          data-region="radiocarpal_joint"
+          data-structure-type="joint"
+          data-drill-down="false"
+          style="fill: none; stroke-width: 4;"/>
+    <text x="300" y="160" class="label">Radiocarpal Joint</text>
+    <text x="300" y="173" class="label">Khop co tay</text>
+
+    <!-- Midcarpal Joint -->
+    <path d="M80 235 Q175 250 275 235"
+          class="joint region"
+          data-region="midcarpal_joint"
+          data-structure-type="joint"
+          data-drill-down="false"
+          style="fill: none; stroke-width: 3;"/>
+
+    <!-- Carpometacarpal Joints -->
+    <path d="M80 320 Q175 330 275 320"
+          class="joint region"
+          data-region="cmc_joints"
+          data-structure-type="joint"
+          data-drill-down="false"
+          style="fill: none; stroke-width: 3;"/>
+  </g>
+
+  <!-- Ligaments Layer -->
+  <g id="ligaments-layer" data-layer="ligament">
+    <!-- Transverse Carpal Ligament (Carpal Tunnel) -->
+    <path d="M85 220 Q180 200 275 220"
+          class="ligament region"
+          data-region="transverse_carpal_lig"
+          data-structure-type="ligament"
+          data-drill-down="false"
+          style="fill: none; stroke-width: 4;"/>
+    <text x="300" y="210" class="label">Carpal Tunnel</text>
+    <text x="300" y="223" class="label">Ong co tay</text>
+
+    <!-- Scapholunate Ligament -->
+    <path d="M130 195 L145 195"
+          class="ligament region"
+          data-region="scapholunate_lig"
+          data-structure-type="ligament"
+          data-drill-down="false"
+          style="fill: none; stroke-width: 3;"/>
+  </g>
+
+  <!-- Tendons Layer -->
+  <g id="tendons-layer" data-layer="tendon">
+    <!-- Flexor Tendons -->
+    <path d="M130 50 L135 170"
+          class="tendon region"
+          data-region="flexor_tendons_wrist"
+          data-structure-type="tendon"
+          data-drill-down="false"
+          style="fill: none; stroke-width: 3;"/>
+    <path d="M155 50 L160 170"
+          class="tendon region"
+          data-region="flexor_tendons_wrist_2"
+          data-structure-type="tendon"
+          data-drill-down="false"
+          style="fill: none; stroke-width: 3;"/>
+    <text x="30" y="110" class="label">Flexor Tendons</text>
+    <text x="30" y="123" class="label">Gan gap</text>
+
+    <!-- Extensor Tendons -->
+    <path d="M210 50 L215 170"
+          class="tendon region"
+          data-region="extensor_tendons_wrist"
+          data-structure-type="tendon"
+          data-drill-down="false"
+          style="fill: none; stroke-width: 3;"/>
+    <path d="M235 50 L240 170"
+          class="tendon region"
+          data-region="extensor_tendons_wrist_2"
+          data-structure-type="tendon"
+          data-drill-down="false"
+          style="fill: none; stroke-width: 3;"/>
+    <text x="300" y="110" class="label">Extensor Tendons</text>
+    <text x="300" y="123" class="label">Gan duoi</text>
+  </g>
+
+  <!-- Nerves Layer -->
+  <g id="nerves-layer" data-layer="nerve">
+    <!-- Median Nerve -->
+    <path d="M145 50 Q150 120 155 250"
+          class="nerve region"
+          data-region="median_nerve_wrist"
+          data-structure-type="nerve"
+          data-drill-down="false"
+          style="fill: none;"/>
+    <text x="30" y="200" class="label" style="fill: #7b1fa2;">Median N.</text>
+    <text x="30" y="213" class="label" style="fill: #7b1fa2;">TK giua</text>
+
+    <!-- Ulnar Nerve -->
+    <path d="M250 50 Q255 120 260 250"
+          class="nerve region"
+          data-region="ulnar_nerve_wrist"
+          data-structure-type="nerve"
+          data-drill-down="false"
+          style="fill: none;"/>
+    <text x="300" y="250" class="label" style="fill: #7b1fa2;">Ulnar N.</text>
+  </g>
+
+  <!-- Legend -->
+  <g id="legend" transform="translate(30, 390)">
+    <text x="0" y="0" class="label" style="font-weight: bold;">Legend / Chu thich:</text>
+    <rect x="0" y="10" width="15" height="12" class="bone"/>
+    <text x="20" y="20" class="label">Bone</text>
+    <rect x="60" y="10" width="15" height="12" class="joint"/>
+    <text x="80" y="20" class="label">Joint</text>
+    <rect x="120" y="10" width="15" height="12" class="ligament"/>
+    <text x="140" y="20" class="label">Ligament</text>
+    <rect x="200" y="10" width="15" height="12" class="tendon"/>
+    <text x="220" y="20" class="label">Tendon</text>
+    <line x1="270" y1="16" x2="285" y2="16" class="nerve" style="stroke-width: 3;"/>
+    <text x="290" y="20" class="label">Nerve</text>
+  </g>
+</svg>

@@ -1,0 +1,317 @@
+<?xml version="1.0" encoding="UTF-8"?>
+<!-- AI-GENERATED: Claude Code -->
+<!--
+  Hand Region Detail - Interactive Anatomy Selector
+  Level 2: Shows hand with palm, fingers, and associated structures
+  @package   OpenEMR
+  @author    Vietnamese PT Module
+  @copyright Copyright (c) 2025
+  @license   GNU General Public License 3
+-->
+<svg xmlns="http://www.w3.org/2000/svg" viewBox="0 0 400 500" width="400" height="500">
+  <title>Hand Anatomy</title>
+  <defs>
+    <style>
+      .bone { fill: #fff9c4; stroke: #8d6e63; stroke-width: 1.5; }
+      .muscle { fill: #ffcdd2; stroke: #c62828; stroke-width: 1; }
+      .joint { fill: #c8e6c9; stroke: #2e7d32; stroke-width: 1.5; }
+      .ligament { fill: #b2dfdb; stroke: #00695c; stroke-width: 2; }
+      .tendon { fill: #f0f4c3; stroke: #827717; stroke-width: 1; }
+      .nerve { fill: #e1bee7; stroke: #7b1fa2; stroke-width: 2; }
+      .region { cursor: pointer; transition: all 0.2s ease; }
+      .region:hover { filter: brightness(1.1); stroke-width: 3; }
+      .label { font-family: Arial, sans-serif; font-size: 11px; fill: #333; pointer-events: none; }
+      .title-label { font-family: Arial, sans-serif; font-size: 14px; font-weight: bold; fill: #1976d2; }
+    </style>
+  </defs>
+
+  <!-- Title -->
+  <text x="200" y="25" text-anchor="middle" class="title-label">Hand Anatomy / Giai phau ban tay</text>
+
+  <!-- Bones Layer -->
+  <g id="bones-layer" data-layer="bone">
+    <!-- Metacarpals -->
+    <!-- Thumb Metacarpal -->
+    <path d="M60 200 L90 180 L110 220 L115 280 L85 300 L55 260 Z"
+          class="bone region"
+          data-region="metacarpal_1"
+          data-structure-type="bone"
+          data-drill-down="false"/>
+    <text x="85" y="240" text-anchor="middle" class="label" style="font-size: 9px;">MC1</text>
+
+    <!-- Index Metacarpal -->
+    <path d="M115 120 L140 115 L150 180 L155 280 L130 285 L120 180 Z"
+          class="bone region"
+          data-region="metacarpal_2"
+          data-structure-type="bone"
+          data-drill-down="false"/>
+    <text x="135" y="200" text-anchor="middle" class="label" style="font-size: 9px;">MC2</text>
+
+    <!-- Middle Metacarpal -->
+    <path d="M160 110 L190 110 L200 180 L205 280 L175 280 L165 180 Z"
+          class="bone region"
+          data-region="metacarpal_3"
+          data-structure-type="bone"
+          data-drill-down="false"/>
+    <text x="182" y="195" text-anchor="middle" class="label" style="font-size: 9px;">MC3</text>
+
+    <!-- Ring Metacarpal -->
+    <path d="M210 115 L240 120 L250 185 L255 280 L225 280 L215 185 Z"
+          class="bone region"
+          data-region="metacarpal_4"
+          data-structure-type="bone"
+          data-drill-down="false"/>
+    <text x="232" y="200" text-anchor="middle" class="label" style="font-size: 9px;">MC4</text>
+
+    <!-- Little Metacarpal -->
+    <path d="M260 130 L290 140 L300 200 L305 280 L275 275 L265 200 Z"
+          class="bone region"
+          data-region="metacarpal_5"
+          data-structure-type="bone"
+          data-drill-down="false"/>
+    <text x="282" y="205" text-anchor="middle" class="label" style="font-size: 9px;">MC5</text>
+
+    <!-- Phalanges - Thumb -->
+    <path d="M45 305 L80 295 L90 340 L80 380 L50 385 L40 345 Z"
+          class="bone region"
+          data-region="thumb_proximal"
+          data-structure-type="bone"
+          data-drill-down="false"/>
+    <path d="M40 390 L75 385 L80 420 L70 450 L40 450 L35 420 Z"
+          class="bone region"
+          data-region="thumb_distal"
+          data-structure-type="bone"
+          data-drill-down="false"/>
+    <text x="25" y="345" class="label">Thumb</text>
+    <text x="25" y="358" class="label">Ngon cai</text>
+
+    <!-- Phalanges - Index -->
+    <path d="M130 290 L155 290 L160 330 L155 370 L130 370 L125 330 Z"
+          class="bone region"
+          data-region="index_proximal"
+          data-structure-type="bone"
+          data-drill-down="false"/>
+    <path d="M130 375 L155 375 L158 405 L152 435 L133 435 L127 405 Z"
+          class="bone region"
+          data-region="index_middle"
+          data-structure-type="bone"
+          data-drill-down="false"/>
+    <path d="M133 440 L152 440 L155 460 L148 480 L137 480 L130 460 Z"
+          class="bone region"
+          data-region="index_distal"
+          data-structure-type="bone"
+          data-drill-down="false"/>
+
+    <!-- Phalanges - Middle -->
+    <path d="M175 285 L205 285 L210 330 L205 375 L175 375 L170 330 Z"
+          class="bone region"
+          data-region="middle_proximal"
+          data-structure-type="bone"
+          data-drill-down="false"/>
+    <path d="M175 380 L205 380 L210 415 L205 450 L175 450 L170 415 Z"
+          class="bone region"
+          data-region="middle_middle"
+          data-structure-type="bone"
+          data-drill-down="false"/>
+    <path d="M178 455 L202 455 L205 475 L198 495 L182 495 L175 475 Z"
+          class="bone region"
+          data-region="middle_distal"
+          data-structure-type="bone"
+          data-drill-down="false"/>
+
+    <!-- Phalanges - Ring -->
+    <path d="M225 285 L255 285 L260 325 L255 365 L225 365 L220 325 Z"
+          class="bone region"
+          data-region="ring_proximal"
+          data-structure-type="bone"
+          data-drill-down="false"/>
+    <path d="M225 370 L255 370 L258 400 L253 430 L228 430 L223 400 Z"
+          class="bone region"
+          data-region="ring_middle"
+          data-structure-type="bone"
+          data-drill-down="false"/>
+    <path d="M228 435 L253 435 L255 455 L250 475 L233 475 L228 455 Z"
+          class="bone region"
+          data-region="ring_distal"
+          data-structure-type="bone"
+          data-drill-down="false"/>
+
+    <!-- Phalanges - Little -->
+    <path d="M275 280 L305 280 L310 315 L305 350 L275 350 L270 315 Z"
+          class="bone region"
+          data-region="little_proximal"
+          data-structure-type="bone"
+          data-drill-down="false"/>
+    <path d="M278 355 L305 355 L308 380 L303 405 L280 405 L275 380 Z"
+          class="bone region"
+          data-region="little_middle"
+          data-structure-type="bone"
+          data-drill-down="false"/>
+    <path d="M280 410 L303 410 L305 428 L300 445 L285 445 L278 428 Z"
+          class="bone region"
+          data-region="little_distal"
+          data-structure-type="bone"
+          data-drill-down="false"/>
+  </g>
+
+  <!-- Muscles Layer -->
+  <g id="muscles-layer" data-layer="muscle">
+    <!-- Thenar Eminence -->
+    <ellipse cx="80" cy="200" rx="35" ry="50"
+             class="muscle region"
+             data-region="thenar_eminence"
+             data-structure-type="muscle"
+             data-drill-down="false"/>
+    <text x="80" y="195" text-anchor="middle" class="label" style="font-size: 9px;">Thenar</text>
+    <text x="80" y="208" text-anchor="middle" class="label" style="font-size: 9px;">Mo cai</text>
+
+    <!-- Hypothenar Eminence -->
+    <ellipse cx="300" cy="200" rx="30" ry="45"
+             class="muscle region"
+             data-region="hypothenar_eminence"
+             data-structure-type="muscle"
+             data-drill-down="false"/>
+    <text x="300" y="195" text-anchor="middle" class="label" style="font-size: 8px;">Hypothenar</text>
+    <text x="300" y="208" text-anchor="middle" class="label" style="font-size: 8px;">Mo ut</text>
+
+    <!-- Lumbricals (Palmar) -->
+    <ellipse cx="145" cy="250" rx="8" ry="20"
+             class="muscle region"
+             data-region="lumbrical_1"
+             data-structure-type="muscle"
+             data-drill-down="false"
+             style="fill: #ef9a9a;"/>
+    <ellipse cx="185" cy="250" rx="8" ry="20"
+             class="muscle region"
+             data-region="lumbrical_2"
+             data-structure-type="muscle"
+             data-drill-down="false"
+             style="fill: #ef9a9a;"/>
+    <ellipse cx="225" cy="250" rx="8" ry="20"
+             class="muscle region"
+             data-region="lumbrical_3"
+             data-structure-type="muscle"
+             data-drill-down="false"
+             style="fill: #ef9a9a;"/>
+    <ellipse cx="265" cy="250" rx="8" ry="20"
+             class="muscle region"
+             data-region="lumbrical_4"
+             data-structure-type="muscle"
+             data-drill-down="false"
+             style="fill: #ef9a9a;"/>
+    <text x="340" y="255" class="label">Lumbricals</text>
+  </g>
+
+  <!-- Joints Layer -->
+  <g id="joints-layer" data-layer="joint">
+    <!-- MCP Joints -->
+    <circle cx="142" cy="285" r="6"
+            class="joint region"
+            data-region="mcp_2"
+            data-structure-type="joint"
+            data-drill-down="false"/>
+    <circle cx="190" cy="282" r="6"
+            class="joint region"
+            data-region="mcp_3"
+            data-structure-type="joint"
+            data-drill-down="false"/>
+    <circle cx="240" cy="282" r="6"
+            class="joint region"
+            data-region="mcp_4"
+            data-structure-type="joint"
+            data-drill-down="false"/>
+    <circle cx="290" cy="277" r="6"
+            class="joint region"
+            data-region="mcp_5"
+            data-structure-type="joint"
+            data-drill-down="false"/>
+    <text x="340" y="285" class="label">MCP Joints</text>
+
+    <!-- PIP Joints -->
+    <circle cx="142" cy="372" r="5"
+            class="joint region"
+            data-region="pip_2"
+            data-structure-type="joint"
+            data-drill-down="false"/>
+    <circle cx="190" cy="377" r="5"
+            class="joint region"
+            data-region="pip_3"
+            data-structure-type="joint"
+            data-drill-down="false"/>
+    <circle cx="240" cy="367" r="5"
+            class="joint region"
+            data-region="pip_4"
+            data-structure-type="joint"
+            data-drill-down="false"/>
+    <circle cx="290" cy="352" r="5"
+            class="joint region"
+            data-region="pip_5"
+            data-structure-type="joint"
+            data-drill-down="false"/>
+  </g>
+
+  <!-- Tendons Layer -->
+  <g id="tendons-layer" data-layer="tendon">
+    <!-- Flexor Tendons -->
+    <path d="M142 50 L142 280"
+          class="tendon region"
+          data-region="flexor_tendon_2"
+          data-structure-type="tendon"
+          data-drill-down="false"
+          style="fill: none; stroke-width: 2;"/>
+    <path d="M190 50 L190 280"
+          class="tendon region"
+          data-region="flexor_tendon_3"
+          data-structure-type="tendon"
+          data-drill-down="false"
+          style="fill: none; stroke-width: 2;"/>
+    <path d="M240 50 L240 280"
+          class="tendon region"
+          data-region="flexor_tendon_4"
+          data-structure-type="tendon"
+          data-drill-down="false"
+          style="fill: none; stroke-width: 2;"/>
+    <path d="M290 50 L290 275"
+          class="tendon region"
+          data-region="flexor_tendon_5"
+          data-structure-type="tendon"
+          data-drill-down="false"
+          style="fill: none; stroke-width: 2;"/>
+    <text x="340" y="150" class="label">Flexor Tendons</text>
+    <text x="340" y="163" class="label">Gan gap</text>
+  </g>
+
+  <!-- Nerves Layer -->
+  <g id="nerves-layer" data-layer="nerve">
+    <!-- Median Nerve -->
+    <path d="M170 50 Q175 150 180 250"
+          class="nerve region"
+          data-region="median_nerve_hand"
+          data-structure-type="nerve"
+          data-drill-down="false"
+          style="fill: none;"/>
+    <text x="10" y="150" class="label" style="fill: #7b1fa2;">Median N.</text>
+
+    <!-- Ulnar Nerve -->
+    <path d="M280 50 Q285 150 290 200"
+          class="nerve region"
+          data-region="ulnar_nerve_hand"
+          data-structure-type="nerve"
+          data-drill-down="false"
+          style="fill: none;"/>
+    <text x="340" y="100" class="label" style="fill: #7b1fa2;">Ulnar N.</text>
+  </g>
+
+  <!-- Legend -->
+  <g id="legend" transform="translate(100, 60)">
+    <text x="0" y="0" class="label" style="font-weight: bold;">Legend / Chu thich:</text>
+    <rect x="0" y="10" width="12" height="10" class="bone"/>
+    <text x="16" y="18" class="label" style="font-size: 9px;">Bone</text>
+    <rect x="50" y="10" width="12" height="10" class="muscle"/>
+    <text x="66" y="18" class="label" style="font-size: 9px;">Muscle</text>
+    <rect x="105" y="10" width="12" height="10" class="joint"/>
+    <text x="121" y="18" class="label" style="font-size: 9px;">Joint</text>
+    <rect x="155" y="10" width="12" height="10" class="tendon"/>
+    <text x="171" y="18" class="label" style="font-size: 9px;">Tendon</text>
+  </g>
+</svg>

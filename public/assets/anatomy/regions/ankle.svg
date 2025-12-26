@@ -1,0 +1,214 @@
+<?xml version="1.0" encoding="UTF-8"?>
+<!-- AI-GENERATED: Claude Code -->
+<!--
+  Ankle Region Detail - Interactive Anatomy Selector
+  Level 2: Shows ankle with joint structures, ligaments, and tendons
+  @package   OpenEMR
+  @author    Vietnamese PT Module
+  @copyright Copyright (c) 2025
+  @license   GNU General Public License 3
+-->
+<svg xmlns="http://www.w3.org/2000/svg" viewBox="0 0 450 450" width="450" height="450">
+  <title>Ankle Anatomy</title>
+  <defs>
+    <style>
+      .bone { fill: #fff9c4; stroke: #8d6e63; stroke-width: 1.5; }
+      .muscle { fill: #ffcdd2; stroke: #c62828; stroke-width: 1; }
+      .joint { fill: #c8e6c9; stroke: #2e7d32; stroke-width: 1.5; }
+      .ligament { fill: #b2dfdb; stroke: #00695c; stroke-width: 2; }
+      .tendon { fill: #f0f4c3; stroke: #827717; stroke-width: 1; }
+      .nerve { fill: #e1bee7; stroke: #7b1fa2; stroke-width: 2; }
+      .region { cursor: pointer; transition: all 0.2s ease; }
+      .region:hover { filter: brightness(1.1); stroke-width: 3; }
+      .label { font-family: Arial, sans-serif; font-size: 11px; fill: #333; pointer-events: none; }
+      .title-label { font-family: Arial, sans-serif; font-size: 14px; font-weight: bold; fill: #1976d2; }
+    </style>
+  </defs>
+
+  <!-- Title -->
+  <text x="225" y="25" text-anchor="middle" class="title-label">Ankle Anatomy / Giai phau co chan</text>
+
+  <!-- Bones Layer -->
+  <g id="bones-layer" data-layer="bone">
+    <!-- Tibia (Distal) -->
+    <path d="M150 50 L250 50 L260 100 L255 180 L245 200 L155 200 L145 180 L140 100 Z"
+          class="bone region"
+          data-region="tibia_distal"
+          data-structure-type="bone"
+          data-drill-down="false"/>
+    <text x="200" y="120" text-anchor="middle" class="label">Tibia / Xuong chay</text>
+
+    <!-- Fibula (Distal) -->
+    <path d="M290 60 L330 65 L335 120 L330 200 L315 220 L295 215 L290 200 L285 120 Z"
+          class="bone region"
+          data-region="fibula_distal"
+          data-structure-type="bone"
+          data-drill-down="false"/>
+    <text x="350" y="140" class="label">Fibula</text>
+
+    <!-- Medial Malleolus -->
+    <path d="M145 190 L165 185 L170 230 L160 260 L140 255 L135 220 Z"
+          class="bone region"
+          data-region="medial_malleolus"
+          data-structure-type="bone"
+          data-drill-down="false"/>
+    <text x="60" y="230" class="label">Medial Malleolus</text>
+    <text x="60" y="243" class="label">Mat ca trong</text>
+
+    <!-- Lateral Malleolus -->
+    <path d="M300 200 L325 205 L330 250 L320 280 L295 275 L290 240 Z"
+          class="bone region"
+          data-region="lateral_malleolus"
+          data-structure-type="bone"
+          data-drill-down="false"/>
+    <text x="350" y="250" class="label">Lateral Malleolus</text>
+    <text x="350" y="263" class="label">Mat ca ngoai</text>
+
+    <!-- Talus -->
+    <path d="M160 220 L280 220 L300 260 L290 310 L180 310 L160 280 Z"
+          class="bone region"
+          data-region="talus"
+          data-structure-type="bone"
+          data-drill-down="false"/>
+    <text x="225" y="270" text-anchor="middle" class="label">Talus / Xuong sien</text>
+
+    <!-- Calcaneus -->
+    <path d="M140 310 L300 310 L320 350 L310 400 L150 400 L130 360 Z"
+          class="bone region"
+          data-region="calcaneus"
+          data-structure-type="bone"
+          data-drill-down="false"/>
+    <text x="225" y="360" text-anchor="middle" class="label">Calcaneus / Xuong got</text>
+
+    <!-- Navicular -->
+    <path d="M160 280 L200 275 L210 300 L200 325 L160 320 L150 300 Z"
+          class="bone region"
+          data-region="navicular"
+          data-structure-type="bone"
+          data-drill-down="false"
+          style="fill: #ffe0b2;"/>
+    <text x="70" y="310" class="label">Navicular</text>
+  </g>
+
+  <!-- Joints Layer -->
+  <g id="joints-layer" data-layer="joint">
+    <!-- Talocrural Joint (Ankle Joint) -->
+    <path d="M160 215 Q225 200 290 215"
+          class="joint region"
+          data-region="talocrural_joint"
+          data-structure-type="joint"
+          data-drill-down="false"
+          style="fill: none; stroke-width: 4;"/>
+    <text x="350" y="210" class="label">Ankle Joint</text>
+    <text x="350" y="223" class="label">Khop co chan</text>
+
+    <!-- Subtalar Joint -->
+    <path d="M170 310 Q225 300 280 310"
+          class="joint region"
+          data-region="subtalar_joint"
+          data-structure-type="joint"
+          data-drill-down="false"
+          style="fill: none; stroke-width: 3;"/>
+    <text x="60" y="350" class="label">Subtalar Joint</text>
+  </g>
+
+  <!-- Ligaments Layer -->
+  <g id="ligaments-layer" data-layer="ligament">
+    <!-- Anterior Talofibular Ligament (ATFL) -->
+    <path d="M295 230 L265 245"
+          class="ligament region"
+          data-region="atfl"
+          data-structure-type="ligament"
+          data-drill-down="false"
+          style="fill: none; stroke-width: 5;"/>
+    <text x="350" y="285" class="label" style="fill: #00695c; font-weight: bold;">ATFL</text>
+
+    <!-- Calcaneofibular Ligament (CFL) -->
+    <path d="M305 260 L290 340"
+          class="ligament region"
+          data-region="cfl"
+          data-structure-type="ligament"
+          data-drill-down="false"
+          style="fill: none; stroke-width: 5;"/>
+    <text x="350" y="310" class="label" style="fill: #00695c; font-weight: bold;">CFL</text>
+
+    <!-- Posterior Talofibular Ligament (PTFL) -->
+    <path d="M310 270 L280 295"
+          class="ligament region"
+          data-region="ptfl"
+          data-structure-type="ligament"
+          data-drill-down="false"
+          style="fill: none; stroke-width: 4;"/>
+    <text x="350" y="335" class="label">PTFL</text>
+
+    <!-- Deltoid Ligament (Medial) -->
+    <path d="M155 240 L175 300"
+          class="ligament region"
+          data-region="deltoid_ligament"
+          data-structure-type="ligament"
+          data-drill-down="false"
+          style="fill: none; stroke-width: 6;"/>
+    <text x="60" y="280" class="label" style="fill: #00695c; font-weight: bold;">Deltoid Lig</text>
+    <text x="60" y="293" class="label">DC tam giac</text>
+
+    <!-- Spring Ligament -->
+    <path d="M175 310 L185 340"
+          class="ligament region"
+          data-region="spring_ligament"
+          data-structure-type="ligament"
+          data-drill-down="false"
+          style="fill: none; stroke-width: 4;"/>
+  </g>
+
+  <!-- Tendons Layer -->
+  <g id="tendons-layer" data-layer="tendon">
+    <!-- Achilles Tendon -->
+    <path d="M215 50 L235 50 L240 100 L245 200 L250 280 L245 320 L230 350 L205 345 L200 320 L195 280 L200 200 L205 100 Z"
+          class="tendon region"
+          data-region="achilles_tendon"
+          data-structure-type="tendon"
+          data-drill-down="false"/>
+    <text x="255" y="150" class="label">Achilles Tendon</text>
+    <text x="255" y="163" class="label">Gan got</text>
+
+    <!-- Tibialis Anterior Tendon -->
+    <path d="M170 50 L185 50 L180 150 L175 200"
+          class="tendon region"
+          data-region="tibialis_anterior_tendon"
+          data-structure-type="tendon"
+          data-drill-down="false"
+          style="fill: none; stroke-width: 4;"/>
+    <text x="60" y="120" class="label">Tib Ant Tendon</text>
+
+    <!-- Peroneal Tendons -->
+    <path d="M310 100 L315 200 L305 280"
+          class="tendon region"
+          data-region="peroneal_tendons"
+          data-structure-type="tendon"
+          data-drill-down="false"
+          style="fill: none; stroke-width: 4;"/>
+    <text x="350" y="180" class="label">Peroneal Tendons</text>
+
+    <!-- Tibialis Posterior Tendon -->
+    <path d="M145 100 L140 180 L150 250"
+          class="tendon region"
+          data-region="tibialis_posterior_tendon"
+          data-structure-type="tendon"
+          data-drill-down="false"
+          style="fill: none; stroke-width: 3;"/>
+    <text x="60" y="180" class="label">Tib Post Tendon</text>
+  </g>
+
+  <!-- Legend -->
+  <g id="legend" transform="translate(60, 410)">
+    <text x="0" y="0" class="label" style="font-weight: bold;">Legend / Chu thich:</text>
+    <rect x="0" y="10" width="15" height="12" class="bone"/>
+    <text x="20" y="20" class="label">Bone</text>
+    <rect x="60" y="10" width="15" height="12" class="joint"/>
+    <text x="80" y="20" class="label">Joint</text>
+    <rect x="120" y="10" width="15" height="12" class="ligament"/>
+    <text x="140" y="20" class="label">Ligament</text>
+    <rect x="200" y="10" width="15" height="12" class="tendon"/>
+    <text x="220" y="20" class="label">Tendon</text>
+  </g>
+</svg>

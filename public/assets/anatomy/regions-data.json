@@ -1,0 +1,560 @@
+{
+  "_metadata": {
+    "version": "1.0.0",
+    "description": "Anatomical regions data for Vietnamese PT anatomy selector",
+    "author": "Claude Code (AI-Generated)",
+    "created": "2025-12-25",
+    "language_support": ["en", "vi"]
+  },
+  "regions": [
+    {
+      "code": "body_front",
+      "name_en": "Body (Front View)",
+      "name_vi": "Co the (Mat truoc)",
+      "structure_type": "region",
+      "parent_code": null,
+      "svg_file": "body-full-front.svg",
+      "has_drill_down": false
+    },
+    {
+      "code": "body_back",
+      "name_en": "Body (Back View)",
+      "name_vi": "Co the (Mat sau)",
+      "structure_type": "region",
+      "parent_code": null,
+      "svg_file": "body-full-back.svg",
+      "has_drill_down": false
+    },
+    {
+      "code": "head_front",
+      "name_en": "Head (Front)",
+      "name_vi": "Dau (Mat truoc)",
+      "structure_type": "region",
+      "parent_code": "body_front",
+      "svg_file": "regions/head.svg",
+      "has_drill_down": true
+    },
+    {
+      "code": "head_back",
+      "name_en": "Head (Back)",
+      "name_vi": "Dau (Mat sau)",
+      "structure_type": "region",
+      "parent_code": "body_back",
+      "svg_file": "regions/head-back.svg",
+      "has_drill_down": true
+    },
+    {
+      "code": "neck_front",
+      "name_en": "Neck (Front)",
+      "name_vi": "Co (Mat truoc)",
+      "structure_type": "region",
+      "parent_code": "body_front",
+      "svg_file": "regions/neck.svg",
+      "has_drill_down": true
+    },
+    {
+      "code": "cervical_spine",
+      "name_en": "Cervical Spine",
+      "name_vi": "Cot song co",
+      "structure_type": "bone",
+      "parent_code": "body_back",
+      "svg_file": "regions/spine-cervical.svg",
+      "has_drill_down": true
+    },
+    {
+      "code": "chest",
+      "name_en": "Chest",
+      "name_vi": "Nguc",
+      "structure_type": "region",
+      "parent_code": "body_front",
+      "svg_file": "regions/chest.svg",
+      "has_drill_down": true
+    },
+    {
+      "code": "abdomen",
+      "name_en": "Abdomen",
+      "name_vi": "Bung",
+      "structure_type": "region",
+      "parent_code": "body_front",
+      "svg_file": "regions/abdomen.svg",
+      "has_drill_down": true
+    },
+    {
+      "code": "shoulder_right",
+      "name_en": "Right Shoulder",
+      "name_vi": "Vai phai",
+      "structure_type": "joint",
+      "parent_code": "body_front",
+      "svg_file": "regions/shoulder.svg",
+      "has_drill_down": true
+    },
+    {
+      "code": "shoulder_left",
+      "name_en": "Left Shoulder",
+      "name_vi": "Vai trai",
+      "structure_type": "joint",
+      "parent_code": "body_front",
+      "svg_file": "regions/shoulder.svg",
+      "has_drill_down": true
+    },
+    {
+      "code": "shoulder_right_back",
+      "name_en": "Right Shoulder (Back)",
+      "name_vi": "Vai phai (Mat sau)",
+      "structure_type": "joint",
+      "parent_code": "body_back",
+      "svg_file": "regions/shoulder-back.svg",
+      "has_drill_down": true
+    },
+    {
+      "code": "shoulder_left_back",
+      "name_en": "Left Shoulder (Back)",
+      "name_vi": "Vai trai (Mat sau)",
+      "structure_type": "joint",
+      "parent_code": "body_back",
+      "svg_file": "regions/shoulder-back.svg",
+      "has_drill_down": true
+    },
+    {
+      "code": "upper_arm_right",
+      "name_en": "Right Upper Arm",
+      "name_vi": "Canh tay phai",
+      "structure_type": "region",
+      "parent_code": "body_front",
+      "svg_file": "regions/upper-arm.svg",
+      "has_drill_down": true
+    },
+    {
+      "code": "upper_arm_left",
+      "name_en": "Left Upper Arm",
+      "name_vi": "Canh tay trai",
+      "structure_type": "region",
+      "parent_code": "body_front",
+      "svg_file": "regions/upper-arm.svg",
+      "has_drill_down": true
+    },
+    {
+      "code": "triceps_right",
+      "name_en": "Right Triceps",
+      "name_vi": "Co tam dau phai",
+      "structure_type": "muscle",
+      "parent_code": "body_back",
+      "svg_file": "regions/upper-arm-back.svg",
+      "has_drill_down": true
+    },
+    {
+      "code": "triceps_left",
+      "name_en": "Left Triceps",
+      "name_vi": "Co tam dau trai",
+      "structure_type": "muscle",
+      "parent_code": "body_back",
+      "svg_file": "regions/upper-arm-back.svg",
+      "has_drill_down": true
+    },
+    {
+      "code": "elbow_right",
+      "name_en": "Right Elbow",
+      "name_vi": "Khuyu tay phai",
+      "structure_type": "joint",
+      "parent_code": "body_front",
+      "svg_file": "regions/elbow.svg",
+      "has_drill_down": true
+    },
+    {
+      "code": "elbow_left",
+      "name_en": "Left Elbow",
+      "name_vi": "Khuyu tay trai",
+      "structure_type": "joint",
+      "parent_code": "body_front",
+      "svg_file": "regions/elbow.svg",
+      "has_drill_down": true
+    },
+    {
+      "code": "elbow_right_back",
+      "name_en": "Right Elbow (Back)",
+      "name_vi": "Khuyu tay phai (Mat sau)",
+      "structure_type": "joint",
+      "parent_code": "body_back",
+      "svg_file": "regions/elbow-back.svg",
+      "has_drill_down": true
+    },
+    {
+      "code": "elbow_left_back",
+      "name_en": "Left Elbow (Back)",
+      "name_vi": "Khuyu tay trai (Mat sau)",
+      "structure_type": "joint",
+      "parent_code": "body_back",
+      "svg_file": "regions/elbow-back.svg",
+      "has_drill_down": true
+    },
+    {
+      "code": "forearm_right",
+      "name_en": "Right Forearm",
+      "name_vi": "Cang tay phai",
+      "structure_type": "region",
+      "parent_code": "body_front",
+      "svg_file": "regions/forearm.svg",
+      "has_drill_down": true
+    },
+    {
+      "code": "forearm_left",
+      "name_en": "Left Forearm",
+      "name_vi": "Cang tay trai",
+      "structure_type": "region",
+      "parent_code": "body_front",
+      "svg_file": "regions/forearm.svg",
+      "has_drill_down": true
+    },
+    {
+      "code": "forearm_right_back",
+      "name_en": "Right Forearm (Back)",
+      "name_vi": "Cang tay phai (Mat sau)",
+      "structure_type": "region",
+      "parent_code": "body_back",
+      "svg_file": "regions/forearm-back.svg",
+      "has_drill_down": true
+    },
+    {
+      "code": "forearm_left_back",
+      "name_en": "Left Forearm (Back)",
+      "name_vi": "Cang tay trai (Mat sau)",
+      "structure_type": "region",
+      "parent_code": "body_back",
+      "svg_file": "regions/forearm-back.svg",
+      "has_drill_down": true
+    },
+    {
+      "code": "wrist_right",
+      "name_en": "Right Wrist",
+      "name_vi": "Co tay phai",
+      "structure_type": "joint",
+      "parent_code": "body_front",
+      "svg_file": "regions/wrist.svg",
+      "has_drill_down": true
+    },
+    {
+      "code": "wrist_left",
+      "name_en": "Left Wrist",
+      "name_vi": "Co tay trai",
+      "structure_type": "joint",
+      "parent_code": "body_front",
+      "svg_file": "regions/wrist.svg",
+      "has_drill_down": true
+    },
+    {
+      "code": "hand_right",
+      "name_en": "Right Hand",
+      "name_vi": "Ban tay phai",
+      "structure_type": "region",
+      "parent_code": "body_front",
+      "svg_file": "regions/hand.svg",
+      "has_drill_down": true
+    },
+    {
+      "code": "hand_left",
+      "name_en": "Left Hand",
+      "name_vi": "Ban tay trai",
+      "structure_type": "region",
+      "parent_code": "body_front",
+      "svg_file": "regions/hand.svg",
+      "has_drill_down": true
+    },
+    {
+      "code": "hand_right_back",
+      "name_en": "Right Hand (Back)",
+      "name_vi": "Ban tay phai (Mat sau)",
+      "structure_type": "region",
+      "parent_code": "body_back",
+      "svg_file": "regions/hand-back.svg",
+      "has_drill_down": true
+    },
+    {
+      "code": "hand_left_back",
+      "name_en": "Left Hand (Back)",
+      "name_vi": "Ban tay trai (Mat sau)",
+      "structure_type": "region",
+      "parent_code": "body_back",
+      "svg_file": "regions/hand-back.svg",
+      "has_drill_down": true
+    },
+    {
+      "code": "thoracic_spine",
+      "name_en": "Thoracic Spine",
+      "name_vi": "Cot song nguc",
+      "structure_type": "bone",
+      "parent_code": "body_back",
+      "svg_file": "regions/spine-thoracic.svg",
+      "has_drill_down": true
+    },
+    {
+      "code": "lumbar_spine",
+      "name_en": "Lumbar Spine",
+      "name_vi": "Cot song that lung",
+      "structure_type": "bone",
+      "parent_code": "body_back",
+      "svg_file": "regions/spine-lumbar.svg",
+      "has_drill_down": true
+    },
+    {
+      "code": "upper_back_right",
+      "name_en": "Right Upper Back",
+      "name_vi": "Lung tren phai",
+      "structure_type": "region",
+      "parent_code": "body_back",
+      "svg_file": "regions/upper-back.svg",
+      "has_drill_down": true
+    },
+    {
+      "code": "upper_back_left",
+      "name_en": "Left Upper Back",
+      "name_vi": "Lung tren trai",
+      "structure_type": "region",
+      "parent_code": "body_back",
+      "svg_file": "regions/upper-back.svg",
+      "has_drill_down": true
+    },
+    {
+      "code": "lower_back_right",
+      "name_en": "Right Lower Back",
+      "name_vi": "Lung duoi phai",
+      "structure_type": "region",
+      "parent_code": "body_back",
+      "svg_file": "regions/lower-back.svg",
+      "has_drill_down": true
+    },
+    {
+      "code": "lower_back_left",
+      "name_en": "Left Lower Back",
+      "name_vi": "Lung duoi trai",
+      "structure_type": "region",
+      "parent_code": "body_back",
+      "svg_file": "regions/lower-back.svg",
+      "has_drill_down": true
+    },
+    {
+      "code": "sacrum",
+      "name_en": "Sacrum",
+      "name_vi": "Xuong cung",
+      "structure_type": "bone",
+      "parent_code": "body_back",
+      "svg_file": "regions/sacrum.svg",
+      "has_drill_down": true
+    },
+    {
+      "code": "hip_right",
+      "name_en": "Right Hip",
+      "name_vi": "Hong phai",
+      "structure_type": "joint",
+      "parent_code": "body_front",
+      "svg_file": "regions/hip.svg",
+      "has_drill_down": true
+    },
+    {
+      "code": "hip_left",
+      "name_en": "Left Hip",
+      "name_vi": "Hong trai",
+      "structure_type": "joint",
+      "parent_code": "body_front",
+      "svg_file": "regions/hip.svg",
+      "has_drill_down": true
+    },
+    {
+      "code": "gluteal_right",
+      "name_en": "Right Gluteal",
+      "name_vi": "Mong phai",
+      "structure_type": "muscle",
+      "parent_code": "body_back",
+      "svg_file": "regions/gluteal.svg",
+      "has_drill_down": true
+    },
+    {
+      "code": "gluteal_left",
+      "name_en": "Left Gluteal",
+      "name_vi": "Mong trai",
+      "structure_type": "muscle",
+      "parent_code": "body_back",
+      "svg_file": "regions/gluteal.svg",
+      "has_drill_down": true
+    },
+    {
+      "code": "thigh_right",
+      "name_en": "Right Thigh",
+      "name_vi": "Dui phai",
+      "structure_type": "region",
+      "parent_code": "body_front",
+      "svg_file": "regions/thigh.svg",
+      "has_drill_down": true
+    },
+    {
+      "code": "thigh_left",
+      "name_en": "Left Thigh",
+      "name_vi": "Dui trai",
+      "structure_type": "region",
+      "parent_code": "body_front",
+      "svg_file": "regions/thigh.svg",
+      "has_drill_down": true
+    },
+    {
+      "code": "hamstring_right",
+      "name_en": "Right Hamstring",
+      "name_vi": "Co dui sau phai",
+      "structure_type": "muscle",
+      "parent_code": "body_back",
+      "svg_file": "regions/hamstring.svg",
+      "has_drill_down": true
+    },
+    {
+      "code": "hamstring_left",
+      "name_en": "Left Hamstring",
+      "name_vi": "Co dui sau trai",
+      "structure_type": "muscle",
+      "parent_code": "body_back",
+      "svg_file": "regions/hamstring.svg",
+      "has_drill_down": true
+    },
+    {
+      "code": "knee_right",
+      "name_en": "Right Knee",
+      "name_vi": "Dau goi phai",
+      "structure_type": "joint",
+      "parent_code": "body_front",
+      "svg_file": "regions/knee.svg",
+      "has_drill_down": true
+    },
+    {
+      "code": "knee_left",
+      "name_en": "Left Knee",
+      "name_vi": "Dau goi trai",
+      "structure_type": "joint",
+      "parent_code": "body_front",
+      "svg_file": "regions/knee.svg",
+      "has_drill_down": true
+    },
+    {
+      "code": "popliteal_right",
+      "name_en": "Right Popliteal (Behind Knee)",
+      "name_vi": "Hoc kheo phai",
+      "structure_type": "region",
+      "parent_code": "body_back",
+      "svg_file": "regions/knee-back.svg",
+      "has_drill_down": true
+    },
+    {
+      "code": "popliteal_left",
+      "name_en": "Left Popliteal (Behind Knee)",
+      "name_vi": "Hoc kheo trai",
+      "structure_type": "region",
+      "parent_code": "body_back",
+      "svg_file": "regions/knee-back.svg",
+      "has_drill_down": true
+    },
+    {
+      "code": "lower_leg_right",
+      "name_en": "Right Lower Leg",
+      "name_vi": "Cang chan phai",
+      "structure_type": "region",
+      "parent_code": "body_front",
+      "svg_file": "regions/lower-leg.svg",
+      "has_drill_down": true
+    },
+    {
+      "code": "lower_leg_left",
+      "name_en": "Left Lower Leg",
+      "name_vi": "Cang chan trai",
+      "structure_type": "region",
+      "parent_code": "body_front",
+      "svg_file": "regions/lower-leg.svg",
+      "has_drill_down": true
+    },
+    {
+      "code": "calf_right",
+      "name_en": "Right Calf",
+      "name_vi": "Bap chan phai",
+      "structure_type": "muscle",
+      "parent_code": "body_back",
+      "svg_file": "regions/calf.svg",
+      "has_drill_down": true
+    },
+    {
+      "code": "calf_left",
+      "name_en": "Left Calf",
+      "name_vi": "Bap chan trai",
+      "structure_type": "muscle",
+      "parent_code": "body_back",
+      "svg_file": "regions/calf.svg",
+      "has_drill_down": true
+    },
+    {
+      "code": "ankle_right",
+      "name_en": "Right Ankle",
+      "name_vi": "Mat ca chan phai",
+      "structure_type": "joint",
+      "parent_code": "body_front",
+      "svg_file": "regions/ankle.svg",
+      "has_drill_down": true
+    },
+    {
+      "code": "ankle_left",
+      "name_en": "Left Ankle",
+      "name_vi": "Mat ca chan trai",
+      "structure_type": "joint",
+      "parent_code": "body_front",
+      "svg_file": "regions/ankle.svg",
+      "has_drill_down": true
+    },
+    {
+      "code": "achilles_right",
+      "name_en": "Right Achilles Tendon",
+      "name_vi": "Gan Achilles phai",
+      "structure_type": "tendon",
+      "parent_code": "body_back",
+      "svg_file": "regions/achilles.svg",
+      "has_drill_down": true
+    },
+    {
+      "code": "achilles_left",
+      "name_en": "Left Achilles Tendon",
+      "name_vi": "Gan Achilles trai",
+      "structure_type": "tendon",
+      "parent_code": "body_back",
+      "svg_file": "regions/achilles.svg",
+      "has_drill_down": true
+    },
+    {
+      "code": "foot_right",
+      "name_en": "Right Foot",
+      "name_vi": "Ban chan phai",
+      "structure_type": "region",
+      "parent_code": "body_front",
+      "svg_file": "regions/foot.svg",
+      "has_drill_down": true
+    },
+    {
+      "code": "foot_left",
+      "name_en": "Left Foot",
+      "name_vi": "Ban chan trai",
+      "structure_type": "region",
+      "parent_code": "body_front",
+      "svg_file": "regions/foot.svg",
+      "has_drill_down": true
+    },
+    {
+      "code": "heel_right",
+      "name_en": "Right Heel",
+      "name_vi": "Got chan phai",
+      "structure_type": "region",
+      "parent_code": "body_back",
+      "svg_file": "regions/heel.svg",
+      "has_drill_down": true
+    },
+    {
+      "code": "heel_left",
+      "name_en": "Left Heel",
+      "name_vi": "Got chan trai",
+      "structure_type": "region",
+      "parent_code": "body_back",
+      "svg_file": "regions/heel.svg",
+      "has_drill_down": true
+    }
+  ]
+}

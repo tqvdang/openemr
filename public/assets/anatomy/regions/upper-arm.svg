@@ -1,0 +1,171 @@
+<?xml version="1.0" encoding="UTF-8"?>
+<!-- AI-GENERATED: Claude Code -->
+<!--
+  Upper Arm Region Detail - Interactive Anatomy Selector
+  Level 2: Shows upper arm with biceps, triceps, and humerus
+  @package   OpenEMR
+  @author    Vietnamese PT Module
+  @copyright Copyright (c) 2025
+  @license   GNU General Public License 3
+-->
+<svg xmlns="http://www.w3.org/2000/svg" viewBox="0 0 350 500" width="350" height="500">
+  <title>Upper Arm Anatomy</title>
+  <defs>
+    <style>
+      .bone { fill: #fff9c4; stroke: #8d6e63; stroke-width: 1.5; }
+      .muscle { fill: #ffcdd2; stroke: #c62828; stroke-width: 1; }
+      .joint { fill: #c8e6c9; stroke: #2e7d32; stroke-width: 1.5; }
+      .ligament { fill: #b2dfdb; stroke: #00695c; stroke-width: 1; }
+      .tendon { fill: #f0f4c3; stroke: #827717; stroke-width: 1; }
+      .nerve { fill: #e1bee7; stroke: #7b1fa2; stroke-width: 2; }
+      .region { cursor: pointer; transition: all 0.2s ease; }
+      .region:hover { filter: brightness(1.1); stroke-width: 3; }
+      .label { font-family: Arial, sans-serif; font-size: 11px; fill: #333; pointer-events: none; }
+      .title-label { font-family: Arial, sans-serif; font-size: 14px; font-weight: bold; fill: #1976d2; }
+    </style>
+  </defs>
+
+  <!-- Title -->
+  <text x="175" y="25" text-anchor="middle" class="title-label">Upper Arm Anatomy / Giai phau canh tay</text>
+
+  <!-- Bones Layer -->
+  <g id="bones-layer" data-layer="bone">
+    <!-- Humerus -->
+    <path d="M140 60 L210 60 L220 80 L225 200 L230 350 L225 420 L200 450 L150 450 L125 420 L120 350 L125 200 L130 80 Z"
+          class="bone region"
+          data-region="humerus"
+          data-structure-type="bone"
+          data-drill-down="false"/>
+    <text x="175" y="250" text-anchor="middle" class="label">Humerus</text>
+    <text x="175" y="263" text-anchor="middle" class="label">Xuong canh tay</text>
+
+    <!-- Humeral Head -->
+    <ellipse cx="175" cy="70" rx="40" ry="30"
+             class="bone region"
+             data-region="humeral_head"
+             data-structure-type="bone"
+             data-drill-down="false"/>
+    <text x="175" y="75" text-anchor="middle" class="label">Head / Chom</text>
+
+    <!-- Deltoid Tuberosity -->
+    <ellipse cx="230" cy="150" rx="15" ry="30"
+             class="bone region"
+             data-region="deltoid_tuberosity"
+             data-structure-type="bone"
+             data-drill-down="false"/>
+    <text x="260" y="155" class="label">Deltoid Tuberosity</text>
+  </g>
+
+  <!-- Muscles Layer -->
+  <g id="muscles-layer" data-layer="muscle">
+    <!-- Deltoid -->
+    <path d="M100 50 L250 50 L260 80 L250 150 L220 180 L130 180 L100 150 L90 80 Z"
+          class="muscle region"
+          data-region="deltoid"
+          data-structure-type="muscle"
+          data-drill-down="false"/>
+    <text x="175" y="110" text-anchor="middle" class="label">Deltoid / Co delta</text>
+
+    <!-- Biceps Brachii -->
+    <path d="M135 120 L175 110 L215 120 L220 200 L225 320 L220 380 L175 400 L130 380 L125 320 L130 200 Z"
+          class="muscle region"
+          data-region="biceps_brachii"
+          data-structure-type="muscle"
+          data-drill-down="false"/>
+    <text x="175" y="300" text-anchor="middle" class="label">Biceps Brachii</text>
+    <text x="175" y="313" text-anchor="middle" class="label">Co nhi dau canh tay</text>
+
+    <!-- Triceps Brachii (Lateral Head) -->
+    <path d="M220 140 L260 150 L270 200 L275 300 L270 380 L250 400 L230 380 L225 300 L225 200 Z"
+          class="muscle region"
+          data-region="triceps_lateral"
+          data-structure-type="muscle"
+          data-drill-down="false"
+          style="fill: #ef9a9a;"/>
+    <text x="280" y="250" class="label">Triceps</text>
+    <text x="280" y="263" class="label">(Lateral)</text>
+
+    <!-- Triceps Brachii (Medial Head) -->
+    <path d="M90 150 L130 140 L125 200 L125 300 L120 380 L100 400 L80 380 L75 300 L80 200 Z"
+          class="muscle region"
+          data-region="triceps_medial"
+          data-structure-type="muscle"
+          data-drill-down="false"
+          style="fill: #ef9a9a;"/>
+    <text x="40" y="250" class="label">Triceps</text>
+    <text x="40" y="263" class="label">(Medial)</text>
+
+    <!-- Brachialis -->
+    <path d="M130 320 L140 310 L210 310 L220 320 L220 400 L200 420 L150 420 L130 400 Z"
+          class="muscle region"
+          data-region="brachialis"
+          data-structure-type="muscle"
+          data-drill-down="false"
+          style="fill: #e57373;"/>
+    <text x="175" y="370" text-anchor="middle" class="label">Brachialis</text>
+    <text x="175" y="383" text-anchor="middle" class="label">Co canh tay</text>
+  </g>
+
+  <!-- Tendons Layer -->
+  <g id="tendons-layer" data-layer="tendon">
+    <!-- Biceps Tendon (Proximal) -->
+    <path d="M160 50 L155 110"
+          class="tendon region"
+          data-region="biceps_tendon_long"
+          data-structure-type="tendon"
+          data-drill-down="false"
+          style="fill: none; stroke-width: 4;"/>
+    <path d="M190 70 L195 110"
+          class="tendon region"
+          data-region="biceps_tendon_short"
+          data-structure-type="tendon"
+          data-drill-down="false"
+          style="fill: none; stroke-width: 4;"/>
+    <text x="50" y="80" class="label">Biceps Tendons</text>
+    <text x="50" y="93" class="label">Gan co nhi dau</text>
+
+    <!-- Triceps Tendon (Distal) -->
+    <path d="M175 400 L175 450"
+          class="tendon region"
+          data-region="triceps_tendon"
+          data-structure-type="tendon"
+          data-drill-down="false"
+          style="fill: none; stroke-width: 6;"/>
+    <text x="195" y="430" class="label">Triceps Tendon</text>
+  </g>
+
+  <!-- Nerves Layer -->
+  <g id="nerves-layer" data-layer="nerve">
+    <!-- Musculocutaneous Nerve -->
+    <path d="M150 120 Q140 200 145 350"
+          class="nerve region"
+          data-region="musculocutaneous_nerve"
+          data-structure-type="nerve"
+          data-drill-down="false"
+          style="fill: none;"/>
+    <text x="50" y="200" class="label" style="fill: #7b1fa2;">Musculocutaneous N.</text>
+
+    <!-- Radial Nerve -->
+    <path d="M200 120 Q240 200 230 350"
+          class="nerve region"
+          data-region="radial_nerve"
+          data-structure-type="nerve"
+          data-drill-down="false"
+          style="fill: none;"/>
+    <text x="260" y="200" class="label" style="fill: #7b1fa2;">Radial N.</text>
+    <text x="260" y="213" class="label" style="fill: #7b1fa2;">TK quay</text>
+  </g>
+
+  <!-- Legend -->
+  <g id="legend" transform="translate(30, 460)">
+    <text x="0" y="0" class="label" style="font-weight: bold;">Legend / Chu thich:</text>
+    <rect x="0" y="10" width="15" height="12" class="bone"/>
+    <text x="20" y="20" class="label">Bone</text>
+    <rect x="60" y="10" width="15" height="12" class="muscle"/>
+    <text x="80" y="20" class="label">Muscle</text>
+    <rect x="130" y="10" width="15" height="12" class="tendon"/>
+    <text x="150" y="20" class="label">Tendon</text>
+    <line x1="200" y1="16" x2="215" y2="16" class="nerve" style="stroke-width: 3;"/>
+    <text x="220" y="20" class="label">Nerve</text>
+  </g>
+</svg>

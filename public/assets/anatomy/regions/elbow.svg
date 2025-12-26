@@ -1,0 +1,223 @@
+<?xml version="1.0" encoding="UTF-8"?>
+<!-- AI-GENERATED: Claude Code -->
+<!--
+  Elbow Region Detail - Interactive Anatomy Selector
+  Level 2: Shows elbow with joint structures, ligaments, and muscles
+  @package   OpenEMR
+  @author    Vietnamese PT Module
+  @copyright Copyright (c) 2025
+  @license   GNU General Public License 3
+-->
+<svg xmlns="http://www.w3.org/2000/svg" viewBox="0 0 400 450" width="400" height="450">
+  <title>Elbow Anatomy</title>
+  <defs>
+    <style>
+      .bone { fill: #fff9c4; stroke: #8d6e63; stroke-width: 1.5; }
+      .muscle { fill: #ffcdd2; stroke: #c62828; stroke-width: 1; }
+      .joint { fill: #c8e6c9; stroke: #2e7d32; stroke-width: 1.5; }
+      .ligament { fill: #b2dfdb; stroke: #00695c; stroke-width: 2; }
+      .tendon { fill: #f0f4c3; stroke: #827717; stroke-width: 1; }
+      .nerve { fill: #e1bee7; stroke: #7b1fa2; stroke-width: 2; }
+      .region { cursor: pointer; transition: all 0.2s ease; }
+      .region:hover { filter: brightness(1.1); stroke-width: 3; }
+      .label { font-family: Arial, sans-serif; font-size: 11px; fill: #333; pointer-events: none; }
+      .title-label { font-family: Arial, sans-serif; font-size: 14px; font-weight: bold; fill: #1976d2; }
+    </style>
+  </defs>
+
+  <!-- Title -->
+  <text x="200" y="25" text-anchor="middle" class="title-label">Elbow Anatomy / Giai phau khuyu tay</text>
+
+  <!-- Bones Layer -->
+  <g id="bones-layer" data-layer="bone">
+    <!-- Humerus (Distal) -->
+    <path d="M150 50 L250 50 L270 100 L280 150 L270 200 L260 220 L140 220 L130 200 L120 150 L130 100 Z"
+          class="bone region"
+          data-region="humerus_distal"
+          data-structure-type="bone"
+          data-drill-down="false"/>
+    <text x="200" y="120" text-anchor="middle" class="label">Humerus / Xuong canh tay</text>
+
+    <!-- Medial Epicondyle -->
+    <ellipse cx="130" cy="200" rx="20" ry="25"
+             class="bone region"
+             data-region="medial_epicondyle"
+             data-structure-type="bone"
+             data-drill-down="false"/>
+    <text x="50" y="200" class="label">Medial Epicondyle</text>
+    <text x="50" y="213" class="label">Loi cau trong</text>
+
+    <!-- Lateral Epicondyle -->
+    <ellipse cx="270" cy="200" rx="20" ry="25"
+             class="bone region"
+             data-region="lateral_epicondyle"
+             data-structure-type="bone"
+             data-drill-down="false"/>
+    <text x="295" y="200" class="label">Lateral Epicondyle</text>
+    <text x="295" y="213" class="label">Loi cau ngoai</text>
+
+    <!-- Olecranon -->
+    <path d="M175 210 L225 210 L235 180 L240 160 L230 140 L200 130 L170 140 L160 160 L165 180 Z"
+          class="bone region"
+          data-region="olecranon"
+          data-structure-type="bone"
+          data-drill-down="false"/>
+    <text x="200" y="175" text-anchor="middle" class="label">Olecranon</text>
+
+    <!-- Radial Head -->
+    <circle cx="265" cy="250" r="25"
+            class="bone region"
+            data-region="radial_head"
+            data-structure-type="bone"
+            data-drill-down="false"/>
+    <text x="295" y="255" class="label">Radial Head</text>
+    <text x="295" y="268" class="label">Chom xuong quay</text>
+
+    <!-- Ulna (Proximal) -->
+    <path d="M160 220 L220 220 L230 260 L235 350 L230 400 L175 400 L170 350 L165 260 Z"
+          class="bone region"
+          data-region="ulna_proximal"
+          data-structure-type="bone"
+          data-drill-down="false"/>
+    <text x="200" y="340" text-anchor="middle" class="label">Ulna / Xuong tru</text>
+
+    <!-- Radius (Proximal) -->
+    <path d="M250 270 L290 270 L295 350 L290 400 L255 400 L250 350 Z"
+          class="bone region"
+          data-region="radius_proximal"
+          data-structure-type="bone"
+          data-drill-down="false"/>
+    <text x="315" y="340" class="label">Radius</text>
+  </g>
+
+  <!-- Joints Layer -->
+  <g id="joints-layer" data-layer="joint">
+    <!-- Humeroulnar Joint -->
+    <ellipse cx="200" cy="220" rx="35" ry="15"
+             class="joint region"
+             data-region="humeroulnar_joint"
+             data-structure-type="joint"
+             data-drill-down="false"/>
+    <text x="200" y="225" text-anchor="middle" class="label" style="font-size: 9px;">Humeroulnar</text>
+
+    <!-- Humeroradial Joint -->
+    <ellipse cx="265" cy="230" rx="18" ry="12"
+             class="joint region"
+             data-region="humeroradial_joint"
+             data-structure-type="joint"
+             data-drill-down="false"/>
+
+    <!-- Proximal Radioulnar Joint -->
+    <ellipse cx="250" cy="270" rx="15" ry="12"
+             class="joint region"
+             data-region="proximal_radioulnar"
+             data-structure-type="joint"
+             data-drill-down="false"/>
+  </g>
+
+  <!-- Ligaments Layer -->
+  <g id="ligaments-layer" data-layer="ligament">
+    <!-- Ulnar Collateral Ligament (UCL) -->
+    <path d="M130 200 L160 270"
+          class="ligament region"
+          data-region="ucl"
+          data-structure-type="ligament"
+          data-drill-down="false"
+          style="fill: none; stroke-width: 5;"/>
+    <text x="50" y="250" class="label" style="fill: #00695c; font-weight: bold;">UCL</text>
+    <text x="50" y="263" class="label">DC ben tru</text>
+
+    <!-- Radial Collateral Ligament (RCL) -->
+    <path d="M270 200 L275 270"
+          class="ligament region"
+          data-region="rcl"
+          data-structure-type="ligament"
+          data-drill-down="false"
+          style="fill: none; stroke-width: 5;"/>
+    <text x="315" y="235" class="label" style="fill: #00695c; font-weight: bold;">RCL</text>
+
+    <!-- Annular Ligament -->
+    <ellipse cx="265" cy="260" rx="30" ry="20"
+             class="ligament region"
+             data-region="annular_ligament"
+             data-structure-type="ligament"
+             data-drill-down="false"
+             style="fill: none;"/>
+    <text x="315" y="285" class="label">Annular Lig</text>
+  </g>
+
+  <!-- Tendons Layer -->
+  <g id="tendons-layer" data-layer="tendon">
+    <!-- Biceps Tendon -->
+    <path d="M200 50 L200 100 L205 150"
+          class="tendon region"
+          data-region="biceps_tendon_distal"
+          data-structure-type="tendon"
+          data-drill-down="false"
+          style="fill: none; stroke-width: 5;"/>
+    <text x="50" y="100" class="label">Biceps Tendon</text>
+    <text x="50" y="113" class="label">Gan co nhi dau</text>
+
+    <!-- Triceps Tendon -->
+    <path d="M200 130 L200 180"
+          class="tendon region"
+          data-region="triceps_tendon"
+          data-structure-type="tendon"
+          data-drill-down="false"
+          style="fill: none; stroke-width: 6;"/>
+    <text x="50" y="160" class="label">Triceps Tendon</text>
+
+    <!-- Common Extensor Tendon -->
+    <path d="M270 200 L280 240"
+          class="tendon region"
+          data-region="common_extensor_tendon"
+          data-structure-type="tendon"
+          data-drill-down="false"
+          style="fill: none; stroke-width: 4;"/>
+  </g>
+
+  <!-- Nerves Layer -->
+  <g id="nerves-layer" data-layer="nerve">
+    <!-- Ulnar Nerve -->
+    <path d="M125 180 Q120 220 130 280"
+          class="nerve region"
+          data-region="ulnar_nerve_elbow"
+          data-structure-type="nerve"
+          data-drill-down="false"
+          style="fill: none;"/>
+    <text x="50" y="280" class="label" style="fill: #7b1fa2;">Ulnar N.</text>
+    <text x="50" y="293" class="label" style="fill: #7b1fa2;">TK tru</text>
+
+    <!-- Median Nerve -->
+    <path d="M180 180 Q175 220 180 280"
+          class="nerve region"
+          data-region="median_nerve_elbow"
+          data-structure-type="nerve"
+          data-drill-down="false"
+          style="fill: none;"/>
+
+    <!-- Radial Nerve -->
+    <path d="M290 180 Q295 220 290 280"
+          class="nerve region"
+          data-region="radial_nerve_elbow"
+          data-structure-type="nerve"
+          data-drill-down="false"
+          style="fill: none;"/>
+    <text x="315" y="310" class="label" style="fill: #7b1fa2;">Radial N.</text>
+  </g>
+
+  <!-- Legend -->
+  <g id="legend" transform="translate(30, 410)">
+    <text x="0" y="0" class="label" style="font-weight: bold;">Legend / Chu thich:</text>
+    <rect x="0" y="10" width="15" height="12" class="bone"/>
+    <text x="20" y="20" class="label">Bone</text>
+    <rect x="60" y="10" width="15" height="12" class="joint"/>
+    <text x="80" y="20" class="label">Joint</text>
+    <rect x="120" y="10" width="15" height="12" class="ligament"/>
+    <text x="140" y="20" class="label">Ligament</text>
+    <rect x="200" y="10" width="15" height="12" class="tendon"/>
+    <text x="220" y="20" class="label">Tendon</text>
+    <line x1="270" y1="16" x2="285" y2="16" class="nerve" style="stroke-width: 3;"/>
+    <text x="290" y="20" class="label">Nerve</text>
+  </g>
+</svg>

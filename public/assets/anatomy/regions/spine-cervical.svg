@@ -1,0 +1,218 @@
+<?xml version="1.0" encoding="UTF-8"?>
+<!-- AI-GENERATED: Claude Code -->
+<!--
+  Cervical Spine Region Detail - Interactive Anatomy Selector
+  Level 2: Shows cervical spine (C1-C7) with vertebrae and muscles
+  @package   OpenEMR
+  @author    Vietnamese PT Module
+  @copyright Copyright (c) 2025
+  @license   GNU General Public License 3
+-->
+<svg xmlns="http://www.w3.org/2000/svg" viewBox="0 0 400 550" width="400" height="550">
+  <title>Cervical Spine Anatomy</title>
+  <defs>
+    <style>
+      .bone { fill: #fff9c4; stroke: #8d6e63; stroke-width: 1.5; }
+      .disc { fill: #b3e5fc; stroke: #0277bd; stroke-width: 1.5; }
+      .muscle { fill: #ffcdd2; stroke: #c62828; stroke-width: 1; }
+      .nerve { fill: #e1bee7; stroke: #7b1fa2; stroke-width: 2; }
+      .ligament { fill: #b2dfdb; stroke: #00695c; stroke-width: 1; }
+      .region { cursor: pointer; transition: all 0.2s ease; }
+      .region:hover { filter: brightness(1.1); stroke-width: 3; }
+      .label { font-family: Arial, sans-serif; font-size: 11px; fill: #333; pointer-events: none; }
+      .title-label { font-family: Arial, sans-serif; font-size: 14px; font-weight: bold; fill: #1976d2; }
+      .vertebra-label { font-family: Arial, sans-serif; font-size: 12px; font-weight: bold; fill: #5d4037; }
+    </style>
+  </defs>
+
+  <!-- Title -->
+  <text x="200" y="25" text-anchor="middle" class="title-label">Cervical Spine / Cot song co (C1-C7)</text>
+
+  <!-- Vertebrae and Discs -->
+  <g id="spine-structure">
+    <!-- C1 (Atlas) -->
+    <g id="c1-group" transform="translate(0, 40)">
+      <ellipse cx="200" cy="30" rx="70" ry="25"
+               class="bone region"
+               data-region="c1_atlas"
+               data-structure-type="bone"
+               data-drill-down="false"/>
+      <text x="100" y="35" class="vertebra-label">C1</text>
+      <text x="290" y="35" class="label">Atlas / Dot song C1</text>
+    </g>
+
+    <!-- C1-C2 Joint -->
+    <ellipse cx="200" cy="85" rx="40" ry="8"
+             class="disc region"
+             data-region="c1_c2_joint"
+             data-structure-type="joint"
+             data-drill-down="false"/>
+
+    <!-- C2 (Axis) -->
+    <g id="c2-group" transform="translate(0, 65)">
+      <path d="M140 30 L260 30 L270 50 L265 70 L135 70 L130 50 Z"
+            class="bone region"
+            data-region="c2_axis"
+            data-structure-type="bone"
+            data-drill-down="false"/>
+      <!-- Dens (Odontoid Process) -->
+      <rect x="185" y="10" width="30" height="30" rx="5"
+            class="bone"
+            style="fill: #ffecb3;"/>
+      <text x="100" y="55" class="vertebra-label">C2</text>
+      <text x="290" y="55" class="label">Axis / Dot song C2</text>
+    </g>
+
+    <!-- C2-C3 Disc -->
+    <ellipse cx="200" cy="150" rx="45" ry="10"
+             class="disc region"
+             data-region="c2_c3_disc"
+             data-structure-type="joint"
+             data-drill-down="false"/>
+
+    <!-- C3 Vertebra -->
+    <g id="c3-group" transform="translate(0, 130)">
+      <path d="M145 25 L255 25 L265 45 L260 65 L140 65 L135 45 Z"
+            class="bone region"
+            data-region="c3_vertebra"
+            data-structure-type="bone"
+            data-drill-down="false"/>
+      <text x="105" y="50" class="vertebra-label">C3</text>
+      <text x="290" y="50" class="label">Dot song C3</text>
+    </g>
+
+    <!-- C3-C4 Disc -->
+    <ellipse cx="200" cy="210" rx="48" ry="10"
+             class="disc region"
+             data-region="c3_c4_disc"
+             data-structure-type="joint"
+             data-drill-down="false"/>
+
+    <!-- C4 Vertebra -->
+    <g id="c4-group" transform="translate(0, 190)">
+      <path d="M142 25 L258 25 L270 45 L265 65 L135 65 L130 45 Z"
+            class="bone region"
+            data-region="c4_vertebra"
+            data-structure-type="bone"
+            data-drill-down="false"/>
+      <text x="100" y="50" class="vertebra-label">C4</text>
+      <text x="290" y="50" class="label">Dot song C4</text>
+    </g>
+
+    <!-- C4-C5 Disc -->
+    <ellipse cx="200" cy="270" rx="50" ry="10"
+             class="disc region"
+             data-region="c4_c5_disc"
+             data-structure-type="joint"
+             data-drill-down="false"/>
+
+    <!-- C5 Vertebra -->
+    <g id="c5-group" transform="translate(0, 250)">
+      <path d="M138 25 L262 25 L275 45 L270 65 L130 65 L125 45 Z"
+            class="bone region"
+            data-region="c5_vertebra"
+            data-structure-type="bone"
+            data-drill-down="false"/>
+      <text x="95" y="50" class="vertebra-label">C5</text>
+      <text x="295" y="50" class="label">Dot song C5</text>
+    </g>
+
+    <!-- C5-C6 Disc -->
+    <ellipse cx="200" cy="330" rx="52" ry="10"
+             class="disc region"
+             data-region="c5_c6_disc"
+             data-structure-type="joint"
+             data-drill-down="false"/>
+
+    <!-- C6 Vertebra -->
+    <g id="c6-group" transform="translate(0, 310)">
+      <path d="M135 25 L265 25 L280 45 L275 65 L125 65 L120 45 Z"
+            class="bone region"
+            data-region="c6_vertebra"
+            data-structure-type="bone"
+            data-drill-down="false"/>
+      <text x="90" y="50" class="vertebra-label">C6</text>
+      <text x="300" y="50" class="label">Dot song C6</text>
+    </g>
+
+    <!-- C6-C7 Disc -->
+    <ellipse cx="200" cy="390" rx="55" ry="10"
+             class="disc region"
+             data-region="c6_c7_disc"
+             data-structure-type="joint"
+             data-drill-down="false"/>
+
+    <!-- C7 Vertebra (Vertebra Prominens) -->
+    <g id="c7-group" transform="translate(0, 370)">
+      <path d="M130 25 L270 25 L285 45 L280 70 L120 70 L115 45 Z"
+            class="bone region"
+            data-region="c7_vertebra"
+            data-structure-type="bone"
+            data-drill-down="false"/>
+      <text x="85" y="52" class="vertebra-label">C7</text>
+      <text x="305" y="52" class="label">Vertebra Prominens</text>
+    </g>
+
+    <!-- T1 (Top of Thoracic) -->
+    <path d="M125 455 L275 455 L290 475 L285 500 L115 500 L110 475 Z"
+          class="bone region"
+          data-region="t1_vertebra"
+          data-structure-type="bone"
+          data-drill-down="false"
+          style="fill: #ffe0b2;"/>
+    <text x="200" y="480" text-anchor="middle" class="label">T1 / Dot song T1</text>
+  </g>
+
+  <!-- Muscles Layer -->
+  <g id="muscles-layer" data-layer="muscle">
+    <!-- Sternocleidomastoid (Left) -->
+    <path d="M100 50 L120 45 L140 200 L135 350 L115 355 L95 200 Z"
+          class="muscle region"
+          data-region="scm_left"
+          data-structure-type="muscle"
+          data-drill-down="false"/>
+    <text x="45" y="200" class="label">SCM</text>
+
+    <!-- Sternocleidomastoid (Right) -->
+    <path d="M280 45 L300 50 L305 200 L285 355 L265 350 L260 200 Z"
+          class="muscle region"
+          data-region="scm_right"
+          data-structure-type="muscle"
+          data-drill-down="false"/>
+
+    <!-- Levator Scapulae -->
+    <path d="M275 100 L295 95 L305 180 L300 300 L280 305 L270 180 Z"
+          class="muscle region"
+          data-region="levator_scapulae_right"
+          data-structure-type="muscle"
+          data-drill-down="false"
+          style="fill: #ef9a9a;"/>
+    <text x="315" y="200" class="label">Levator Scap</text>
+  </g>
+
+  <!-- Nerves Layer -->
+  <g id="nerves-layer" data-layer="nerve">
+    <!-- Cervical Nerve Roots -->
+    <path d="M260 95 Q280 100 300 95" class="nerve region" data-region="c2_nerve" data-structure-type="nerve" data-drill-down="false" style="fill: none;"/>
+    <path d="M265 155 Q285 160 305 155" class="nerve region" data-region="c3_nerve" data-structure-type="nerve" data-drill-down="false" style="fill: none;"/>
+    <path d="M270 215 Q290 220 310 215" class="nerve region" data-region="c4_nerve" data-structure-type="nerve" data-drill-down="false" style="fill: none;"/>
+    <path d="M275 275 Q295 280 315 275" class="nerve region" data-region="c5_nerve" data-structure-type="nerve" data-drill-down="false" style="fill: none;"/>
+    <path d="M280 335 Q300 340 320 335" class="nerve region" data-region="c6_nerve" data-structure-type="nerve" data-drill-down="false" style="fill: none;"/>
+    <path d="M285 395 Q305 400 325 395" class="nerve region" data-region="c7_nerve" data-structure-type="nerve" data-drill-down="false" style="fill: none;"/>
+    <text x="330" y="250" class="label" style="fill: #7b1fa2;">Nerve Roots</text>
+    <text x="330" y="263" class="label" style="fill: #7b1fa2;">Re than kinh</text>
+  </g>
+
+  <!-- Legend -->
+  <g id="legend" transform="translate(50, 510)">
+    <text x="0" y="0" class="label" style="font-weight: bold;">Legend / Chu thich:</text>
+    <rect x="0" y="10" width="15" height="12" class="bone"/>
+    <text x="20" y="20" class="label">Vertebra / Dot song</text>
+    <rect x="130" y="10" width="15" height="12" class="disc"/>
+    <text x="150" y="20" class="label">Disc / Dia dem</text>
+    <rect x="220" y="10" width="15" height="12" class="muscle"/>
+    <text x="240" y="20" class="label">Muscle / Co</text>
+    <line x1="290" y1="16" x2="305" y2="16" class="nerve" style="stroke-width: 3;"/>
+    <text x="310" y="20" class="label">Nerve</text>
+  </g>
+</svg>

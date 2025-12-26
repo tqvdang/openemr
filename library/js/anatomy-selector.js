@@ -156,10 +156,10 @@
                     <!-- Header with view selector and breadcrumb -->
                     <div class="anatomy-header">
                         <div class="anatomy-view-selector">
-                            <button class="view-btn active" data-view="front">
+                            <button type="button" class="view-btn active" data-view="front">
                                 <i class="fa fa-user"></i> ${labels.frontView}
                             </button>
-                            <button class="view-btn" data-view="back">
+                            <button type="button" class="view-btn" data-view="back">
                                 <i class="fa fa-user fa-flip-horizontal"></i> ${labels.backView}
                             </button>
                         </div>
@@ -178,13 +178,13 @@
                                 </div>
                             </div>
                             <div class="anatomy-zoom-controls">
-                                <button class="zoom-btn" data-action="zoom-in" title="${labels.zoomIn}">
+                                <button type="button" class="zoom-btn" data-action="zoom-in" title="${labels.zoomIn}">
                                     <i class="fa fa-plus"></i>
                                 </button>
-                                <button class="zoom-btn" data-action="zoom-out" title="${labels.zoomOut}">
+                                <button type="button" class="zoom-btn" data-action="zoom-out" title="${labels.zoomOut}">
                                     <i class="fa fa-minus"></i>
                                 </button>
-                                <button class="zoom-btn" data-action="reset" title="${labels.reset}">
+                                <button type="button" class="zoom-btn" data-action="reset" title="${labels.reset}">
                                     <i class="fa fa-refresh"></i>
                                 </button>
                             </div>
@@ -241,10 +241,10 @@
                                     <p class="no-selection">${labels.noSelection}</p>
                                 </div>
                                 <div class="selections-actions">
-                                    <button class="btn btn-sm btn-secondary" id="anatomy-clear-btn">
+                                    <button type="button" class="btn btn-sm btn-secondary" id="anatomy-clear-btn">
                                         <i class="fa fa-times"></i> ${labels.clear}
                                     </button>
-                                    <button class="btn btn-sm btn-primary" id="anatomy-save-btn">
+                                    <button type="button" class="btn btn-sm btn-primary" id="anatomy-save-btn">
                                         <i class="fa fa-save"></i> ${labels.save}
                                     </button>
                                 </div>
@@ -271,8 +271,8 @@
                                 <textarea id="finding-notes" class="form-control" rows="3"></textarea>
                             </div>
                             <div class="dialog-actions">
-                                <button class="btn btn-secondary" id="finding-cancel">${labels.clear}</button>
-                                <button class="btn btn-primary" id="finding-add">${labels.addFinding}</button>
+                                <button type="button" class="btn btn-secondary" id="finding-cancel">${labels.clear}</button>
+                                <button type="button" class="btn btn-primary" id="finding-add">${labels.addFinding}</button>
                             </div>
                         </div>
                     </div>
@@ -282,19 +282,174 @@
             this.svgContainer = document.getElementById('anatomy-svg-wrapper');
         }
 
+        // [AI-GENERATED: Claude Code - Start]
         /**
-         * Load regions data from server
+         * Load regions data from server with fallback chain:
+         * 1. REST API: /apis/default/vietnamese-pt/anatomy/regions
+         * 2. Static JSON: regions-data.json
+         * 3. Embedded default data
          */
         async loadRegionsData() {
+            console.log('[AnatomySelector] Loading regions data...');
+
+            // Try REST API first
             try {
+                console.log('[AnatomySelector] Attempting REST API fetch...');
                 const response = await fetch('/apis/default/vietnamese-pt/anatomy/regions');
                 if (response.ok) {
-                    this.regionsData = await response.json();
+                    const data = await response.json();
+                    this.regionsData = this.processRegionsData(data);
+                    console.log('[AnatomySelector] Regions data loaded from REST API:', Object.keys(this.regionsData).length, 'regions');
+                    return;
+                } else {
+                    console.warn('[AnatomySelector] REST API returned status:', response.status);
                 }
             } catch (error) {
-                console.warn('Could not load regions data from server, using defaults');
+                console.warn('[AnatomySelector] REST API fetch failed:', error.message);
             }
+
+            // Fallback to static JSON file
+            try {
+                console.log('[AnatomySelector] Attempting static JSON fetch...');
+                const staticPath = this.config.assetsPath + 'regions-data.json';
+                const response = await fetch(staticPath);
+                if (response.ok) {
+                    const data = await response.json();
+                    this.regionsData = this.processRegionsData(data);
+                    console.log('[AnatomySelector] Regions data loaded from static JSON:', Object.keys(this.regionsData).length, 'regions');
+                    return;
+                } else {
+                    console.warn('[AnatomySelector] Static JSON returned status:', response.status);
+                }
+            } catch (error) {
+                console.warn('[AnatomySelector] Static JSON fetch failed:', error.message);
+            }
+
+            // Final fallback to embedded default data
+            console.log('[AnatomySelector] Using embedded default regions data');
+            this.regionsData = this.getDefaultRegionsData();
+            console.log('[AnatomySelector] Default regions loaded:', Object.keys(this.regionsData).length, 'regions');
         }
+
+        /**
+         * Process regions data from array format to object lookup format
+         * @param {Object|Array} data - Regions data from API or JSON file
+         * @returns {Object} Regions data indexed by code
+         */
+        processRegionsData(data) {
+            // If data has a 'regions' array property (JSON file format), process it
+            if (data && Array.isArray(data.regions)) {
+                const processed = {};
+                data.regions.forEach(region => {
+                    if (region.code) {
+                        processed[region.code] = region;
+                    }
+                });
+                return processed;
+            }
+            // If data is already an object indexed by code, return as-is
+            if (data && typeof data === 'object' && !Array.isArray(data)) {
+                return data;
+            }
+            // If data is an array, process it
+            if (Array.isArray(data)) {
+                const processed = {};
+                data.forEach(region => {
+                    if (region.code) {
+                        processed[region.code] = region;
+                    }
+                });
+                return processed;
+            }
+            return {};
+        }
+
+        /**
+         * Get embedded default regions data for fallback
+         * @returns {Object} Default regions data indexed by code
+         */
+        getDefaultRegionsData() {
+            return {
+                // Body views
+                'body_front': { code: 'body_front', name_en: 'Body (Front View)', name_vi: 'Co the (Mat truoc)', structure_type: 'region', parent_code: null, svg_file: 'body-full-front.svg', has_drill_down: false },
+                'body_back': { code: 'body_back', name_en: 'Body (Back View)', name_vi: 'Co the (Mat sau)', structure_type: 'region', parent_code: null, svg_file: 'body-full-back.svg', has_drill_down: false },
+                // Head and Neck
+                'head_front': { code: 'head_front', name_en: 'Head (Front)', name_vi: 'Dau (Mat truoc)', structure_type: 'region', parent_code: 'body_front', svg_file: 'regions/head.svg', has_drill_down: true },
+                'head_back': { code: 'head_back', name_en: 'Head (Back)', name_vi: 'Dau (Mat sau)', structure_type: 'region', parent_code: 'body_back', svg_file: 'regions/head-back.svg', has_drill_down: true },
+                'neck_front': { code: 'neck_front', name_en: 'Neck (Front)', name_vi: 'Co (Mat truoc)', structure_type: 'region', parent_code: 'body_front', svg_file: 'regions/neck.svg', has_drill_down: true },
+                // Spine
+                'cervical_spine': { code: 'cervical_spine', name_en: 'Cervical Spine', name_vi: 'Cot song co', structure_type: 'bone', parent_code: 'body_back', svg_file: 'regions/spine-cervical.svg', has_drill_down: true },
+                'thoracic_spine': { code: 'thoracic_spine', name_en: 'Thoracic Spine', name_vi: 'Cot song nguc', structure_type: 'bone', parent_code: 'body_back', svg_file: 'regions/spine-thoracic.svg', has_drill_down: true },
+                'lumbar_spine': { code: 'lumbar_spine', name_en: 'Lumbar Spine', name_vi: 'Cot song that lung', structure_type: 'bone', parent_code: 'body_back', svg_file: 'regions/spine-lumbar.svg', has_drill_down: true },
+                'sacrum': { code: 'sacrum', name_en: 'Sacrum', name_vi: 'Xuong cung', structure_type: 'bone', parent_code: 'body_back', svg_file: 'regions/sacrum.svg', has_drill_down: true },
+                // Torso
+                'chest': { code: 'chest', name_en: 'Chest', name_vi: 'Nguc', structure_type: 'region', parent_code: 'body_front', svg_file: 'regions/chest.svg', has_drill_down: true },
+                'abdomen': { code: 'abdomen', name_en: 'Abdomen', name_vi: 'Bung', structure_type: 'region', parent_code: 'body_front', svg_file: 'regions/abdomen.svg', has_drill_down: true },
+                'upper_back_right': { code: 'upper_back_right', name_en: 'Right Upper Back', name_vi: 'Lung tren phai', structure_type: 'region', parent_code: 'body_back', svg_file: 'regions/upper-back.svg', has_drill_down: true },
+                'upper_back_left': { code: 'upper_back_left', name_en: 'Left Upper Back', name_vi: 'Lung tren trai', structure_type: 'region', parent_code: 'body_back', svg_file: 'regions/upper-back.svg', has_drill_down: true },
+                'lower_back_right': { code: 'lower_back_right', name_en: 'Right Lower Back', name_vi: 'Lung duoi phai', structure_type: 'region', parent_code: 'body_back', svg_file: 'regions/lower-back.svg', has_drill_down: true },
+                'lower_back_left': { code: 'lower_back_left', name_en: 'Left Lower Back', name_vi: 'Lung duoi trai', structure_type: 'region', parent_code: 'body_back', svg_file: 'regions/lower-back.svg', has_drill_down: true },
+                // Shoulders
+                'shoulder_right': { code: 'shoulder_right', name_en: 'Right Shoulder', name_vi: 'Vai phai', structure_type: 'joint', parent_code: 'body_front', svg_file: 'regions/shoulder.svg', has_drill_down: true },
+                'shoulder_left': { code: 'shoulder_left', name_en: 'Left Shoulder', name_vi: 'Vai trai', structure_type: 'joint', parent_code: 'body_front', svg_file: 'regions/shoulder.svg', has_drill_down: true },
+                'shoulder_right_back': { code: 'shoulder_right_back', name_en: 'Right Shoulder (Back)', name_vi: 'Vai phai (Mat sau)', structure_type: 'joint', parent_code: 'body_back', svg_file: 'regions/shoulder-back.svg', has_drill_down: true },
+                'shoulder_left_back': { code: 'shoulder_left_back', name_en: 'Left Shoulder (Back)', name_vi: 'Vai trai (Mat sau)', structure_type: 'joint', parent_code: 'body_back', svg_file: 'regions/shoulder-back.svg', has_drill_down: true },
+                // Upper Arms
+                'upper_arm_right': { code: 'upper_arm_right', name_en: 'Right Upper Arm', name_vi: 'Canh tay phai', structure_type: 'region', parent_code: 'body_front', svg_file: 'regions/upper-arm.svg', has_drill_down: true },
+                'upper_arm_left': { code: 'upper_arm_left', name_en: 'Left Upper Arm', name_vi: 'Canh tay trai', structure_type: 'region', parent_code: 'body_front', svg_file: 'regions/upper-arm.svg', has_drill_down: true },
+                'triceps_right': { code: 'triceps_right', name_en: 'Right Triceps', name_vi: 'Co tam dau phai', structure_type: 'muscle', parent_code: 'body_back', svg_file: 'regions/upper-arm-back.svg', has_drill_down: true },
+                'triceps_left': { code: 'triceps_left', name_en: 'Left Triceps', name_vi: 'Co tam dau trai', structure_type: 'muscle', parent_code: 'body_back', svg_file: 'regions/upper-arm-back.svg', has_drill_down: true },
+                // Elbows
+                'elbow_right': { code: 'elbow_right', name_en: 'Right Elbow', name_vi: 'Khuyu tay phai', structure_type: 'joint', parent_code: 'body_front', svg_file: 'regions/elbow.svg', has_drill_down: true },
+                'elbow_left': { code: 'elbow_left', name_en: 'Left Elbow', name_vi: 'Khuyu tay trai', structure_type: 'joint', parent_code: 'body_front', svg_file: 'regions/elbow.svg', has_drill_down: true },
+                'elbow_right_back': { code: 'elbow_right_back', name_en: 'Right Elbow (Back)', name_vi: 'Khuyu tay phai (Mat sau)', structure_type: 'joint', parent_code: 'body_back', svg_file: 'regions/elbow-back.svg', has_drill_down: true },
+                'elbow_left_back': { code: 'elbow_left_back', name_en: 'Left Elbow (Back)', name_vi: 'Khuyu tay trai (Mat sau)', structure_type: 'joint', parent_code: 'body_back', svg_file: 'regions/elbow-back.svg', has_drill_down: true },
+                // Forearms
+                'forearm_right': { code: 'forearm_right', name_en: 'Right Forearm', name_vi: 'Cang tay phai', structure_type: 'region', parent_code: 'body_front', svg_file: 'regions/forearm.svg', has_drill_down: true },
+                'forearm_left': { code: 'forearm_left', name_en: 'Left Forearm', name_vi: 'Cang tay trai', structure_type: 'region', parent_code: 'body_front', svg_file: 'regions/forearm.svg', has_drill_down: true },
+                'forearm_right_back': { code: 'forearm_right_back', name_en: 'Right Forearm (Back)', name_vi: 'Cang tay phai (Mat sau)', structure_type: 'region', parent_code: 'body_back', svg_file: 'regions/forearm-back.svg', has_drill_down: true },
+                'forearm_left_back': { code: 'forearm_left_back', name_en: 'Left Forearm (Back)', name_vi: 'Cang tay trai (Mat sau)', structure_type: 'region', parent_code: 'body_back', svg_file: 'regions/forearm-back.svg', has_drill_down: true },
+                // Wrists
+                'wrist_right': { code: 'wrist_right', name_en: 'Right Wrist', name_vi: 'Co tay phai', structure_type: 'joint', parent_code: 'body_front', svg_file: 'regions/wrist.svg', has_drill_down: true },
+                'wrist_left': { code: 'wrist_left', name_en: 'Left Wrist', name_vi: 'Co tay trai', structure_type: 'joint', parent_code: 'body_front', svg_file: 'regions/wrist.svg', has_drill_down: true },
+                // Hands
+                'hand_right': { code: 'hand_right', name_en: 'Right Hand', name_vi: 'Ban tay phai', structure_type: 'region', parent_code: 'body_front', svg_file: 'regions/hand.svg', has_drill_down: true },
+                'hand_left': { code: 'hand_left', name_en: 'Left Hand', name_vi: 'Ban tay trai', structure_type: 'region', parent_code: 'body_front', svg_file: 'regions/hand.svg', has_drill_down: true },
+                'hand_right_back': { code: 'hand_right_back', name_en: 'Right Hand (Back)', name_vi: 'Ban tay phai (Mat sau)', structure_type: 'region', parent_code: 'body_back', svg_file: 'regions/hand-back.svg', has_drill_down: true },
+                'hand_left_back': { code: 'hand_left_back', name_en: 'Left Hand (Back)', name_vi: 'Ban tay trai (Mat sau)', structure_type: 'region', parent_code: 'body_back', svg_file: 'regions/hand-back.svg', has_drill_down: true },
+                // Hips and Gluteals
+                'hip_right': { code: 'hip_right', name_en: 'Right Hip', name_vi: 'Hong phai', structure_type: 'joint', parent_code: 'body_front', svg_file: 'regions/hip.svg', has_drill_down: true },
+                'hip_left': { code: 'hip_left', name_en: 'Left Hip', name_vi: 'Hong trai', structure_type: 'joint', parent_code: 'body_front', svg_file: 'regions/hip.svg', has_drill_down: true },
+                'gluteal_right': { code: 'gluteal_right', name_en: 'Right Gluteal', name_vi: 'Mong phai', structure_type: 'muscle', parent_code: 'body_back', svg_file: 'regions/gluteal.svg', has_drill_down: true },
+                'gluteal_left': { code: 'gluteal_left', name_en: 'Left Gluteal', name_vi: 'Mong trai', structure_type: 'muscle', parent_code: 'body_back', svg_file: 'regions/gluteal.svg', has_drill_down: true },
+                // Thighs and Hamstrings
+                'thigh_right': { code: 'thigh_right', name_en: 'Right Thigh', name_vi: 'Dui phai', structure_type: 'region', parent_code: 'body_front', svg_file: 'regions/thigh.svg', has_drill_down: true },
+                'thigh_left': { code: 'thigh_left', name_en: 'Left Thigh', name_vi: 'Dui trai', structure_type: 'region', parent_code: 'body_front', svg_file: 'regions/thigh.svg', has_drill_down: true },
+                'hamstring_right': { code: 'hamstring_right', name_en: 'Right Hamstring', name_vi: 'Co dui sau phai', structure_type: 'muscle', parent_code: 'body_back', svg_file: 'regions/hamstring.svg', has_drill_down: true },
+                'hamstring_left': { code: 'hamstring_left', name_en: 'Left Hamstring', name_vi: 'Co dui sau trai', structure_type: 'muscle', parent_code: 'body_back', svg_file: 'regions/hamstring.svg', has_drill_down: true },
+                // Knees
+                'knee_right': { code: 'knee_right', name_en: 'Right Knee', name_vi: 'Dau goi phai', structure_type: 'joint', parent_code: 'body_front', svg_file: 'regions/knee.svg', has_drill_down: true },
+                'knee_left': { code: 'knee_left', name_en: 'Left Knee', name_vi: 'Dau goi trai', structure_type: 'joint', parent_code: 'body_front', svg_file: 'regions/knee.svg', has_drill_down: true },
+                'popliteal_right': { code: 'popliteal_right', name_en: 'Right Popliteal (Behind Knee)', name_vi: 'Hoc kheo phai', structure_type: 'region', parent_code: 'body_back', svg_file: 'regions/knee-back.svg', has_drill_down: true },
+                'popliteal_left': { code: 'popliteal_left', name_en: 'Left Popliteal (Behind Knee)', name_vi: 'Hoc kheo trai', structure_type: 'region', parent_code: 'body_back', svg_file: 'regions/knee-back.svg', has_drill_down: true },
+                // Lower Legs and Calves
+                'lower_leg_right': { code: 'lower_leg_right', name_en: 'Right Lower Leg', name_vi: 'Cang chan phai', structure_type: 'region', parent_code: 'body_front', svg_file: 'regions/lower-leg.svg', has_drill_down: true },
+                'lower_leg_left': { code: 'lower_leg_left', name_en: 'Left Lower Leg', name_vi: 'Cang chan trai', structure_type: 'region', parent_code: 'body_front', svg_file: 'regions/lower-leg.svg', has_drill_down: true },
+                'calf_right': { code: 'calf_right', name_en: 'Right Calf', name_vi: 'Bap chan phai', structure_type: 'muscle', parent_code: 'body_back', svg_file: 'regions/calf.svg', has_drill_down: true },
+                'calf_left': { code: 'calf_left', name_en: 'Left Calf', name_vi: 'Bap chan trai', structure_type: 'muscle', parent_code: 'body_back', svg_file: 'regions/calf.svg', has_drill_down: true },
+                // Ankles
+                'ankle_right': { code: 'ankle_right', name_en: 'Right Ankle', name_vi: 'Mat ca chan phai', structure_type: 'joint', parent_code: 'body_front', svg_file: 'regions/ankle.svg', has_drill_down: true },
+                'ankle_left': { code: 'ankle_left', name_en: 'Left Ankle', name_vi: 'Mat ca chan trai', structure_type: 'joint', parent_code: 'body_front', svg_file: 'regions/ankle.svg', has_drill_down: true },
+                'achilles_right': { code: 'achilles_right', name_en: 'Right Achilles Tendon', name_vi: 'Gan Achilles phai', structure_type: 'tendon', parent_code: 'body_back', svg_file: 'regions/achilles.svg', has_drill_down: true },
+                'achilles_left': { code: 'achilles_left', name_en: 'Left Achilles Tendon', name_vi: 'Gan Achilles trai', structure_type: 'tendon', parent_code: 'body_back', svg_file: 'regions/achilles.svg', has_drill_down: true },
+                // Feet and Heels
+                'foot_right': { code: 'foot_right', name_en: 'Right Foot', name_vi: 'Ban chan phai', structure_type: 'region', parent_code: 'body_front', svg_file: 'regions/foot.svg', has_drill_down: true },
+                'foot_left': { code: 'foot_left', name_en: 'Left Foot', name_vi: 'Ban chan trai', structure_type: 'region', parent_code: 'body_front', svg_file: 'regions/foot.svg', has_drill_down: true },
+                'heel_right': { code: 'heel_right', name_en: 'Right Heel', name_vi: 'Got chan phai', structure_type: 'region', parent_code: 'body_back', svg_file: 'regions/heel.svg', has_drill_down: true },
+                'heel_left': { code: 'heel_left', name_en: 'Left Heel', name_vi: 'Got chan trai', structure_type: 'region', parent_code: 'body_back', svg_file: 'regions/heel.svg', has_drill_down: true }
+            };
+        }
+        // [AI-GENERATED: Claude Code - End]
 
         /**
          * Load the initial body view
@@ -303,17 +458,26 @@
             this.loadSvg('body-full-front.svg', 'body_front');
         }
 
+        // [AI-GENERATED: Claude Code - Start]
         /**
-         * Load an SVG file
+         * Load an SVG file with error handling and fallback display
          */
         async loadSvg(filename, regionCode) {
             const svgPath = this.config.assetsPath + filename;
+            const regionData = this.getRegionData(regionCode);
+            const regionName = this.config.language === 'vi' ?
+                (regionData?.name_vi || regionCode) :
+                (regionData?.name_en || regionCode);
+
+            console.log('[AnatomySelector] Loading SVG:', filename, 'for region:', regionCode);
+            console.log('[AnatomySelector] Full SVG path:', svgPath);
 
             try {
                 this.svgContainer.innerHTML = '<div class="anatomy-loading"><i class="fa fa-spinner fa-spin"></i> Loading...</div>';
 
                 const response = await fetch(svgPath);
                 if (!response.ok) {
+                    console.warn('[AnatomySelector] SVG fetch failed with status:', response.status, 'for:', filename);
                     throw new Error(`Failed to load SVG: ${response.status}`);
                 }
 
@@ -322,6 +486,7 @@
                 this.currentSvg = this.svgContainer.querySelector('svg');
 
                 if (this.currentSvg) {
+                    console.log('[AnatomySelector] SVG loaded successfully, setting up interaction');
                     this.setupSvgInteraction();
                     this.applyLayerVisibility();
 
@@ -334,29 +499,86 @@
                     if (typeof this.config.onDrillDown === 'function') {
                         this.config.onDrillDown(regionCode, this.navigationStack);
                     }
+
+                    console.log('[AnatomySelector] SVG setup complete for:', regionCode);
+                } else {
+                    console.warn('[AnatomySelector] No SVG element found in loaded content');
+                    this.showPlaceholderForMissingRegion(regionCode, regionName, filename);
                 }
             } catch (error) {
-                console.error('Error loading SVG:', error);
-                this.svgContainer.innerHTML = `
-                    <div class="anatomy-error">
-                        <i class="fa fa-exclamation-triangle"></i>
-                        <p>Could not load anatomy diagram</p>
-                        <small>${error.message}</small>
-                    </div>
-                `;
+                console.error('[AnatomySelector] Error loading SVG:', error.message);
+                this.showPlaceholderForMissingRegion(regionCode, regionName, filename);
             }
         }
 
         /**
+         * Show a placeholder when region SVG file is missing
+         * @param {string} regionCode - The region code
+         * @param {string} regionName - The display name for the region
+         * @param {string} filename - The SVG filename that was not found
+         */
+        showPlaceholderForMissingRegion(regionCode, regionName, filename) {
+            const labels = LABELS[this.config.language] || LABELS.en;
+            console.log('[AnatomySelector] Showing placeholder for missing region:', regionCode);
+
+            this.svgContainer.innerHTML = `
+                <div class="anatomy-placeholder">
+                    <div class="placeholder-icon">
+                        <i class="fa fa-image fa-3x"></i>
+                    </div>
+                    <h4>${regionName}</h4>
+                    <p class="placeholder-message">
+                        ${this.config.language === 'vi' ?
+                            'So do chi tiet chua co san cho vung nay.' :
+                            'Detailed diagram not yet available for this region.'}
+                    </p>
+                    <p class="placeholder-code">
+                        <small>Region: ${regionCode}</small>
+                    </p>
+                    <button type="button" class="btn btn-secondary btn-sm anatomy-back-btn" id="placeholder-back-btn">
+                        <i class="fa fa-arrow-left"></i>
+                        ${this.config.language === 'vi' ? 'Quay lai' : 'Go Back'}
+                    </button>
+                </div>
+            `;
+
+            // Update breadcrumb even for missing regions
+            if (regionCode) {
+                this.updateBreadcrumb(regionCode);
+            }
+
+            // Bind back button handler
+            const backBtn = document.getElementById('placeholder-back-btn');
+            if (backBtn) {
+                backBtn.addEventListener('click', () => {
+                    console.log('[AnatomySelector] Placeholder back button clicked, drilling up');
+                    this.drillUp();
+                });
+            }
+        }
+        // [AI-GENERATED: Claude Code - End]
+
+        // [AI-GENERATED: Claude Code - Start]
+        /**
          * Setup SVG interaction (clicks, hovers)
          */
         setupSvgInteraction() {
-            if (!this.currentSvg) return;
+            console.log('[AnatomySelector] Setting up SVG interaction');
+
+            if (!this.currentSvg) {
+                console.warn('[AnatomySelector] No current SVG, cannot setup interaction');
+                return;
+            }
 
             // Find all clickable regions (elements with data-region attribute)
             const regions = this.currentSvg.querySelectorAll('[data-region]');
+            console.log('[AnatomySelector] Found', regions.length, 'clickable regions');
 
             regions.forEach(region => {
+                const regionCode = region.getAttribute('data-region');
+                const canDrillDown = region.getAttribute('data-drill-down') === 'true';
+                console.log('[AnatomySelector] Setting up region:', regionCode, 'drill-down:', canDrillDown);
+
                 // Add hover effect
                 region.addEventListener('mouseenter', (e) => this.handleRegionHover(e, region));
                 region.addEventListener('mouseleave', (e) => this.handleRegionLeave(e, region));
@@ -376,7 +598,10 @@
                 region.style.cursor = 'pointer';
                 region.style.transition = 'fill 0.2s ease, opacity 0.2s ease';
             });
+
+            console.log('[AnatomySelector] SVG interaction setup complete');
         }
+        // [AI-GENERATED: Claude Code - End]
 
         /**
          * Handle region hover
@@ -444,18 +669,30 @@
             }
         }
 
+        // [AI-GENERATED: Claude Code - Start]
         /**
          * Drill down to a sub-region
          */
         drillDown(regionCode, svgFile) {
+            console.log('[AnatomySelector] Drill-down initiated');
+            console.log('[AnatomySelector] Target region:', regionCode);
+            console.log('[AnatomySelector] Target SVG file:', svgFile);
+            console.log('[AnatomySelector] Current level before:', this.currentLevel);
+            console.log('[AnatomySelector] Navigation stack before:', JSON.stringify(this.navigationStack));
+
             // Save current state to navigation stack
-            this.navigationStack.push({
+            const currentState = {
                 regionCode: this.getCurrentRegionCode(),
                 svgFile: this.getCurrentSvgFile(),
                 scrollPosition: this.svgContainer.scrollTop
-            });
+            };
+            this.navigationStack.push(currentState);
+            console.log('[AnatomySelector] Pushed to stack:', JSON.stringify(currentState));
 
             this.currentLevel++;
+            console.log('[AnatomySelector] New level:', this.currentLevel);
+            console.log('[AnatomySelector] Navigation stack after:', JSON.stringify(this.navigationStack));
+
             this.loadSvg(svgFile, regionCode);
         }
 
@@ -463,10 +700,21 @@
          * Drill up to parent region
          */
         drillUp() {
-            if (this.navigationStack.length === 0) return;
+            console.log('[AnatomySelector] Drill-up initiated');
+            console.log('[AnatomySelector] Current level before:', this.currentLevel);
+            console.log('[AnatomySelector] Navigation stack before:', JSON.stringify(this.navigationStack));
+
+            if (this.navigationStack.length === 0) {
+                console.log('[AnatomySelector] Navigation stack empty, cannot drill up');
+                return;
+            }
 
             const previousState = this.navigationStack.pop();
             this.currentLevel--;
+
+            console.log('[AnatomySelector] Popped from stack:', JSON.stringify(previousState));
+            console.log('[AnatomySelector] New level:', this.currentLevel);
+            console.log('[AnatomySelector] Navigation stack after:', JSON.stringify(this.navigationStack));
 
             this.loadSvg(previousState.svgFile, previousState.regionCode);
 
@@ -475,6 +723,7 @@
                 this.config.onDrillUp(previousState.regionCode, this.navigationStack);
             }
         }
+        // [AI-GENERATED: Claude Code - End]
 
         /**
          * Select a region

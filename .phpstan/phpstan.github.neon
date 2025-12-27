@@ -17,6 +17,8 @@ parameters:
       - ../interface/forms/vietnamese_pt_*
       - ../library/custom/vietnamese_pt_widget.php
       - ../tests/Tests/E2e/VietnamesePT
+      - ../tests/Tests/Api/VietnamesePT
+      - ../tests/Tests/Unit/Vietnamese
       - ../tests/Tests/Services/Vietnamese
       - ../tests/Tests/RestControllers/VietnamesePT
       - ../tests/Tests/Validators/VietnamesePT

@@ -72,6 +72,8 @@ return RectorConfig::configure()
         __DIR__ . '/interface/forms/vietnamese_pt_treatment_plan',
         __DIR__ . '/library/custom/vietnamese_pt_widget.php',
         __DIR__ . '/tests/Tests/E2e/VietnamesePT',
+        __DIR__ . '/tests/Tests/Api/VietnamesePT',
+        __DIR__ . '/tests/Tests/Unit/Vietnamese',
         __DIR__ . '/tests/Tests/Services/Vietnamese',
         __DIR__ . '/tests/Tests/RestControllers/VietnamesePT',
         __DIR__ . '/tests/Tests/Validators/VietnamesePT',

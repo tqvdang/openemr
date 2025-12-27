@@ -13,8 +13,13 @@ parameters:
       - ../sites/default/documents/smarty (?)
       - ../src/RestControllers/VietnamesePT
       - ../src/Services/VietnamesePT
+      - ../src/Validators/VietnamesePT
       - ../interface/forms/vietnamese_pt_*
       - ../library/custom/vietnamese_pt_widget.php
+      - ../tests/Tests/E2e/VietnamesePT
+      - ../tests/Tests/Services/Vietnamese
+      - ../tests/Tests/RestControllers/VietnamesePT
+      - ../tests/Tests/Validators/VietnamesePT
   ignoreErrors:
   - message: '#^Variable \$web_root might not be defined\.$#'
     identifier: variable.undefined

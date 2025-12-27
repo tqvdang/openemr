@@ -67,6 +67,10 @@ sites/
 !sites/default/documents/era/README.txt
 !sites/default/documents/procedure_results/README
 !sites/default/documents/mpdf/pdf_tmp/README
+# Allow crypto key directory README (required for CI to work)
+!sites/default/documents/logs_and_misc/
+!sites/default/documents/logs_and_misc/methods/
+!sites/default/documents/logs_and_misc/methods/README.md
 
 # Smarty template cache
 sites/default/documents/smarty/

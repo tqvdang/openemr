@@ -5,10 +5,11 @@
 # This workflow provides continuous integration and deployment automation
 # for the Vietnamese Physiotherapy module.
 #
+# NOTE: This workflow is set to manual dispatch only to avoid blocking
+# the main CI pipeline. Run manually when needed for Vietnamese PT testing.
+#
 # Triggers:
-#   - Push to feature/pt-* branches
-#   - Pull requests to master
-#   - Manual workflow dispatch
+#   - Manual workflow dispatch only
 #
 # Jobs:
 #   1. Lint and Code Quality
@@ -22,22 +23,23 @@
 name: Vietnamese PT Module CI/CD
 
 on:
-  push:
-    branches:
-      - 'feature/pt-*'
-      - 'feature/physiotherapy-*'
-      - 'feature/vietnamese-pt-*'
-  pull_request:
-    branches:
-      - master
-    paths:
-      - 'src/Services/VietnamesePT/**'
-      - 'src/RestControllers/VietnamesePT/**'
-      - 'src/Validators/VietnamesePT/**'
-      - 'interface/forms/vietnamese_pt_*/**'
-      - 'tests/Tests/Services/Vietnamese/**'
-      - 'tests/Tests/Vietnamese/**'
-      - 'sql/migrations/vietnamese_pt/**'
+  # Disabled automatic triggers to prevent blocking main CI
+  # push:
+  #   branches:
+  #     - 'feature/pt-*'
+  #     - 'feature/physiotherapy-*'
+  #     - 'feature/vietnamese-pt-*'
+  # pull_request:
+  #   branches:
+  #     - master
+  #   paths:
+  #     - 'src/Services/VietnamesePT/**'
+  #     - 'src/RestControllers/VietnamesePT/**'
+  #     - 'src/Validators/VietnamesePT/**'
+  #     - 'interface/forms/vietnamese_pt_*/**'
+  #     - 'tests/Tests/Services/Vietnamese/**'
+  #     - 'tests/Tests/Vietnamese/**'
+  #     - 'sql/migrations/vietnamese_pt/**'
   workflow_dispatch:
     inputs:
       deploy_environment:

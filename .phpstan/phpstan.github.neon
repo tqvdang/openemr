@@ -11,6 +11,8 @@ parameters:
   excludePaths:
     analyseAndScan:
       - ../sites/default/documents/smarty (?)
+      - ../src/RestControllers/VietnamesePT
+      - ../src/Services/VietnamesePT
   ignoreErrors:
   - message: '#^Variable \$web_root might not be defined\.$#'
     identifier: variable.undefined

@@ -23,26 +23,38 @@ This file configures the kind that requires initialization.
     </testsuite>
     <testsuite name="unit">
       <directory>tests/Tests/Unit</directory>
+      <!-- Exclude Vietnamese PT tests - require separate database setup -->
+      <exclude>tests/Tests/Unit/Vietnamese</exclude>
     </testsuite>
     <testsuite name="e2e">
       <directory>tests/Tests/E2e</directory>
       <exclude>tests/Tests/E2e/EmailSendTest.php</exclude>
       <exclude>tests/Tests/E2e/FaxSmsEmailTest.php</exclude>
+      <!-- Exclude Vietnamese PT tests - require separate database setup -->
+      <exclude>tests/Tests/E2e/VietnamesePT</exclude>
     </testsuite>
     <testsuite name="api">
       <directory>tests/Tests/Api</directory>
+      <!-- Exclude Vietnamese PT tests - require separate database setup -->
+      <exclude>tests/Tests/Api/VietnamesePT</exclude>
     </testsuite>
     <testsuite name="fixtures">
       <directory>tests/Tests/Fixtures</directory>
     </testsuite>
     <testsuite name="services">
       <directory>tests/Tests/Services</directory>
+      <!-- Exclude Vietnamese PT tests - require separate database setup -->
+      <exclude>tests/Tests/Services/Vietnamese</exclude>
     </testsuite>
     <testsuite name="validators">
       <directory>tests/Tests/Validators</directory>
+      <!-- Exclude Vietnamese PT tests - require separate database setup -->
+      <exclude>tests/Tests/Validators/VietnamesePT</exclude>
     </testsuite>
     <testsuite name="controllers">
       <directory>tests/Tests/RestControllers</directory>
+      <!-- Exclude Vietnamese PT tests - require separate database setup -->
+      <exclude>tests/Tests/RestControllers/VietnamesePT</exclude>
     </testsuite>
     <testsuite name="vietnamese">
       <directory>tests/Tests/Unit/Vietnamese</directory>

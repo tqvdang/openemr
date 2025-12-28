@@ -1,0 +1,199 @@
+<?xml version="1.0" encoding="UTF-8"?>
+<!-- AI-GENERATED: Claude Code -->
+<!--
+  Forearm Region Detail - Interactive Anatomy Selector
+  Level 2: Shows forearm with flexors, extensors, radius, ulna
+  @package   OpenEMR
+  @author    Vietnamese PT Module
+  @copyright Copyright (c) 2025
+  @license   GNU General Public License 3
+-->
+<svg xmlns="http://www.w3.org/2000/svg" viewBox="0 0 350 500" width="350" height="500">
+  <title>Forearm Anatomy</title>
+  <defs>
+    <style>
+      .bone { fill: #fff9c4; stroke: #8d6e63; stroke-width: 1.5; }
+      .muscle { fill: #ffcdd2; stroke: #c62828; stroke-width: 1; }
+      .joint { fill: #c8e6c9; stroke: #2e7d32; stroke-width: 1.5; }
+      .ligament { fill: #b2dfdb; stroke: #00695c; stroke-width: 1; }
+      .tendon { fill: #f0f4c3; stroke: #827717; stroke-width: 1; }
+      .nerve { fill: #e1bee7; stroke: #7b1fa2; stroke-width: 2; }
+      .region { cursor: pointer; transition: all 0.2s ease; }
+      .region:hover { filter: brightness(1.1); stroke-width: 3; }
+      .label { font-family: Arial, sans-serif; font-size: 11px; fill: #333; pointer-events: none; }
+      .title-label { font-family: Arial, sans-serif; font-size: 14px; font-weight: bold; fill: #1976d2; }
+    </style>
+  </defs>
+
+  <!-- Title -->
+  <text x="175" y="25" text-anchor="middle" class="title-label">Forearm Anatomy / Giai phau cang tay</text>
+
+  <!-- Bones Layer -->
+  <g id="bones-layer" data-layer="bone">
+    <!-- Radius -->
+    <path d="M120 60 L150 50 L160 80 L165 200 L170 380 L165 420 L140 440 L125 420 L120 380 L115 200 L115 80 Z"
+          class="bone region"
+          data-region="radius"
+          data-structure-type="bone"
+          data-drill-down="false"/>
+    <text x="100" y="250" class="label">Radius</text>
+    <text x="100" y="263" class="label">X. quay</text>
+
+    <!-- Ulna -->
+    <path d="M200 40 L240 50 L245 80 L240 200 L235 380 L230 420 L210 440 L190 420 L185 380 L190 200 L195 80 Z"
+          class="bone region"
+          data-region="ulna"
+          data-structure-type="bone"
+          data-drill-down="false"/>
+    <text x="250" y="250" class="label">Ulna</text>
+    <text x="250" y="263" class="label">X. tru</text>
+
+    <!-- Olecranon -->
+    <ellipse cx="220" cy="50" rx="25" ry="20"
+             class="bone region"
+             data-region="olecranon"
+             data-structure-type="bone"
+             data-drill-down="false"/>
+    <text x="255" y="55" class="label">Olecranon / Mom khuyu</text>
+
+    <!-- Radial Head -->
+    <circle cx="140" cy="60" r="18"
+            class="bone region"
+            data-region="radial_head"
+            data-structure-type="bone"
+            data-drill-down="false"/>
+    <text x="50" y="65" class="label">Radial Head</text>
+  </g>
+
+  <!-- Muscles Layer -->
+  <g id="muscles-layer" data-layer="muscle">
+    <!-- Flexor Group (Anterior) -->
+    <path d="M115 80 L160 70 L170 100 L175 200 L180 350 L175 400 L150 420 L120 400 L110 350 L105 200 L108 100 Z"
+          class="muscle region"
+          data-region="flexor_group"
+          data-structure-type="muscle"
+          data-drill-down="false"/>
+    <text x="50" y="180" class="label">Flexors</text>
+    <text x="50" y="193" class="label">Nhom co gap</text>
+
+    <!-- Flexor Carpi Radialis -->
+    <path d="M130 100 L150 95 L155 200 L158 380 L150 400 L135 395 L130 200 Z"
+          class="muscle region"
+          data-region="flexor_carpi_radialis"
+          data-structure-type="muscle"
+          data-drill-down="false"
+          style="fill: #ef9a9a;"/>
+
+    <!-- Flexor Carpi Ulnaris -->
+    <path d="M185 90 L200 85 L195 200 L192 380 L185 400 L175 395 L178 200 Z"
+          class="muscle region"
+          data-region="flexor_carpi_ulnaris"
+          data-structure-type="muscle"
+          data-drill-down="false"
+          style="fill: #ef9a9a;"/>
+
+    <!-- Extensor Group (Posterior) -->
+    <path d="M200 80 L250 70 L260 100 L265 200 L270 350 L265 400 L240 420 L210 400 L200 350 L195 200 L198 100 Z"
+          class="muscle region"
+          data-region="extensor_group"
+          data-structure-type="muscle"
+          data-drill-down="false"
+          style="fill: #e57373;"/>
+    <text x="275" y="180" class="label">Extensors</text>
+    <text x="275" y="193" class="label">Nhom co duoi</text>
+
+    <!-- Brachioradialis -->
+    <path d="M100 70 L125 65 L130 120 L135 250 L130 320 L115 330 L105 250 L100 120 Z"
+          class="muscle region"
+          data-region="brachioradialis"
+          data-structure-type="muscle"
+          data-drill-down="false"
+          style="fill: #ffab91;"/>
+    <text x="35" y="130" class="label">Brachioradialis</text>
+
+    <!-- Pronator Teres -->
+    <path d="M160 75 L180 70 L185 120 L175 180 L160 185 L155 120 Z"
+          class="muscle region"
+          data-region="pronator_teres"
+          data-structure-type="muscle"
+          data-drill-down="false"
+          style="fill: #ffcdd2;"/>
+    <text x="190" y="130" class="label">Pronator Teres</text>
+  </g>
+
+  <!-- Tendons Layer -->
+  <g id="tendons-layer" data-layer="tendon">
+    <!-- Flexor Tendons at Wrist -->
+    <path d="M145 400 L145 450"
+          class="tendon region"
+          data-region="flexor_tendons"
+          data-structure-type="tendon"
+          data-drill-down="false"
+          style="fill: none; stroke-width: 4;"/>
+    <path d="M160 400 L160 450"
+          class="tendon region"
+          data-region="flexor_tendons_2"
+          data-structure-type="tendon"
+          data-drill-down="false"
+          style="fill: none; stroke-width: 4;"/>
+
+    <!-- Extensor Tendons at Wrist -->
+    <path d="M210 400 L210 450"
+          class="tendon region"
+          data-region="extensor_tendons"
+          data-structure-type="tendon"
+          data-drill-down="false"
+          style="fill: none; stroke-width: 4;"/>
+    <path d="M225 400 L225 450"
+          class="tendon region"
+          data-region="extensor_tendons_2"
+          data-structure-type="tendon"
+          data-drill-down="false"
+          style="fill: none; stroke-width: 4;"/>
+    <text x="235" y="430" class="label">Tendons / Gan</text>
+  </g>
+
+  <!-- Nerves Layer -->
+  <g id="nerves-layer" data-layer="nerve">
+    <!-- Median Nerve -->
+    <path d="M155 80 Q160 200 165 400"
+          class="nerve region"
+          data-region="median_nerve"
+          data-structure-type="nerve"
+          data-drill-down="false"
+          style="fill: none;"/>
+    <text x="50" y="300" class="label" style="fill: #7b1fa2;">Median N.</text>
+    <text x="50" y="313" class="label" style="fill: #7b1fa2;">TK giua</text>
+
+    <!-- Ulnar Nerve -->
+    <path d="M195 80 Q200 200 205 400"
+          class="nerve region"
+          data-region="ulnar_nerve"
+          data-structure-type="nerve"
+          data-drill-down="false"
+          style="fill: none;"/>
+    <text x="275" y="300" class="label" style="fill: #7b1fa2;">Ulnar N.</text>
+    <text x="275" y="313" class="label" style="fill: #7b1fa2;">TK tru</text>
+
+    <!-- Radial Nerve -->
+    <path d="M240 70 Q250 120 255 200"
+          class="nerve region"
+          data-region="radial_nerve_forearm"
+          data-structure-type="nerve"
+          data-drill-down="false"
+          style="fill: none;"/>
+  </g>
+
+  <!-- Legend -->
+  <g id="legend" transform="translate(30, 460)">
+    <text x="0" y="0" class="label" style="font-weight: bold;">Legend / Chu thich:</text>
+    <rect x="0" y="10" width="15" height="12" class="bone"/>
+    <text x="20" y="20" class="label">Bone</text>
+    <rect x="60" y="10" width="15" height="12" class="muscle"/>
+    <text x="80" y="20" class="label">Muscle</text>
+    <rect x="130" y="10" width="15" height="12" class="tendon"/>
+    <text x="150" y="20" class="label">Tendon</text>
+    <line x1="200" y1="16" x2="215" y2="16" class="nerve" style="stroke-width: 3;"/>
+    <text x="220" y="20" class="label">Nerve</text>
+  </g>
+</svg>

@@ -1,0 +1,168 @@
+<?xml version="1.0" encoding="UTF-8"?>
+<!-- AI-GENERATED: Claude Code -->
+<!--
+  Neck Region Detail - Interactive Anatomy Selector
+  Level 2: Shows neck with cervical region, throat structures
+  @package   OpenEMR
+  @author    Vietnamese PT Module
+  @copyright Copyright (c) 2025
+  @license   GNU General Public License 3
+-->
+<svg xmlns="http://www.w3.org/2000/svg" viewBox="0 0 400 450" width="400" height="450">
+  <title>Neck Anatomy</title>
+  <defs>
+    <style>
+      .bone { fill: #fff9c4; stroke: #8d6e63; stroke-width: 1.5; }
+      .muscle { fill: #ffcdd2; stroke: #c62828; stroke-width: 1; }
+      .joint { fill: #c8e6c9; stroke: #2e7d32; stroke-width: 1.5; }
+      .ligament { fill: #b2dfdb; stroke: #00695c; stroke-width: 1; }
+      .tendon { fill: #f0f4c3; stroke: #827717; stroke-width: 1; }
+      .nerve { fill: #e1bee7; stroke: #7b1fa2; stroke-width: 2; }
+      .region { cursor: pointer; transition: all 0.2s ease; }
+      .region:hover { filter: brightness(1.1); stroke-width: 3; }
+      .label { font-family: Arial, sans-serif; font-size: 11px; fill: #333; pointer-events: none; }
+      .title-label { font-family: Arial, sans-serif; font-size: 14px; font-weight: bold; fill: #1976d2; }
+    </style>
+  </defs>
+
+  <!-- Title -->
+  <text x="200" y="25" text-anchor="middle" class="title-label">Neck Anatomy / Giai phau co</text>
+
+  <!-- Bones Layer -->
+  <g id="bones-layer" data-layer="bone">
+    <!-- Hyoid Bone -->
+    <path d="M150 100 Q200 85 250 100 Q260 110 250 120 Q200 130 150 120 Q140 110 150 100"
+          class="bone region"
+          data-region="hyoid"
+          data-structure-type="bone"
+          data-drill-down="false"/>
+    <text x="280" y="110" class="label">Hyoid / Xuong mong</text>
+
+    <!-- Thyroid Cartilage (Adam's Apple) -->
+    <path d="M170 130 L200 160 L230 130 L230 180 L170 180 Z"
+          class="bone region"
+          data-region="thyroid_cartilage"
+          data-structure-type="bone"
+          data-drill-down="false"/>
+    <text x="280" y="160" class="label">Thyroid Cartilage</text>
+    <text x="280" y="173" class="label">Sun giap</text>
+
+    <!-- Cricoid Cartilage -->
+    <ellipse cx="200" cy="200" rx="30" ry="15"
+             class="bone region"
+             data-region="cricoid_cartilage"
+             data-structure-type="bone"
+             data-drill-down="false"/>
+    <text x="280" y="205" class="label">Cricoid / Sun nhan</text>
+
+    <!-- Cervical Vertebrae (C1-C7 simplified) -->
+    <rect x="175" y="220" width="50" height="180" rx="10"
+          class="bone region"
+          data-region="cervical_spine"
+          data-structure-type="bone"
+          data-drill-down="false"/>
+    <text x="200" y="310" text-anchor="middle" class="label">C1-C7</text>
+    <text x="280" y="310" class="label">Dot song co</text>
+  </g>
+
+  <!-- Muscles Layer -->
+  <g id="muscles-layer" data-layer="muscle">
+    <!-- Sternocleidomastoid Left -->
+    <path d="M130 60 L150 60 L120 350 L100 350 Z"
+          class="muscle region"
+          data-region="scm_left"
+          data-structure-type="muscle"
+          data-drill-down="false"/>
+    <text x="30" y="200" class="label">SCM</text>
+    <text x="30" y="213" class="label">Co uc don chum</text>
+
+    <!-- Sternocleidomastoid Right -->
+    <path d="M250 60 L270 60 L300 350 L280 350 Z"
+          class="muscle region"
+          data-region="scm_right"
+          data-structure-type="muscle"
+          data-drill-down="false"/>
+
+    <!-- Scalene Anterior Left -->
+    <path d="M150 150 L165 150 L140 300 L125 300 Z"
+          class="muscle region"
+          data-region="scalene_anterior_left"
+          data-structure-type="muscle"
+          data-drill-down="false"
+          style="fill: #ef9a9a;"/>
+
+    <!-- Scalene Anterior Right -->
+    <path d="M235 150 L250 150 L275 300 L260 300 Z"
+          class="muscle region"
+          data-region="scalene_anterior_right"
+          data-structure-type="muscle"
+          data-drill-down="false"
+          style="fill: #ef9a9a;"/>
+    <text x="310" y="250" class="label">Scalenes</text>
+    <text x="310" y="263" class="label">Co bac thang</text>
+
+    <!-- Longus Colli (Deep) -->
+    <path d="M185 230 L215 230 L210 390 L190 390 Z"
+          class="muscle region"
+          data-region="longus_colli"
+          data-structure-type="muscle"
+          data-drill-down="false"
+          style="fill: #e57373;"/>
+    <text x="30" y="320" class="label">Longus Colli</text>
+    <text x="30" y="333" class="label">Co dai co</text>
+
+    <!-- Trapezius Upper (Posterior) -->
+    <path d="M80 320 L120 300 L130 360 L90 380 Z"
+          class="muscle region"
+          data-region="trapezius_upper_left"
+          data-structure-type="muscle"
+          data-drill-down="false"
+          style="fill: #ffab91;"/>
+    <path d="M320 320 L280 300 L270 360 L310 380 Z"
+          class="muscle region"
+          data-region="trapezius_upper_right"
+          data-structure-type="muscle"
+          data-drill-down="false"
+          style="fill: #ffab91;"/>
+    <text x="310" y="350" class="label">Trapezius</text>
+    <text x="310" y="363" class="label">Co thang</text>
+  </g>
+
+  <!-- Nerves Layer -->
+  <g id="nerves-layer" data-layer="nerve">
+    <!-- Cervical Plexus -->
+    <path d="M165 250 Q140 260 120 280"
+          class="nerve region"
+          data-region="cervical_plexus_left"
+          data-structure-type="nerve"
+          data-drill-down="false"
+          style="fill: none;"/>
+    <path d="M235 250 Q260 260 280 280"
+          class="nerve region"
+          data-region="cervical_plexus_right"
+          data-structure-type="nerve"
+          data-drill-down="false"
+          style="fill: none;"/>
+    <text x="30" y="280" class="label" style="fill: #7b1fa2;">Cervical Plexus</text>
+    <text x="30" y="293" class="label" style="fill: #7b1fa2;">Dam roi co</text>
+
+    <!-- Vagus Nerve -->
+    <path d="M160 120 L155 350"
+          class="nerve region"
+          data-region="vagus_left"
+          data-structure-type="nerve"
+          data-drill-down="false"
+          style="fill: none;"/>
+  </g>
+
+  <!-- Legend -->
+  <g id="legend" transform="translate(30, 400)">
+    <text x="0" y="0" class="label" style="font-weight: bold;">Legend / Chu thich:</text>
+    <rect x="0" y="10" width="15" height="12" class="bone"/>
+    <text x="20" y="20" class="label">Bone / Xuong</text>
+    <rect x="100" y="10" width="15" height="12" class="muscle"/>
+    <text x="120" y="20" class="label">Muscle / Co</text>
+    <line x1="200" y1="16" x2="215" y2="16" class="nerve" style="stroke-width: 3;"/>
+    <text x="220" y="20" class="label">Nerve / Than kinh</text>
+  </g>
+</svg>

@@ -1,0 +1,195 @@
+<?xml version="1.0" encoding="UTF-8"?>
+<!-- AI-GENERATED: Claude Code -->
+<!--
+  Abdomen Region Detail - Interactive Anatomy Selector
+  Level 2: Shows abdomen with quadrants and muscle groups
+  @package   OpenEMR
+  @author    Vietnamese PT Module
+  @copyright Copyright (c) 2025
+  @license   GNU General Public License 3
+-->
+<svg xmlns="http://www.w3.org/2000/svg" viewBox="0 0 400 450" width="400" height="450">
+  <title>Abdomen Anatomy</title>
+  <defs>
+    <style>
+      .bone { fill: #fff9c4; stroke: #8d6e63; stroke-width: 1.5; }
+      .muscle { fill: #ffcdd2; stroke: #c62828; stroke-width: 1; }
+      .joint { fill: #c8e6c9; stroke: #2e7d32; stroke-width: 1.5; }
+      .ligament { fill: #b2dfdb; stroke: #00695c; stroke-width: 1; }
+      .tendon { fill: #f0f4c3; stroke: #827717; stroke-width: 1; }
+      .nerve { fill: #e1bee7; stroke: #7b1fa2; stroke-width: 2; }
+      .region { cursor: pointer; transition: all 0.2s ease; }
+      .region:hover { filter: brightness(1.1); stroke-width: 3; }
+      .label { font-family: Arial, sans-serif; font-size: 11px; fill: #333; pointer-events: none; }
+      .title-label { font-family: Arial, sans-serif; font-size: 14px; font-weight: bold; fill: #1976d2; }
+      .quadrant { fill: #e3f2fd; stroke: #1976d2; stroke-width: 1; stroke-dasharray: 5,3; }
+    </style>
+  </defs>
+
+  <!-- Title -->
+  <text x="200" y="25" text-anchor="middle" class="title-label">Abdomen Anatomy / Giai phau bung</text>
+
+  <!-- Quadrant Guides -->
+  <g id="quadrants-layer">
+    <!-- Right Upper Quadrant -->
+    <rect x="50" y="50" width="140" height="130"
+          class="quadrant region"
+          data-region="ruq"
+          data-structure-type="joint"
+          data-drill-down="false"/>
+    <text x="120" y="120" text-anchor="middle" class="label">RUQ</text>
+    <text x="120" y="133" text-anchor="middle" class="label">Phan tu tren phai</text>
+
+    <!-- Left Upper Quadrant -->
+    <rect x="210" y="50" width="140" height="130"
+          class="quadrant region"
+          data-region="luq"
+          data-structure-type="joint"
+          data-drill-down="false"/>
+    <text x="280" y="120" text-anchor="middle" class="label">LUQ</text>
+    <text x="280" y="133" text-anchor="middle" class="label">Phan tu tren trai</text>
+
+    <!-- Right Lower Quadrant -->
+    <rect x="50" y="200" width="140" height="130"
+          class="quadrant region"
+          data-region="rlq"
+          data-structure-type="joint"
+          data-drill-down="false"/>
+    <text x="120" y="270" text-anchor="middle" class="label">RLQ</text>
+    <text x="120" y="283" text-anchor="middle" class="label">Phan tu duoi phai</text>
+
+    <!-- Left Lower Quadrant -->
+    <rect x="210" y="200" width="140" height="130"
+          class="quadrant region"
+          data-region="llq"
+          data-structure-type="joint"
+          data-drill-down="false"/>
+    <text x="280" y="270" text-anchor="middle" class="label">LLQ</text>
+    <text x="280" y="283" text-anchor="middle" class="label">Phan tu duoi trai</text>
+  </g>
+
+  <!-- Muscles Layer -->
+  <g id="muscles-layer" data-layer="muscle">
+    <!-- Rectus Abdominis -->
+    <path d="M170 45 L230 45 L235 340 L165 340 Z"
+          class="muscle region"
+          data-region="rectus_abdominis"
+          data-structure-type="muscle"
+          data-drill-down="false"/>
+    <text x="200" y="195" text-anchor="middle" class="label">Rectus Abdominis</text>
+    <text x="200" y="208" text-anchor="middle" class="label">Co thang bung</text>
+
+    <!-- Linea Alba -->
+    <line x1="200" y1="45" x2="200" y2="340"
+          style="stroke: #8d6e63; stroke-width: 2;"/>
+
+    <!-- Tendinous Intersections -->
+    <line x1="170" y1="100" x2="230" y2="100" style="stroke: #8d6e63; stroke-width: 1;"/>
+    <line x1="170" y1="160" x2="230" y2="160" style="stroke: #8d6e63; stroke-width: 1;"/>
+    <line x1="170" y1="220" x2="230" y2="220" style="stroke: #8d6e63; stroke-width: 1;"/>
+
+    <!-- External Oblique Left -->
+    <path d="M55 70 L160 50 L155 200 L50 180 Z"
+          class="muscle region"
+          data-region="external_oblique_left"
+          data-structure-type="muscle"
+          data-drill-down="false"
+          style="fill: #ef9a9a;"/>
+    <text x="20" y="130" class="label">Ext Oblique</text>
+    <text x="20" y="143" class="label">Co cheo ngoai</text>
+
+    <!-- External Oblique Right -->
+    <path d="M345 70 L240 50 L245 200 L350 180 Z"
+          class="muscle region"
+          data-region="external_oblique_right"
+          data-structure-type="muscle"
+          data-drill-down="false"
+          style="fill: #ef9a9a;"/>
+
+    <!-- Internal Oblique Left -->
+    <path d="M60 190 L155 210 L150 320 L55 300 Z"
+          class="muscle region"
+          data-region="internal_oblique_left"
+          data-structure-type="muscle"
+          data-drill-down="false"
+          style="fill: #e57373;"/>
+    <text x="20" y="260" class="label">Int Oblique</text>
+    <text x="20" y="273" class="label">Co cheo trong</text>
+
+    <!-- Internal Oblique Right -->
+    <path d="M340 190 L245 210 L250 320 L345 300 Z"
+          class="muscle region"
+          data-region="internal_oblique_right"
+          data-structure-type="muscle"
+          data-drill-down="false"
+          style="fill: #e57373;"/>
+
+    <!-- Transversus Abdominis (Deep - shown as outline) -->
+    <path d="M50 310 Q200 350 350 310"
+          class="muscle region"
+          data-region="transversus_abdominis"
+          data-structure-type="muscle"
+          data-drill-down="false"
+          style="fill: none; stroke: #c62828; stroke-width: 2; stroke-dasharray: 5,3;"/>
+    <text x="200" y="340" text-anchor="middle" class="label">Transversus / Co ngang bung</text>
+  </g>
+
+  <!-- Bones Layer -->
+  <g id="bones-layer" data-layer="bone">
+    <!-- Lower Ribs (floating) -->
+    <path d="M50 50 Q100 40 150 55"
+          class="bone region"
+          data-region="rib_11_left"
+          data-structure-type="bone"
+          data-drill-down="false"
+          style="fill: none; stroke-width: 4;"/>
+    <path d="M350 50 Q300 40 250 55"
+          class="bone region"
+          data-region="rib_11_right"
+          data-structure-type="bone"
+          data-drill-down="false"
+          style="fill: none; stroke-width: 4;"/>
+
+    <!-- Iliac Crest -->
+    <path d="M40 330 Q120 360 200 350 Q280 360 360 330"
+          class="bone region"
+          data-region="iliac_crest"
+          data-structure-type="bone"
+          data-drill-down="false"
+          style="fill: none; stroke-width: 6;"/>
+    <text x="200" y="375" text-anchor="middle" class="label">Iliac Crest / Mao chau</text>
+  </g>
+
+  <!-- Ligaments Layer -->
+  <g id="ligaments-layer" data-layer="ligament">
+    <!-- Inguinal Ligament Left -->
+    <path d="M60 340 L165 380"
+          class="ligament region"
+          data-region="inguinal_ligament_left"
+          data-structure-type="ligament"
+          data-drill-down="false"
+          style="fill: none; stroke-width: 4;"/>
+
+    <!-- Inguinal Ligament Right -->
+    <path d="M340 340 L235 380"
+          class="ligament region"
+          data-region="inguinal_ligament_right"
+          data-structure-type="ligament"
+          data-drill-down="false"
+          style="fill: none; stroke-width: 4;"/>
+    <text x="200" y="395" text-anchor="middle" class="label">Inguinal Lig / Day chang ben</text>
+  </g>
+
+  <!-- Legend -->
+  <g id="legend" transform="translate(50, 405)">
+    <text x="0" y="0" class="label" style="font-weight: bold;">Legend / Chu thich:</text>
+    <rect x="0" y="10" width="15" height="12" class="bone"/>
+    <text x="20" y="20" class="label">Bone / Xuong</text>
+    <rect x="90" y="10" width="15" height="12" class="muscle"/>
+    <text x="110" y="20" class="label">Muscle / Co</text>
+    <rect x="170" y="10" width="15" height="12" class="ligament"/>
+    <text x="190" y="20" class="label">Ligament / Day chang</text>
+    <rect x="280" y="10" width="15" height="12" class="quadrant"/>
+    <text x="300" y="20" class="label">Quadrant</text>
+  </g>
+</svg>

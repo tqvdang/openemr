@@ -7601,6 +7601,41 @@ return [
         // No authorization required for version information
         $return = (new \OpenEMR\RestControllers\VietnamesePT\HealthCheckController())->getVersion();
         return $return;
+    },
+
+    /**
+     * Vietnamese PT Anatomy Regions Routes
+     * [AI-GENERATED: Claude Code]
+     */
+    "GET /api/vietnamese-pt/anatomy/regions" => function (HttpRestRequest $request) {
+        RestConfig::request_authorization_check($request, "patients", "med");
+        $return = (new \OpenEMR\RestControllers\VietnamesePT\AnatomyRegionsRestController())->getAll();
+        return $return;
+    },
+
+    "GET /api/vietnamese-pt/anatomy/regions/hierarchy" => function (HttpRestRequest $request) {
+        RestConfig::request_authorization_check($request, "patients", "med");
+        $return = (new \OpenEMR\RestControllers\VietnamesePT\AnatomyRegionsRestController())->getHierarchy();
+        return $return;
+    },
+
+    "GET /api/vietnamese-pt/anatomy/regions/search/:term" => function ($term, HttpRestRequest $request) {
+        RestConfig::request_authorization_check($request, "patients", "med");
+        $language = $_GET['language'] ?? 'en';
+        $return = (new \OpenEMR\RestControllers\VietnamesePT\AnatomyRegionsRestController())->search($term, $language);
+        return $return;
+    },
+
+    "GET /api/vietnamese-pt/anatomy/regions/parent/:parentId" => function ($parentId, HttpRestRequest $request) {
+        RestConfig::request_authorization_check($request, "patients", "med");
+        $return = (new \OpenEMR\RestControllers\VietnamesePT\AnatomyRegionsRestController())->getChildren($parentId);
+        return $return;
+    },
+
+    "GET /api/vietnamese-pt/anatomy/regions/:code" => function ($code, HttpRestRequest $request) {
+        RestConfig::request_authorization_check($request, "patients", "med");
+        $return = (new \OpenEMR\RestControllers\VietnamesePT\AnatomyRegionsRestController())->getOne($code);
+        return $return;
     }
     // End Vietnamese PT Routes
 ];

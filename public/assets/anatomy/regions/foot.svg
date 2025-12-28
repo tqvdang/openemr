@@ -1,0 +1,259 @@
+<?xml version="1.0" encoding="UTF-8"?>
+<!-- AI-GENERATED: Claude Code -->
+<!--
+  Foot Region Detail - Interactive Anatomy Selector
+  Level 2: Shows foot with arch, toes, and associated structures
+  @package   OpenEMR
+  @author    Vietnamese PT Module
+  @copyright Copyright (c) 2025
+  @license   GNU General Public License 3
+-->
+<svg xmlns="http://www.w3.org/2000/svg" viewBox="0 0 450 400" width="450" height="400">
+  <title>Foot Anatomy</title>
+  <defs>
+    <style>
+      .bone { fill: #fff9c4; stroke: #8d6e63; stroke-width: 1.5; }
+      .muscle { fill: #ffcdd2; stroke: #c62828; stroke-width: 1; }
+      .joint { fill: #c8e6c9; stroke: #2e7d32; stroke-width: 1.5; }
+      .ligament { fill: #b2dfdb; stroke: #00695c; stroke-width: 2; }
+      .tendon { fill: #f0f4c3; stroke: #827717; stroke-width: 1; }
+      .nerve { fill: #e1bee7; stroke: #7b1fa2; stroke-width: 2; }
+      .region { cursor: pointer; transition: all 0.2s ease; }
+      .region:hover { filter: brightness(1.1); stroke-width: 3; }
+      .label { font-family: Arial, sans-serif; font-size: 11px; fill: #333; pointer-events: none; }
+      .title-label { font-family: Arial, sans-serif; font-size: 14px; font-weight: bold; fill: #1976d2; }
+    </style>
+  </defs>
+
+  <!-- Title -->
+  <text x="225" y="25" text-anchor="middle" class="title-label">Foot Anatomy (Dorsal View) / Giai phau ban chan</text>
+
+  <!-- Bones Layer -->
+  <g id="bones-layer" data-layer="bone">
+    <!-- Calcaneus -->
+    <path d="M50 150 L120 140 L130 180 L125 220 L55 230 L40 190 Z"
+          class="bone region"
+          data-region="calcaneus"
+          data-structure-type="bone"
+          data-drill-down="false"/>
+    <text x="85" y="190" text-anchor="middle" class="label">Calcaneus</text>
+
+    <!-- Talus -->
+    <path d="M130 150 L190 145 L200 175 L190 210 L130 215 L120 180 Z"
+          class="bone region"
+          data-region="talus"
+          data-structure-type="bone"
+          data-drill-down="false"/>
+    <text x="160" y="185" text-anchor="middle" class="label">Talus</text>
+
+    <!-- Navicular -->
+    <path d="M200 155 L240 150 L250 175 L240 200 L200 205 L190 180 Z"
+          class="bone region"
+          data-region="navicular"
+          data-structure-type="bone"
+          data-drill-down="false"/>
+    <text x="220" y="180" text-anchor="middle" class="label" style="font-size: 9px;">Navicular</text>
+
+    <!-- Cuboid -->
+    <path d="M130 220 L180 215 L190 245 L180 275 L130 280 L120 250 Z"
+          class="bone region"
+          data-region="cuboid"
+          data-structure-type="bone"
+          data-drill-down="false"/>
+    <text x="155" y="250" text-anchor="middle" class="label" style="font-size: 9px;">Cuboid</text>
+
+    <!-- Cuneiforms -->
+    <path d="M200 205 L230 200 L240 220 L230 245 L200 250 L190 225 Z"
+          class="bone region"
+          data-region="cuneiform_medial"
+          data-structure-type="bone"
+          data-drill-down="false"/>
+    <path d="M240 200 L265 195 L275 215 L265 240 L240 245 L230 220 Z"
+          class="bone region"
+          data-region="cuneiform_intermediate"
+          data-structure-type="bone"
+          data-drill-down="false"/>
+    <path d="M265 195 L295 190 L305 210 L295 235 L265 240 L255 215 Z"
+          class="bone region"
+          data-region="cuneiform_lateral"
+          data-structure-type="bone"
+          data-drill-down="false"/>
+    <text x="255" y="225" text-anchor="middle" class="label" style="font-size: 8px;">Cuneiforms</text>
+
+    <!-- Metatarsals -->
+    <!-- 1st Metatarsal (Big Toe) -->
+    <path d="M200 250 L235 245 L250 280 L260 330 L245 340 L215 335 L205 280 Z"
+          class="bone region"
+          data-region="metatarsal_1"
+          data-structure-type="bone"
+          data-drill-down="false"/>
+    <text x="230" y="300" text-anchor="middle" class="label" style="font-size: 9px;">MT1</text>
+
+    <!-- 2nd Metatarsal -->
+    <path d="M265 240 L290 235 L305 280 L315 335 L300 340 L275 335 L270 280 Z"
+          class="bone region"
+          data-region="metatarsal_2"
+          data-structure-type="bone"
+          data-drill-down="false"/>
+
+    <!-- 3rd Metatarsal -->
+    <path d="M295 235 L320 230 L335 275 L345 330 L330 335 L305 330 L300 275 Z"
+          class="bone region"
+          data-region="metatarsal_3"
+          data-structure-type="bone"
+          data-drill-down="false"/>
+
+    <!-- 4th Metatarsal -->
+    <path d="M185 275 L210 270 L225 310 L235 355 L220 360 L195 355 L190 310 Z"
+          class="bone region"
+          data-region="metatarsal_4"
+          data-structure-type="bone"
+          data-drill-down="false"/>
+
+    <!-- 5th Metatarsal -->
+    <path d="M145 280 L175 275 L190 315 L200 365 L185 370 L155 365 L150 315 Z"
+          class="bone region"
+          data-region="metatarsal_5"
+          data-structure-type="bone"
+          data-drill-down="false"/>
+    <text x="165" y="340" text-anchor="middle" class="label" style="font-size: 9px;">MT5</text>
+
+    <!-- Phalanges - Big Toe -->
+    <path d="M260 340 L280 335 L295 360 L290 385 L270 390 L255 365 Z"
+          class="bone region"
+          data-region="hallux_proximal"
+          data-structure-type="bone"
+          data-drill-down="false"/>
+    <text x="330" y="360" class="label">Big Toe</text>
+    <text x="330" y="373" class="label">Ngon cai</text>
+
+    <!-- Phalanges - Other Toes (simplified) -->
+    <ellipse cx="330" cy="355" rx="15" ry="20"
+             class="bone region"
+             data-region="toe_2"
+             data-structure-type="bone"
+             data-drill-down="false"/>
+    <ellipse cx="360" cy="350" rx="12" ry="18"
+             class="bone region"
+             data-region="toe_3"
+             data-structure-type="bone"
+             data-drill-down="false"/>
+    <ellipse cx="250" cy="375" rx="12" ry="18"
+             class="bone region"
+             data-region="toe_4"
+             data-structure-type="bone"
+             data-drill-down="false"/>
+    <ellipse cx="215" cy="380" rx="10" ry="15"
+             class="bone region"
+             data-region="toe_5"
+             data-structure-type="bone"
+             data-drill-down="false"/>
+  </g>
+
+  <!-- Muscles Layer -->
+  <g id="muscles-layer" data-layer="muscle">
+    <!-- Plantar Fascia (shown as arch support) -->
+    <path d="M70 200 Q180 170 350 340"
+          class="muscle region"
+          data-region="plantar_fascia"
+          data-structure-type="ligament"
+          data-drill-down="false"
+          style="fill: none; stroke: #00695c; stroke-width: 4; stroke-dasharray: 8,4;"/>
+    <text x="30" y="280" class="label">Plantar Arch</text>
+    <text x="30" y="293" class="label">Vom ban chan</text>
+
+    <!-- Extensor Digitorum Brevis -->
+    <ellipse cx="200" cy="180" rx="40" ry="25"
+             class="muscle region"
+             data-region="extensor_digitorum_brevis"
+             data-structure-type="muscle"
+             data-drill-down="false"/>
+    <text x="30" y="180" class="label">Ext Dig Brevis</text>
+  </g>
+
+  <!-- Joints Layer -->
+  <g id="joints-layer" data-layer="joint">
+    <!-- Tarsometatarsal Joints (Lisfranc) -->
+    <path d="M195 250 Q250 240 300 250"
+          class="joint region"
+          data-region="lisfranc_joint"
+          data-structure-type="joint"
+          data-drill-down="false"
+          style="fill: none; stroke-width: 3;"/>
+    <text x="390" y="240" class="label">Lisfranc</text>
+
+    <!-- MTP Joints -->
+    <circle cx="260" cy="335" r="5"
+            class="joint region"
+            data-region="mtp_1"
+            data-structure-type="joint"
+            data-drill-down="false"/>
+    <circle cx="305" cy="335" r="4"
+            class="joint region"
+            data-region="mtp_2"
+            data-structure-type="joint"
+            data-drill-down="false"/>
+    <text x="390" y="320" class="label">MTP Joints</text>
+
+    <!-- Subtalar Joint -->
+    <ellipse cx="140" cy="185" rx="25" ry="15"
+             class="joint region"
+             data-region="subtalar_joint"
+             data-structure-type="joint"
+             data-drill-down="false"
+             style="fill: none; stroke-width: 2;"/>
+    <text x="30" y="150" class="label">Subtalar Joint</text>
+  </g>
+
+  <!-- Tendons Layer -->
+  <g id="tendons-layer" data-layer="tendon">
+    <!-- Tibialis Anterior Tendon -->
+    <path d="M220 50 L215 100 L210 200"
+          class="tendon region"
+          data-region="tibialis_anterior_tendon"
+          data-structure-type="tendon"
+          data-drill-down="false"
+          style="fill: none; stroke-width: 4;"/>
+    <text x="230" y="80" class="label">Tib Ant</text>
+
+    <!-- Extensor Hallucis Longus -->
+    <path d="M260 50 L265 150 L275 300"
+          class="tendon region"
+          data-region="extensor_hallucis_longus"
+          data-structure-type="tendon"
+          data-drill-down="false"
+          style="fill: none; stroke-width: 3;"/>
+    <text x="280" y="100" class="label">EHL</text>
+
+    <!-- Extensor Digitorum Longus Tendons -->
+    <path d="M310 50 L320 150 L340 320"
+          class="tendon region"
+          data-region="extensor_digitorum_tendons"
+          data-structure-type="tendon"
+          data-drill-down="false"
+          style="fill: none; stroke-width: 3;"/>
+    <text x="350" y="150" class="label">EDL</text>
+
+    <!-- Peroneus Brevis Tendon -->
+    <path d="M120 100 L125 200 L140 280"
+          class="tendon region"
+          data-region="peroneus_brevis_tendon"
+          data-structure-type="tendon"
+          data-drill-down="false"
+          style="fill: none; stroke-width: 3;"/>
+    <text x="30" y="120" class="label">Peroneus B</text>
+  </g>
+
+  <!-- Legend -->
+  <g id="legend" transform="translate(30, 50)">
+    <text x="0" y="0" class="label" style="font-weight: bold;">Legend / Chu thich:</text>
+    <rect x="0" y="10" width="12" height="10" class="bone"/>
+    <text x="16" y="18" class="label" style="font-size: 9px;">Bone</text>
+    <rect x="55" y="10" width="12" height="10" class="joint"/>
+    <text x="71" y="18" class="label" style="font-size: 9px;">Joint</text>
+    <rect x="105" y="10" width="12" height="10" class="tendon"/>
+    <text x="121" y="18" class="label" style="font-size: 9px;">Tendon</text>
+    <rect x="165" y="10" width="12" height="10" class="muscle"/>
+    <text x="181" y="18" class="label" style="font-size: 9px;">Muscle</text>
+  </g>
+</svg>

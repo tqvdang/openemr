@@ -1,0 +1,244 @@
+<?xml version="1.0" encoding="UTF-8"?>
+<!-- AI-GENERATED: Claude Code -->
+<!--
+  Hip Region Detail - Interactive Anatomy Selector
+  Level 2: Shows hip with joint, iliac region, and muscles
+  @package   OpenEMR
+  @author    Vietnamese PT Module
+  @copyright Copyright (c) 2025
+  @license   GNU General Public License 3
+-->
+<svg xmlns="http://www.w3.org/2000/svg" viewBox="0 0 450 500" width="450" height="500">
+  <title>Hip Anatomy</title>
+  <defs>
+    <style>
+      .bone { fill: #fff9c4; stroke: #8d6e63; stroke-width: 1.5; }
+      .muscle { fill: #ffcdd2; stroke: #c62828; stroke-width: 1; }
+      .joint { fill: #c8e6c9; stroke: #2e7d32; stroke-width: 1.5; }
+      .ligament { fill: #b2dfdb; stroke: #00695c; stroke-width: 2; }
+      .tendon { fill: #f0f4c3; stroke: #827717; stroke-width: 1; }
+      .nerve { fill: #e1bee7; stroke: #7b1fa2; stroke-width: 2; }
+      .region { cursor: pointer; transition: all 0.2s ease; }
+      .region:hover { filter: brightness(1.1); stroke-width: 3; }
+      .label { font-family: Arial, sans-serif; font-size: 11px; fill: #333; pointer-events: none; }
+      .title-label { font-family: Arial, sans-serif; font-size: 14px; font-weight: bold; fill: #1976d2; }
+    </style>
+  </defs>
+
+  <!-- Title -->
+  <text x="225" y="25" text-anchor="middle" class="title-label">Hip Anatomy / Giai phau hong</text>
+
+  <!-- Bones Layer -->
+  <g id="bones-layer" data-layer="bone">
+    <!-- Ilium (Pelvic Wing) -->
+    <path d="M100 80 Q225 40 350 80 L360 120 L350 160 Q225 180 100 160 L90 120 Z"
+          class="bone region"
+          data-region="ilium"
+          data-structure-type="bone"
+          data-drill-down="false"/>
+    <text x="225" y="120" text-anchor="middle" class="label">Ilium / Xuong chau</text>
+
+    <!-- Iliac Crest -->
+    <path d="M100 75 Q225 35 350 75"
+          class="bone region"
+          data-region="iliac_crest"
+          data-structure-type="bone"
+          data-drill-down="false"
+          style="fill: none; stroke-width: 6;"/>
+    <text x="225" y="55" text-anchor="middle" class="label">Iliac Crest / Mao chau</text>
+
+    <!-- Ischium -->
+    <path d="M160 280 L200 260 L240 280 L250 350 L225 380 L200 350 L175 380 L150 350 Z"
+          class="bone region"
+          data-region="ischium"
+          data-structure-type="bone"
+          data-drill-down="false"/>
+    <text x="200" y="330" text-anchor="middle" class="label">Ischium / Xuong ngoi</text>
+
+    <!-- Pubis -->
+    <path d="M200 260 L250 240 L290 270 L280 300 L240 280 Z"
+          class="bone region"
+          data-region="pubis"
+          data-structure-type="bone"
+          data-drill-down="false"/>
+    <text x="270" y="260" class="label">Pubis / Xuong mu</text>
+
+    <!-- Acetabulum -->
+    <circle cx="200" cy="200" r="50"
+            class="bone region"
+            data-region="acetabulum"
+            data-structure-type="bone"
+            data-drill-down="false"/>
+    <text x="200" y="195" text-anchor="middle" class="label">Acetabulum</text>
+    <text x="200" y="210" text-anchor="middle" class="label">O coi</text>
+
+    <!-- Femoral Head -->
+    <circle cx="200" cy="200" r="35"
+            class="bone region"
+            data-region="femoral_head"
+            data-structure-type="bone"
+            data-drill-down="false"
+            style="fill: #ffe0b2;"/>
+
+    <!-- Femoral Neck -->
+    <path d="M175 230 L225 230 L240 280 L260 350 L250 360 L190 360 L180 350 L160 280 Z"
+          class="bone region"
+          data-region="femoral_neck"
+          data-structure-type="bone"
+          data-drill-down="false"/>
+    <text x="130" y="300" class="label">Femoral Neck</text>
+    <text x="130" y="313" class="label">Co xuong dui</text>
+
+    <!-- Greater Trochanter -->
+    <ellipse cx="275" cy="280" rx="30" ry="40"
+             class="bone region"
+             data-region="greater_trochanter"
+             data-structure-type="bone"
+             data-drill-down="false"/>
+    <text x="310" y="275" class="label">Greater Trochanter</text>
+    <text x="310" y="288" class="label">Mau chuyen lon</text>
+
+    <!-- Lesser Trochanter -->
+    <ellipse cx="165" cy="350" rx="20" ry="25"
+             class="bone region"
+             data-region="lesser_trochanter"
+             data-structure-type="bone"
+             data-drill-down="false"/>
+    <text x="90" y="355" class="label">Lesser Trochanter</text>
+
+    <!-- Femur Shaft -->
+    <path d="M180 360 L260 360 L265 450 L175 450 Z"
+          class="bone region"
+          data-region="femur_shaft_proximal"
+          data-structure-type="bone"
+          data-drill-down="false"/>
+    <text x="220" y="420" text-anchor="middle" class="label">Femur / Xuong dui</text>
+  </g>
+
+  <!-- Joints Layer -->
+  <g id="joints-layer" data-layer="joint">
+    <!-- Hip Joint (Coxofemoral) -->
+    <circle cx="200" cy="200" r="42"
+            class="joint region"
+            data-region="hip_joint"
+            data-structure-type="joint"
+            data-drill-down="false"
+            style="fill: none; stroke-width: 3;"/>
+    <text x="280" y="200" class="label">Hip Joint / Khop hong</text>
+
+    <!-- SI Joint -->
+    <ellipse cx="120" cy="130" rx="15" ry="25"
+             class="joint region"
+             data-region="si_joint_left"
+             data-structure-type="joint"
+             data-drill-down="false"/>
+    <text x="50" y="135" class="label">SI Joint</text>
+  </g>
+
+  <!-- Muscles Layer -->
+  <g id="muscles-layer" data-layer="muscle">
+    <!-- Gluteus Medius -->
+    <path d="M310 100 L380 120 L390 180 L350 220 L300 200 Z"
+          class="muscle region"
+          data-region="gluteus_medius"
+          data-structure-type="muscle"
+          data-drill-down="false"/>
+    <text x="360" y="160" class="label">Glut Med</text>
+    <text x="360" y="173" class="label">Co mong giua</text>
+
+    <!-- Gluteus Minimus (Deep) -->
+    <path d="M270 150 L310 140 L330 180 L310 210 L275 200 Z"
+          class="muscle region"
+          data-region="gluteus_minimus"
+          data-structure-type="muscle"
+          data-drill-down="false"
+          style="fill: #ef9a9a;"/>
+    <text x="320" y="230" class="label">Glut Min</text>
+
+    <!-- Iliopsoas -->
+    <path d="M140 100 L170 90 L180 150 L175 220 L155 230 L140 180 Z"
+          class="muscle region"
+          data-region="iliopsoas"
+          data-structure-type="muscle"
+          data-drill-down="false"
+          style="fill: #e57373;"/>
+    <text x="50" y="180" class="label">Iliopsoas</text>
+    <text x="50" y="193" class="label">Co thang chau</text>
+
+    <!-- Tensor Fasciae Latae -->
+    <path d="M300 130 L330 120 L345 200 L335 270 L305 260 L295 200 Z"
+          class="muscle region"
+          data-region="tfl"
+          data-structure-type="muscle"
+          data-drill-down="false"
+          style="fill: #ffab91;"/>
+    <text x="370" y="250" class="label">TFL</text>
+
+    <!-- Piriformis -->
+    <path d="M250 180 L290 170 L310 200 L295 230 L255 220 Z"
+          class="muscle region"
+          data-region="piriformis"
+          data-structure-type="muscle"
+          data-drill-down="false"
+          style="fill: #ef9a9a;"/>
+    <text x="385" y="210" class="label">Piriformis</text>
+  </g>
+
+  <!-- Ligaments Layer -->
+  <g id="ligaments-layer" data-layer="ligament">
+    <!-- Iliofemoral Ligament -->
+    <path d="M160 160 L190 230"
+          class="ligament region"
+          data-region="iliofemoral_lig"
+          data-structure-type="ligament"
+          data-drill-down="false"
+          style="fill: none; stroke-width: 5;"/>
+    <text x="50" y="230" class="label">Iliofemoral Lig</text>
+    <text x="50" y="243" class="label">DC chau dui</text>
+
+    <!-- Pubofemoral Ligament -->
+    <path d="M240 250 L220 280"
+          class="ligament region"
+          data-region="pubofemoral_lig"
+          data-structure-type="ligament"
+          data-drill-down="false"
+          style="fill: none; stroke-width: 4;"/>
+  </g>
+
+  <!-- Nerves Layer -->
+  <g id="nerves-layer" data-layer="nerve">
+    <!-- Sciatic Nerve -->
+    <path d="M250 220 Q260 300 255 400"
+          class="nerve region"
+          data-region="sciatic_nerve"
+          data-structure-type="nerve"
+          data-drill-down="false"
+          style="fill: none; stroke-width: 3;"/>
+    <text x="280" y="380" class="label" style="fill: #7b1fa2;">Sciatic N.</text>
+    <text x="280" y="393" class="label" style="fill: #7b1fa2;">TK toa</text>
+
+    <!-- Femoral Nerve -->
+    <path d="M170 130 Q165 200 175 350"
+          class="nerve region"
+          data-region="femoral_nerve"
+          data-structure-type="nerve"
+          data-drill-down="false"
+          style="fill: none;"/>
+    <text x="50" y="260" class="label" style="fill: #7b1fa2;">Femoral N.</text>
+  </g>
+
+  <!-- Legend -->
+  <g id="legend" transform="translate(50, 460)">
+    <text x="0" y="0" class="label" style="font-weight: bold;">Legend / Chu thich:</text>
+    <rect x="0" y="10" width="15" height="12" class="bone"/>
+    <text x="20" y="20" class="label">Bone</text>
+    <rect x="60" y="10" width="15" height="12" class="muscle"/>
+    <text x="80" y="20" class="label">Muscle</text>
+    <rect x="130" y="10" width="15" height="12" class="joint"/>
+    <text x="150" y="20" class="label">Joint</text>
+    <rect x="190" y="10" width="15" height="12" class="ligament"/>
+    <text x="210" y="20" class="label">Ligament</text>
+    <line x1="270" y1="16" x2="285" y2="16" class="nerve" style="stroke-width: 3;"/>
+    <text x="290" y="20" class="label">Nerve</text>
+  </g>
+</svg>

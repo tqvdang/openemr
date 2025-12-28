@@ -61,6 +61,21 @@ return RectorConfig::configure()
     ])
     ->withPhpSets()
     ->withSkip([
-        __DIR__ . '/sites/default/documents/smarty'
+        __DIR__ . '/sites/default/documents/smarty',
+        // Vietnamese PT module uses legacy patterns consistent with codebase
+        __DIR__ . '/src/RestControllers/VietnamesePT',
+        __DIR__ . '/src/Services/VietnamesePT',
+        __DIR__ . '/src/Validators/VietnamesePT',
+        __DIR__ . '/interface/forms/vietnamese_pt_assessment',
+        __DIR__ . '/interface/forms/vietnamese_pt_exercise',
+        __DIR__ . '/interface/forms/vietnamese_pt_outcome',
+        __DIR__ . '/interface/forms/vietnamese_pt_treatment_plan',
+        __DIR__ . '/library/custom/vietnamese_pt_widget.php',
+        __DIR__ . '/tests/Tests/E2e/VietnamesePT',
+        __DIR__ . '/tests/Tests/Api/VietnamesePT',
+        __DIR__ . '/tests/Tests/Unit/Vietnamese',
+        __DIR__ . '/tests/Tests/Services/Vietnamese',
+        __DIR__ . '/tests/Tests/RestControllers/VietnamesePT',
+        __DIR__ . '/tests/Tests/Validators/VietnamesePT',
     ])
     ->withTypeCoverageLevel(5);

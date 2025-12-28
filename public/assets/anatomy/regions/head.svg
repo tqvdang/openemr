@@ -1,0 +1,217 @@
+<?xml version="1.0" encoding="UTF-8"?>
+<!-- AI-GENERATED: Claude Code -->
+<!--
+  Head Region Detail - Interactive Anatomy Selector
+  Level 2: Shows head/face with clickable regions (eyes, nose, jaw, temples)
+  @package   OpenEMR
+  @author    Vietnamese PT Module
+  @copyright Copyright (c) 2025
+  @license   GNU General Public License 3
+-->
+<svg xmlns="http://www.w3.org/2000/svg" viewBox="0 0 400 450" width="400" height="450">
+  <title>Head Anatomy</title>
+  <defs>
+    <style>
+      .bone { fill: #fff9c4; stroke: #8d6e63; stroke-width: 1.5; }
+      .muscle { fill: #ffcdd2; stroke: #c62828; stroke-width: 1; }
+      .joint { fill: #c8e6c9; stroke: #2e7d32; stroke-width: 1.5; }
+      .ligament { fill: #b2dfdb; stroke: #00695c; stroke-width: 1; }
+      .tendon { fill: #f0f4c3; stroke: #827717; stroke-width: 1; }
+      .nerve { fill: #e1bee7; stroke: #7b1fa2; stroke-width: 2; }
+      .region { cursor: pointer; transition: all 0.2s ease; }
+      .region:hover { filter: brightness(1.1); stroke-width: 3; }
+      .label { font-family: Arial, sans-serif; font-size: 11px; fill: #333; pointer-events: none; }
+      .title-label { font-family: Arial, sans-serif; font-size: 14px; font-weight: bold; fill: #1976d2; }
+    </style>
+  </defs>
+
+  <!-- Title -->
+  <text x="200" y="25" text-anchor="middle" class="title-label">Head Anatomy / Giải phẫu đầu</text>
+
+  <!-- Head Outline -->
+  <g id="bones-layer" data-layer="bone">
+    <!-- Skull -->
+    <ellipse cx="200" cy="160" rx="120" ry="140"
+             class="bone region"
+             data-region="skull"
+             data-structure-type="bone"
+             data-drill-down="false"/>
+    <text x="200" y="60" text-anchor="middle" class="label">Skull / Hộp sọ</text>
+
+    <!-- Frontal Bone -->
+    <path d="M100 120 Q200 40 300 120 L280 140 Q200 80 120 140 Z"
+          class="bone region"
+          data-region="frontal_bone"
+          data-structure-type="bone"
+          data-drill-down="false"/>
+    <text x="200" y="100" text-anchor="middle" class="label">Frontal / Xương trán</text>
+
+    <!-- Temple Left -->
+    <ellipse cx="100" cy="150" rx="25" ry="35"
+             class="bone region"
+             data-region="temple_left"
+             data-structure-type="bone"
+             data-drill-down="false"/>
+    <text x="50" y="150" class="label">Temple</text>
+    <text x="50" y="163" class="label">Thái dương</text>
+
+    <!-- Temple Right -->
+    <ellipse cx="300" cy="150" rx="25" ry="35"
+             class="bone region"
+             data-region="temple_right"
+             data-structure-type="bone"
+             data-drill-down="false"/>
+
+    <!-- Mandible / Jaw -->
+    <path d="M120 220 Q140 280 200 300 Q260 280 280 220 L270 210 Q240 260 200 270 Q160 260 130 210 Z"
+          class="bone region"
+          data-region="mandible"
+          data-structure-type="bone"
+          data-drill-down="false"/>
+    <text x="200" y="290" text-anchor="middle" class="label">Mandible / Xương hàm dưới</text>
+
+    <!-- Maxilla -->
+    <path d="M140 200 L260 200 L250 230 Q200 240 150 230 Z"
+          class="bone region"
+          data-region="maxilla"
+          data-structure-type="bone"
+          data-drill-down="false"/>
+    <text x="310" y="220" class="label">Maxilla / Xương hàm trên</text>
+
+    <!-- Zygomatic (Cheekbone) Left -->
+    <ellipse cx="130" cy="180" rx="20" ry="15"
+             class="bone region"
+             data-region="zygomatic_left"
+             data-structure-type="bone"
+             data-drill-down="false"/>
+
+    <!-- Zygomatic (Cheekbone) Right -->
+    <ellipse cx="270" cy="180" rx="20" ry="15"
+             class="bone region"
+             data-region="zygomatic_right"
+             data-structure-type="bone"
+             data-drill-down="false"/>
+    <text x="310" y="180" class="label">Cheekbone / Xương gò má</text>
+
+    <!-- Nasal Bone -->
+    <path d="M190 150 L210 150 L205 190 L195 190 Z"
+          class="bone region"
+          data-region="nasal_bone"
+          data-structure-type="bone"
+          data-drill-down="false"/>
+    <text x="60" y="180" class="label">Nose / Mũi</text>
+  </g>
+
+  <!-- Muscles Layer -->
+  <g id="muscles-layer" data-layer="muscle">
+    <!-- Temporalis Left -->
+    <path d="M85 110 Q95 80 130 100 L120 140 Q100 130 85 110"
+          class="muscle region"
+          data-region="temporalis_left"
+          data-structure-type="muscle"
+          data-drill-down="false"/>
+
+    <!-- Temporalis Right -->
+    <path d="M315 110 Q305 80 270 100 L280 140 Q300 130 315 110"
+          class="muscle region"
+          data-region="temporalis_right"
+          data-structure-type="muscle"
+          data-drill-down="false"/>
+    <text x="320" y="100" class="label">Temporalis / Cơ thái dương</text>
+
+    <!-- Masseter Left -->
+    <path d="M110 190 L130 190 L135 250 L115 250 Z"
+          class="muscle region"
+          data-region="masseter_left"
+          data-structure-type="muscle"
+          data-drill-down="false"/>
+
+    <!-- Masseter Right -->
+    <path d="M270 190 L290 190 L285 250 L265 250 Z"
+          class="muscle region"
+          data-region="masseter_right"
+          data-structure-type="muscle"
+          data-drill-down="false"/>
+    <text x="310" y="250" class="label">Masseter / Cơ cắn</text>
+
+    <!-- Frontalis -->
+    <path d="M130 80 Q200 50 270 80 L265 100 Q200 75 135 100 Z"
+          class="muscle region"
+          data-region="frontalis"
+          data-structure-type="muscle"
+          data-drill-down="false"/>
+
+    <!-- Orbicularis Oculi Left -->
+    <ellipse cx="155" cy="150" rx="25" ry="15"
+             class="muscle region"
+             data-region="orbicularis_oculi_left"
+             data-structure-type="muscle"
+             data-drill-down="false"/>
+    <text x="155" y="155" text-anchor="middle" class="label" style="font-size: 9px;">Eye / Mắt</text>
+
+    <!-- Orbicularis Oculi Right -->
+    <ellipse cx="245" cy="150" rx="25" ry="15"
+             class="muscle region"
+             data-region="orbicularis_oculi_right"
+             data-structure-type="muscle"
+             data-drill-down="false"/>
+
+    <!-- Orbicularis Oris -->
+    <ellipse cx="200" cy="230" rx="25" ry="15"
+             class="muscle region"
+             data-region="orbicularis_oris"
+             data-structure-type="muscle"
+             data-drill-down="false"/>
+    <text x="200" y="235" text-anchor="middle" class="label" style="font-size: 9px;">Mouth / Miệng</text>
+  </g>
+
+  <!-- Joints Layer -->
+  <g id="joints-layer" data-layer="joint">
+    <!-- TMJ Left -->
+    <circle cx="115" cy="200" r="10"
+            class="joint region"
+            data-region="tmj_left"
+            data-structure-type="joint"
+            data-drill-down="false"/>
+    <text x="50" y="205" class="label">TMJ / Khớp TDH</text>
+
+    <!-- TMJ Right -->
+    <circle cx="285" cy="200" r="10"
+            class="joint region"
+            data-region="tmj_right"
+            data-structure-type="joint"
+            data-drill-down="false"/>
+  </g>
+
+  <!-- Nerves Layer -->
+  <g id="nerves-layer" data-layer="nerve">
+    <!-- Trigeminal Nerve Branches -->
+    <path d="M130 160 Q110 180 100 200"
+          class="nerve region"
+          data-region="trigeminal_v1_left"
+          data-structure-type="nerve"
+          data-drill-down="false"
+          style="fill: none;"/>
+    <path d="M270 160 Q290 180 300 200"
+          class="nerve region"
+          data-region="trigeminal_v1_right"
+          data-structure-type="nerve"
+          data-drill-down="false"
+          style="fill: none;"/>
+    <text x="320" y="140" class="label" style="fill: #7b1fa2;">Trigeminal N.</text>
+    <text x="320" y="153" class="label" style="fill: #7b1fa2;">TK sinh ba</text>
+  </g>
+
+  <!-- Legend -->
+  <g id="legend" transform="translate(30, 380)">
+    <text x="0" y="0" class="label" style="font-weight: bold;">Legend / Chu thich:</text>
+    <rect x="0" y="10" width="15" height="12" class="bone"/>
+    <text x="20" y="20" class="label">Bone / Xuong</text>
+    <rect x="100" y="10" width="15" height="12" class="muscle"/>
+    <text x="120" y="20" class="label">Muscle / Co</text>
+    <rect x="200" y="10" width="15" height="12" class="joint"/>
+    <text x="220" y="20" class="label">Joint / Khop</text>
+    <line x1="290" y1="16" x2="305" y2="16" class="nerve" style="stroke-width: 3;"/>
+    <text x="310" y="20" class="label">Nerve / Than kinh</text>
+  </g>
+</svg>

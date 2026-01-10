@@ -14,6 +14,10 @@ YELLOW='\033[1;33m'
 RED='\033[0;31m'
 NC='\033[0m' # No Color
 
+# Infisical configuration (LAN-only access)
+INFISICAL_URL="${INFISICAL_URL:-https://secrets.trancloud.work}"
+INFISICAL_TOKEN="${INFISICAL_TOKEN:-st.525f6347-38e5-437f-a16e-6fde8ab6d17e.721cb998a2dbfa386303a04b96605450.5f81fdc60df4955df3492ebc29711acb}"
+
 # Check if kubectl is available
 if ! command -v kubectl &> /dev/null; then
     echo -e "${RED}Error: kubectl is not installed${NC}"
@@ -28,6 +32,49 @@ if ! kubectl cluster-info &> /dev/null; then
 fi
 
 echo -e "${GREEN}✓ kubectl is configured and cluster is accessible${NC}"
+echo ""
+
+# Pull secrets from Infisical
+echo "Pulling secrets from Infisical..."
+SECRETS_JSON=$(curl -s "$INFISICAL_URL/api/v3/secrets/raw" \
+  -H "Authorization: Bearer $INFISICAL_TOKEN" 2>/dev/null)
+
+if echo "$SECRETS_JSON" | grep -q '"secrets"'; then
+    # Extract secret values using Python (more reliable than grep/sed for JSON)
+    DB_ROOT_PASSWORD=$(echo "$SECRETS_JSON" | python3 -c "import sys,json; d=json.load(sys.stdin); print(next((s['secretValue'] for s in d['secrets'] if s['secretKey']=='DB_ROOT_PASSWORD'), ''))")
+    DB_USER=$(echo "$SECRETS_JSON" | python3 -c "import sys,json; d=json.load(sys.stdin); print(next((s['secretValue'] for s in d['secrets'] if s['secretKey']=='DB_USER'), ''))")
+    DB_PASSWORD=$(echo "$SECRETS_JSON" | python3 -c "import sys,json; d=json.load(sys.stdin); print(next((s['secretValue'] for s in d['secrets'] if s['secretKey']=='DB_PASSWORD'), ''))")
+    OE_ADMIN_USER=$(echo "$SECRETS_JSON" | python3 -c "import sys,json; d=json.load(sys.stdin); print(next((s['secretValue'] for s in d['secrets'] if s['secretKey']=='OE_ADMIN_USER'), ''))")
+    OE_ADMIN_PASSWORD=$(echo "$SECRETS_JSON" | python3 -c "import sys,json; d=json.load(sys.stdin); print(next((s['secretValue'] for s in d['secrets'] if s['secretKey']=='OE_ADMIN_PASSWORD'), ''))")
+
+    echo -e "${GREEN}✓ Retrieved 5 secrets from Infisical${NC}"
+else
+    echo -e "${RED}Error: Failed to retrieve secrets from Infisical${NC}"
+    echo "Response: $SECRETS_JSON"
+    exit 1
+fi
+echo ""
+
+# Navigate to k8s directory
+cd "$(dirname "$0")/../k8s"
+
+# Generate secrets.yaml from Infisical values
+echo "Generating secrets.yaml from Infisical..."
+cat > overlays/dev/secrets.yaml << EOF
+apiVersion: v1
+kind: Secret
+metadata:
+  name: openemr-secrets
+  namespace: openemr-dev
+type: Opaque
+stringData:
+  db_root_password: "$DB_ROOT_PASSWORD"
+  db_user: "$DB_USER"
+  db_password: "$DB_PASSWORD"
+  oe_admin_user: "$OE_ADMIN_USER"
+  oe_admin_password: "$OE_ADMIN_PASSWORD"
+EOF
+echo -e "${GREEN}✓ secrets.yaml generated${NC}"
 echo ""
 
 # Check if MariaDB is accessible
@@ -46,9 +93,6 @@ else
     fi
 fi
 echo ""
-
-# Navigate to k8s directory
-cd "$(dirname "$0")/../k8s"
 
 echo "Step 1: Creating namespace..."
 kubectl apply -f namespaces/openemr-dev.yaml
@@ -94,5 +138,10 @@ echo "   Public: https://openemr-dev.trancloud.work (after HAProxy setup)"
 echo ""
 echo "4. View logs:"
 echo "   kubectl logs -n openemr-dev -l app=openemr -f"
+echo ""
+
+# Cleanup: Remove generated secrets.yaml
+rm -f overlays/dev/secrets.yaml
+echo -e "${YELLOW}Note: secrets.yaml removed after deployment (pulled from Infisical)${NC}"
 echo ""
 echo -e "${GREEN}Deployment completed successfully!${NC}"

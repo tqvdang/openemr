@@ -51,3 +51,4 @@ sites/*/documents/logs_and_misc/methods/sevenb
 test-results/
 .playwright-mcp/
 docker/development-easy/test-screenshots/
+infrastructure/homelab/k8s/overlays/dev/secrets.yaml

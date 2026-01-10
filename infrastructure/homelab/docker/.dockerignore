@@ -1,0 +1,58 @@
+# Exclude files from Docker build context to speed up builds
+
+# Git
+.git
+.gitignore
+.gitattributes
+
+# Documentation (already in repo, don't need in image)
+*.md
+Documentation
+
+# Docker files (don't need these in the image)
+docker
+Dockerfile*
+.dockerignore
+docker-compose*.yml
+
+# CI/CD
+.github
+.gitlab-ci.yml
+.travis.yml
+
+# IDE
+.vscode
+.idea
+*.swp
+*.swo
+*~
+
+# Tests (if you don't want tests in production)
+tests
+.phpunit.result.cache
+
+# Logs and temp files
+*.log
+tmp
+temp
+.tmp
+
+# Node modules will be installed during build
+node_modules
+
+# Vendor will be installed during build
+vendor
+
+# OS files
+.DS_Store
+Thumbs.db
+
+# Build artifacts (keep public/assets - contains vendor deps for build)
+# public/assets - NEEDED for SCSS build (contains bootstrap, fontawesome, modified vendors)
+public/themes
+
+# Sites directory (will be mounted as volume in k8s)
+sites
+
+# Infrastructure (don't need in image)
+infrastructure

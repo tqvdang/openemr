@@ -1,0 +1,14 @@
+apiVersion: v1
+kind: ConfigMap
+metadata:
+  name: openemr-config
+  namespace: openemr-dev
+data:
+  # Database configuration - MariaDB LXC in pve2
+  db_host: "192.168.10.30"  # MariaDB LXC to be created in pve2
+  db_port: "3306"
+  db_name: "openemr_dev"
+
+  # Application settings
+  site_addr_oath: "https://openemr-dev.trancloud.work"
+  environment: "development"

@@ -1,0 +1,23 @@
+<?xml version="1.0"?>
+<!-- HAProxy Frontend ACL and Action for OpenEMR -->
+<!-- Add these to the trancloud-https frontend in config.xml -->
+
+<!-- ACL Entry (add to <ha_acls> section) -->
+<ha_acls>
+    <item>
+        <name>openemr-dev-acl</name>
+        <expression>host_matches</expression>
+        <value>openemr-dev.trancloud.work</value>
+        <casesensitive></casesensitive>
+        <not></not>
+    </item>
+</ha_acls>
+
+<!-- Action Entry (add to <a_actionitems> section) -->
+<a_actionitems>
+    <item>
+        <action>use_backend</action>
+        <acl>openemr-dev-acl</acl>
+        <backend>openemr-dev-be</backend>
+    </item>
+</a_actionitems>

@@ -1,0 +1,73 @@
+<?xml version="1.0"?>
+<!-- Complete HAProxy Configuration for OpenEMR -->
+<!--
+  This file shows the complete structure needed in pfSense config.xml
+  Use as reference for manual configuration
+-->
+<pfsense>
+    <!-- DNS Resolver Host Override -->
+    <unbound>
+        <hosts>
+            <host>openemr-dev</host>
+            <domain>trancloud.work</domain>
+            <ip>192.168.10.1</ip>
+            <descr>OpenEMR Dev Environment</descr>
+        </hosts>
+    </unbound>
+
+    <!-- HAProxy Configuration -->
+    <installedpackages>
+        <haproxy>
+            <!-- Backend Pool -->
+            <ha_pools>
+                <item>
+                    <name>openemr-dev-be</name>
+                    <descr><![CDATA[OpenEMR Dev Backend]]></descr>
+                    <mode>http</mode>
+                    <balance>roundrobin</balance>
+                    <check_type>HTTP</check_type>
+                    <checkinter>2000</checkinter>
+                    <httpcheck_method>GET</httpcheck_method>
+                    <monitor_uri>/</monitor_uri>
+                    <ha_servers>
+                        <item>
+                            <name>k3s-openemr</name>
+                            <address>192.168.10.60</address>
+                            <port>30090</port>
+                            <ssl></ssl>
+                            <sslverify></sslverify>
+                        </item>
+                    </ha_servers>
+                </item>
+            </ha_pools>
+
+            <!-- Frontend (existing trancloud-https - add ACL and Action) -->
+            <ha_backends>
+                <item>
+                    <name>trancloud-https</name>
+                    <!-- ... existing frontend config ... -->
+
+                    <!-- Add this ACL -->
+                    <ha_acls>
+                        <item>
+                            <name>openemr-dev-acl</name>
+                            <expression>host_matches</expression>
+                            <value>openemr-dev.trancloud.work</value>
+                            <casesensitive></casesensitive>
+                            <not></not>
+                        </item>
+                    </ha_acls>
+
+                    <!-- Add this Action -->
+                    <a_actionitems>
+                        <item>
+                            <action>use_backend</action>
+                            <acl>openemr-dev-acl</acl>
+                            <backend>openemr-dev-be</backend>
+                        </item>
+                    </a_actionitems>
+                </item>
+            </ha_backends>
+        </haproxy>
+    </installedpackages>
+</pfsense>

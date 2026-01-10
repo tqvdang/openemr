@@ -1,0 +1,114 @@
+apiVersion: apps/v1
+kind: Deployment
+metadata:
+  name: openemr
+  labels:
+    app: openemr
+    component: web
+spec:
+  replicas: 1
+  selector:
+    matchLabels:
+      app: openemr
+      component: web
+  template:
+    metadata:
+      labels:
+        app: openemr
+        component: web
+    spec:
+      containers:
+      - name: openemr
+        image: registry.trancloud.work/openemr-homelab:dev-v4
+        ports:
+        - containerPort: 80
+          name: http
+          protocol: TCP
+        - containerPort: 443
+          name: https
+          protocol: TCP
+        env:
+        - name: OPENEMR_DOCKER_ENV_TAG
+          value: "k8s-dev"
+        # Database configuration - will be overridden in overlays
+        - name: MYSQL_HOST
+          valueFrom:
+            configMapKeyRef:
+              name: openemr-config
+              key: db_host
+        - name: MYSQL_ROOT_PASS
+          valueFrom:
+            secretKeyRef:
+              name: openemr-secrets
+              key: db_root_password
+        - name: MYSQL_USER
+          valueFrom:
+            secretKeyRef:
+              name: openemr-secrets
+              key: db_user
+        - name: MYSQL_PASS
+          valueFrom:
+            secretKeyRef:
+              name: openemr-secrets
+              key: db_password
+        - name: OE_USER
+          valueFrom:
+            secretKeyRef:
+              name: openemr-secrets
+              key: oe_admin_user
+        - name: OE_PASS
+          valueFrom:
+            secretKeyRef:
+              name: openemr-secrets
+              key: oe_admin_password
+        # MySQL SSL Configuration
+        - name: MYSQL_SSL_CA
+          value: "/etc/mysql/ssl/ca.pem"
+        # API settings
+        - name: OPENEMR_SETTING_rest_api
+          value: "1"
+        - name: OPENEMR_SETTING_rest_fhir_api
+          value: "1"
+        - name: OPENEMR_SETTING_rest_portal_api
+          value: "1"
+        - name: OPENEMR_SETTING_rest_system_scopes_api
+          value: "1"
+        - name: OPENEMR_SETTING_oauth_password_grant
+          value: "3"
+        - name: OPENEMR_SETTING_portal_onsite_two_enable
+          value: "1"
+        resources:
+          requests:
+            memory: "512Mi"
+            cpu: "250m"
+          limits:
+            memory: "2Gi"
+            cpu: "1000m"
+        volumeMounts:
+        - name: sites
+          mountPath: /var/www/localhost/htdocs/openemr/sites
+        - name: logs
+          mountPath: /var/www/logs
+        - name: mysql-ssl-ca
+          mountPath: /etc/mysql/ssl
+          readOnly: true
+        readinessProbe:
+          httpGet:
+            path: /
+            port: 80
+          initialDelaySeconds: 30
+          periodSeconds: 10
+          timeoutSeconds: 10
+          failureThreshold: 10
+      volumes:
+      - name: sites
+        persistentVolumeClaim:
+          claimName: openemr-sites-pvc
+      - name: logs
+        emptyDir: {}
+      - name: mysql-ssl-ca
+        secret:
+          secretName: mariadb-ssl-ca
+          items:
+          - key: ca.pem
+            path: ca.pem

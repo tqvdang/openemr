@@ -1,0 +1,7 @@
+apiVersion: v1
+kind: Namespace
+metadata:
+  name: openemr-dev
+  labels:
+    name: openemr-dev
+    environment: development

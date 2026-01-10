@@ -1,0 +1,22 @@
+<?xml version="1.0"?>
+<!-- HAProxy Backend for OpenEMR -->
+<!-- Add this to the <ha_pools> section in config.xml -->
+<item>
+    <name>openemr-dev-be</name>
+    <descr><![CDATA[OpenEMR Dev Backend]]></descr>
+    <mode>http</mode>
+    <balance>roundrobin</balance>
+    <check_type>HTTP</check_type>
+    <checkinter>2000</checkinter>
+    <httpcheck_method>GET</httpcheck_method>
+    <monitor_uri>/</monitor_uri>
+    <ha_servers>
+        <item>
+            <name>k3s-openemr</name>
+            <address>192.168.10.60</address>
+            <port>30090</port>
+            <ssl></ssl>
+            <sslverify></sslverify>
+        </item>
+    </ha_servers>
+</item>

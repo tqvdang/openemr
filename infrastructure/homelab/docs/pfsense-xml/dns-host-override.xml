@@ -1,0 +1,11 @@
+<?xml version="1.0"?>
+<!-- DNS Host Override for OpenEMR -->
+<!-- Import via: Diagnostics > Backup & Restore > Restore Configuration Area: Unbound DNS Resolver -->
+<unbound>
+    <hosts>
+        <host>openemr-dev</host>
+        <domain>trancloud.work</domain>
+        <ip>192.168.10.1</ip>
+        <descr>OpenEMR Dev Environment</descr>
+    </hosts>
+</unbound>

@@ -8,18 +8,45 @@ resources:
 - configmap.yaml
 - secrets.yaml
 - nodeport-service.yaml
+# PT Configuration
+- pt-configmap.yaml
+- pt-sql-configmap.yaml
+- pt-setup-job.yaml
 
 labels:
 - pairs:
     environment: dev
 
 patches:
+# Add site address for OAuth
 - patch: |-
     - op: add
       path: /spec/template/spec/containers/0/env/-
       value:
         name: OPENEMR_SETTING_site_addr_oath
         value: "https://openemr-dev.trancloud.work"
+  target:
+    kind: Deployment
+    name: openemr
+
+# Mount PT menu ConfigMap
+- patch: |-
+    - op: add
+      path: /spec/template/spec/volumes/-
+      value:
+        name: pt-menu
+        configMap:
+          name: openemr-pt-config
+          items:
+          - key: menu-standard.json
+            path: standard.json
+    - op: add
+      path: /spec/template/spec/containers/0/volumeMounts/-
+      value:
+        name: pt-menu
+        mountPath: /var/www/localhost/htdocs/openemr/interface/main/tabs/menu/menus/standard.json
+        subPath: standard.json
+        readOnly: true
   target:
     kind: Deployment
     name: openemr

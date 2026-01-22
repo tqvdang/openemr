@@ -1,0 +1,154 @@
+apiVersion: v1
+kind: ConfigMap
+metadata:
+  name: openemr-pt-sql
+  labels:
+    app: openemr
+    component: pt-sql
+data:
+  01-pt-globals.sql: |
+    -- Vietnamese Physiotherapy Configuration - Global Settings
+    INSERT INTO globals (gl_name, gl_index, gl_value) VALUES
+        ('disable_prescriptions', 0, '1'),
+        ('erx_enable', 0, '0'),
+        ('lab_exchange_enable', 0, '0'),
+        ('immunizations_enable', 0, '0'),
+        ('enable_cdr', 0, '0'),
+        ('enable_cdr_crw', 0, '0'),
+        ('enable_cdr_prw', 0, '0'),
+        ('enable_allergy_check', 0, '0'),
+        ('enable_amc', 0, '0'),
+        ('enable_amc_prompting', 0, '0'),
+        ('enable_eligibility_requests', 0, '0'),
+        ('growth_chart_enable', 0, '0'),
+        ('enable_cqm', 0, '0'),
+        ('portal_onsite_two_enable', 0, '0'),
+        ('disable_pat_trkr', 0, '1'),
+        ('disable_rcb', 0, '1'),
+        ('gbl_nav_area_width', 0, '140'),
+        ('hide_billing_widget', 0, '1'),
+        ('simplified_prescriptions', 0, '1'),
+        ('simplified_demographics', 0, '1'),
+        ('simplified_copay', 0, '1'),
+        ('enable_fees_in_left_menu', 0, '0'),
+        ('enable_edihistory_in_left_menu', 0, '0'),
+        ('enable_batch_payment', 0, '0'),
+        ('enable_posting', 0, '0'),
+        ('use_charges_panel', 0, '0'),
+        ('disable_chart_tracker', 0, '1'),
+        ('enable_follow_up_encounters', 0, '0'),
+        ('enable_group_therapy', 0, '0'),
+        ('enable_compact_mode', 0, '1'),
+        ('disable_eligibility_log', 0, '1'),
+        ('enable_scanner', 0, '0'),
+        ('enable_hylafax', 0, '0'),
+        ('full_new_patient_form', 0, '0'),
+        ('appt_recurrences_widget', 0, '0'),
+        ('state_custom_addlist_widget', 0, '0'),
+        ('gbl_edit_patient_form', 0, '1'),
+        ('patient_search_results_style', 0, '1'),
+        ('recent_patient_count', 0, '10'),
+        ('enc_enable_issues', 0, 'hide_both'),
+        ('enc_enable_discharge_disposition', 0, 'hide_both'),
+        ('enc_enable_referring_provider', 0, 'hide_both'),
+        ('enc_enable_ordering_provider', 0, 'hide_both')
+    ON DUPLICATE KEY UPDATE gl_value = VALUES(gl_value);
+
+  02-pt-calendar.sql: |
+    -- Vietnamese Physiotherapy Configuration - Calendar & Appointments
+    UPDATE openemr_postcalendar_categories SET pc_active = 0 WHERE pc_catid IN (12, 13, 14);
+    UPDATE openemr_postcalendar_categories SET pc_active = 0 WHERE pc_catname = 'Office Visit' AND pc_cattype = 0;
+
+    INSERT INTO openemr_postcalendar_categories (pc_catname, pc_catcolor, pc_catdesc, pc_cattype, pc_active, pc_duration, pc_end_all_day)
+    SELECT 'PT Initial Evaluation', '#98FB98', 'Initial PT assessment', 0, 1, 45, 0
+    WHERE NOT EXISTS (SELECT 1 FROM openemr_postcalendar_categories WHERE pc_catname = 'PT Initial Evaluation');
+
+    INSERT INTO openemr_postcalendar_categories (pc_catname, pc_catcolor, pc_catdesc, pc_cattype, pc_active, pc_duration, pc_end_all_day)
+    SELECT 'PT Follow-up', '#87CEEB', 'Follow-up PT session', 0, 1, 30, 0
+    WHERE NOT EXISTS (SELECT 1 FROM openemr_postcalendar_categories WHERE pc_catname = 'PT Follow-up');
+
+    INSERT INTO openemr_postcalendar_categories (pc_catname, pc_catcolor, pc_catdesc, pc_cattype, pc_active, pc_duration, pc_end_all_day)
+    SELECT 'PT Exercise Session', '#DDA0DD', 'Supervised exercise', 0, 1, 45, 0
+    WHERE NOT EXISTS (SELECT 1 FROM openemr_postcalendar_categories WHERE pc_catname = 'PT Exercise Session');
+
+    INSERT INTO openemr_postcalendar_categories (pc_catname, pc_catcolor, pc_catdesc, pc_cattype, pc_active, pc_duration, pc_end_all_day)
+    SELECT 'PT Re-evaluation', '#FFB347', 'Progress re-evaluation', 0, 1, 30, 0
+    WHERE NOT EXISTS (SELECT 1 FROM openemr_postcalendar_categories WHERE pc_catname = 'PT Re-evaluation');
+
+    UPDATE openemr_postcalendar_categories SET pc_duration = 45 WHERE pc_catname = 'New Patient' AND pc_cattype = 0;
+    UPDATE openemr_postcalendar_categories SET pc_duration = 30 WHERE pc_catname = 'Established Patient' AND pc_cattype = 0;
+
+    INSERT INTO list_options (list_id, option_id, title, seq, is_default, activity)
+    SELECT 'encounter-types', 'pt_initial', 'PT Initial Evaluation', 10, 0, 1
+    WHERE NOT EXISTS (SELECT 1 FROM list_options WHERE list_id = 'encounter-types' AND option_id = 'pt_initial');
+
+    INSERT INTO list_options (list_id, option_id, title, seq, is_default, activity)
+    SELECT 'encounter-types', 'pt_followup', 'PT Follow-up', 20, 0, 1
+    WHERE NOT EXISTS (SELECT 1 FROM list_options WHERE list_id = 'encounter-types' AND option_id = 'pt_followup');
+
+    INSERT INTO list_options (list_id, option_id, title, seq, is_default, activity)
+    SELECT 'encounter-types', 'pt_reeval', 'PT Re-evaluation', 30, 0, 1
+    WHERE NOT EXISTS (SELECT 1 FROM list_options WHERE list_id = 'encounter-types' AND option_id = 'pt_reeval');
+
+    INSERT INTO list_options (list_id, option_id, title, seq, is_default, activity)
+    SELECT 'encounter-types', 'pt_discharge', 'PT Discharge', 40, 0, 1
+    WHERE NOT EXISTS (SELECT 1 FROM list_options WHERE list_id = 'encounter-types' AND option_id = 'pt_discharge');
+
+  03-pt-forms.sql: |
+    -- Vietnamese Physiotherapy Configuration - Forms
+    INSERT INTO registry (name, state, directory, sql_run, unpackaged, category, nickname, patient_encounter, therapy_group_encounter, aco_spec)
+    SELECT 'Vietnamese PT Assessment', 1, 'vietnamese_pt_assessment', 1, 1, 'Clinical', 'PT Assessment', 1, 0, 'encounters|notes'
+    WHERE NOT EXISTS (SELECT 1 FROM registry WHERE directory = 'vietnamese_pt_assessment');
+
+    INSERT INTO registry (name, state, directory, sql_run, unpackaged, category, nickname, patient_encounter, therapy_group_encounter, aco_spec)
+    SELECT 'Vietnamese PT Exercise Prescription', 1, 'vietnamese_pt_exercise', 1, 1, 'Clinical', 'PT Exercise', 1, 0, 'encounters|notes'
+    WHERE NOT EXISTS (SELECT 1 FROM registry WHERE directory = 'vietnamese_pt_exercise');
+
+    INSERT INTO registry (name, state, directory, sql_run, unpackaged, category, nickname, patient_encounter, therapy_group_encounter, aco_spec)
+    SELECT 'Vietnamese PT Treatment Plan', 1, 'vietnamese_pt_treatment_plan', 1, 1, 'Clinical', 'PT Treatment', 1, 0, 'encounters|notes'
+    WHERE NOT EXISTS (SELECT 1 FROM registry WHERE directory = 'vietnamese_pt_treatment_plan');
+
+    INSERT INTO registry (name, state, directory, sql_run, unpackaged, category, nickname, patient_encounter, therapy_group_encounter, aco_spec)
+    SELECT 'Vietnamese PT Outcome Measures', 1, 'vietnamese_pt_outcome', 1, 1, 'Clinical', 'PT Outcome', 1, 0, 'encounters|notes'
+    WHERE NOT EXISTS (SELECT 1 FROM registry WHERE directory = 'vietnamese_pt_outcome');
+
+    UPDATE registry SET state = 0 WHERE state = 1;
+    UPDATE registry SET state = 1 WHERE directory IN ('vietnamese_pt_assessment','vietnamese_pt_exercise','vietnamese_pt_treatment_plan','vietnamese_pt_outcome','vitals','soap','note','newpatient');
+
+    UPDATE issue_types SET active = 0 WHERE type IN ('dental','contraceptive','ippf_gcac','medical_device');
+    UPDATE issue_types SET singular = 'PT Diagnosis', plural = 'PT Diagnoses' WHERE type = 'medical_problem' AND category = 'default';
+
+  04-pt-demographics.sql: |
+    -- Vietnamese Physiotherapy Configuration - Demographics
+    UPDATE layout_options SET uor = 0 WHERE form_id = 'DEM' AND field_id IN ('suffix','birth_fname','birth_mname','birth_lname','sexual_orientation','pubpid','ss','drivers_license','genericname1','genericval1','genericname2','genericval2','squad','pricelevel','billing_note','name_history','county','mothersname','email_direct','additional_telecoms','additional_addresses','provider_since_date','pharmacy_id','hipaa_notice','hipaa_voice','hipaa_message','hipaa_allowsms','hipaa_allowemail','allow_imm_reg_use','allow_health_info_ex','allow_patient_portal','care_team_status','care_team_facility','deceased_date','deceased_reason','prevent_portal_apps','imm_reg_stat','imm_reg_stat_effdate','publicity_code','publ_code_eff','prot_indicator','prot_indi_effdate','occupation','em_name','em_street','em_street_line_2','em_city','em_state','em_postal_code','em_country','industry','guardiansname','guardiansname_relationship');
+    UPDATE layout_options SET uor = 2 WHERE form_id = 'DEM' AND field_id IN ('fname','lname','DOB','sex','phone_cell','street','city');
+    UPDATE layout_options SET title = 'Emergency Contact / Caregiver' WHERE form_id = 'DEM' AND field_id = 'contact_relationship';
+    UPDATE layout_options SET title = 'Emergency Phone' WHERE form_id = 'DEM' AND field_id = 'phone_contact';
+    UPDATE layout_options SET uor = 0 WHERE form_id = 'HIS' AND field_id IN ('coffee','tobacco','alcohol','recreational_drugs','counseling','sleep_patterns','exercise_patterns','hazardous_activities','relatives_cancer','relatives_diabetes','relatives_high_blood_pressure','relatives_heart_problems','relatives_stroke','relatives_epilepsy','relatives_mental_illness','relatives_suicide','history_father','history_mother','history_siblings','history_offspring','history_spouse');
+
+  05-pt-facility.sql: |
+    -- Vietnamese Physiotherapy Configuration - Facility: Rehab Well
+    UPDATE facility SET name = 'Rehab Well' WHERE id = 1 OR name = 'Your Clinic Name Here';
+    INSERT INTO globals (gl_name, gl_index, gl_value) VALUES ('openemr_name', 0, 'Rehab Well PT') ON DUPLICATE KEY UPDATE gl_value = VALUES(gl_value);
+
+  06-pt-users.sql: |
+    -- Admin Users: dang.tran, hoang.tran, ben.dell
+    -- Note: Passwords must be set via PHP after deployment (bcrypt hashing)
+    SET @facility_id = (SELECT id FROM facility WHERE name = 'Rehab Well' LIMIT 1);
+
+    INSERT IGNORE INTO users (username, password, authorized, fname, lname, facility_id, see_auth, active, title, specialty, email, calendar) VALUES
+        ('dang.tran', '$2y$10$placeholder', 1, 'Dang', 'Tran', @facility_id, 1, 1, 'Admin', 'System Admin', 'dang.tran@rehabwell.vn', 1),
+        ('hoang.tran', '$2y$10$placeholder', 1, 'Hoang', 'Tran', @facility_id, 1, 1, 'Admin', 'Administration / Physical Therapy', 'hoang.tran@rehabwell.vn', 1),
+        ('ben.dell', '$2y$10$placeholder', 1, 'Ben', 'Dell', @facility_id, 1, 1, 'Admin', 'Administration', 'ben.dell@rehabwell.vn', 1);
+
+    -- Create AROs (get next available IDs)
+    SET @max_aro = (SELECT COALESCE(MAX(id), 10) FROM gacl_aro);
+    INSERT IGNORE INTO gacl_aro (id, section_value, value, name) VALUES
+        (@max_aro + 1, 'users', 'dang.tran', 'Dang Tran'),
+        (@max_aro + 2, 'users', 'hoang.tran', 'Hoang Tran'),
+        (@max_aro + 3, 'users', 'ben.dell', 'Ben Dell');
+
+    -- Assign to admin group
+    SET @admin_group = (SELECT id FROM gacl_aro_groups WHERE value = 'admin' LIMIT 1);
+    INSERT IGNORE INTO gacl_groups_aro_map (group_id, aro_id)
+    SELECT @admin_group, id FROM gacl_aro WHERE value IN ('dang.tran', 'hoang.tran', 'ben.dell');

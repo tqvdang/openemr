@@ -1,0 +1,197 @@
+{
+    "default": [
+        {
+            "label": "Calendar",
+            "icon": "fa-calendar-check",
+            "target": "cal",
+            "url": "/interface/main/calendar/index.php",
+            "children": [],
+            "requirement": 0,
+            "acl_req": ["patients", "appt"],
+            "global_req": []
+        },
+        {
+            "label": "Finder",
+            "icon": "fa-search",
+            "target": "fin",
+            "url": "/interface/patient_file/encounter/find_code_popup.php",
+            "children": [],
+            "requirement": 0,
+            "acl_req": [],
+            "global_req": []
+        },
+        {
+            "label": "Messages",
+            "icon": "fa-envelope",
+            "target": "msg",
+            "url": "/interface/main/messages/messages.php?form_active=1",
+            "children": [],
+            "requirement": 0,
+            "acl_req": [],
+            "global_req": []
+        },
+        {
+            "label": "Patient",
+            "icon": "fa-user",
+            "target": "pat",
+            "url": "",
+            "children": [
+                {
+                    "label": "New/Search",
+                    "icon": "fa-plus",
+                    "target": "pat0",
+                    "url": "/interface/new/new.php",
+                    "children": [],
+                    "requirement": 0,
+                    "acl_req": ["patients", "demo"],
+                    "global_req": []
+                },
+                {
+                    "label": "Summary",
+                    "icon": "fa-clipboard",
+                    "target": "pat1",
+                    "url": "/interface/patient_file/summary/demographics.php",
+                    "children": [],
+                    "requirement": 1,
+                    "acl_req": ["patients", "demo"],
+                    "global_req": []
+                },
+                {
+                    "label": "Appointments",
+                    "icon": "fa-calendar",
+                    "target": "pat2",
+                    "url": "/interface/reports/appointments_report.php?patient=",
+                    "children": [],
+                    "requirement": 1,
+                    "acl_req": ["patients", "appt"],
+                    "global_req": []
+                },
+                {
+                    "label": "Documents",
+                    "icon": "fa-folder-open",
+                    "target": "pat3",
+                    "url": "/interface/patient_file/summary/demographics.php?set_pid=&document_view=1",
+                    "children": [],
+                    "requirement": 1,
+                    "acl_req": ["patients", "docs"],
+                    "global_req": []
+                }
+            ],
+            "requirement": 0,
+            "acl_req": ["patients", "demo"],
+            "global_req": []
+        },
+        {
+            "label": "Admin",
+            "icon": "fa-cog",
+            "target": "adm",
+            "url": "",
+            "children": [
+                {
+                    "label": "Globals",
+                    "icon": "fa-globe",
+                    "target": "adm0",
+                    "url": "/interface/super/edit_globals.php",
+                    "children": [],
+                    "requirement": 0,
+                    "acl_req": ["admin", "super"],
+                    "global_req": []
+                },
+                {
+                    "label": "Facilities",
+                    "icon": "fa-building",
+                    "target": "adm1",
+                    "url": "/interface/usergroup/facilities.php",
+                    "children": [],
+                    "requirement": 0,
+                    "acl_req": ["admin", "users"],
+                    "global_req": []
+                },
+                {
+                    "label": "Users",
+                    "icon": "fa-users",
+                    "target": "adm2",
+                    "url": "/interface/usergroup/usergroup_admin.php",
+                    "children": [],
+                    "requirement": 0,
+                    "acl_req": ["admin", "users"],
+                    "global_req": []
+                },
+                {
+                    "label": "Forms",
+                    "icon": "fa-wpforms",
+                    "target": "adm3",
+                    "url": "/interface/forms_admin/forms_admin.php",
+                    "children": [],
+                    "requirement": 0,
+                    "acl_req": ["admin", "forms"],
+                    "global_req": []
+                },
+                {
+                    "label": "Lists",
+                    "icon": "fa-list-ul",
+                    "target": "adm4",
+                    "url": "/interface/super/edit_list.php",
+                    "children": [],
+                    "requirement": 0,
+                    "acl_req": ["admin", "super"],
+                    "global_req": []
+                },
+                {
+                    "label": "Layouts",
+                    "icon": "fa-object-group",
+                    "target": "adm5",
+                    "url": "/interface/super/edit_layout.php",
+                    "children": [],
+                    "requirement": 0,
+                    "acl_req": ["admin", "super"],
+                    "global_req": []
+                }
+            ],
+            "requirement": 0,
+            "acl_req": ["admin", "super"],
+            "global_req": []
+        },
+        {
+            "label": "Reports",
+            "icon": "fa-chart-pie",
+            "target": "rep",
+            "url": "",
+            "children": [
+                {
+                    "label": "Patient List",
+                    "icon": "fa-users",
+                    "target": "rep0",
+                    "url": "/interface/reports/patient_list.php",
+                    "children": [],
+                    "requirement": 0,
+                    "acl_req": ["patients", "demo"],
+                    "global_req": []
+                },
+                {
+                    "label": "Appointments",
+                    "icon": "fa-calendar",
+                    "target": "rep1",
+                    "url": "/interface/reports/appointments_report.php",
+                    "children": [],
+                    "requirement": 0,
+                    "acl_req": ["patients", "appt"],
+                    "global_req": []
+                },
+                {
+                    "label": "Encounters",
+                    "icon": "fa-stethoscope",
+                    "target": "rep2",
+                    "url": "/interface/reports/encounters_report.php",
+                    "children": [],
+                    "requirement": 0,
+                    "acl_req": ["encounters", "notes"],
+                    "global_req": []
+                }
+            ],
+            "requirement": 0,
+            "acl_req": [],
+            "global_req": []
+        }
+    ]
+}

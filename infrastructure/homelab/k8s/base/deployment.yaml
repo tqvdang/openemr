@@ -17,6 +17,34 @@ spec:
         app: openemr
         component: web
     spec:
+      # DNS resolution for MariaDB SSL (cert CN must match hostname)
+      hostAliases:
+      - ip: "192.168.10.30"
+        hostnames:
+        - "openemr-db.trancloud.work"
+        - "openemr-db"
+      initContainers:
+      - name: init-sites
+        image: busybox
+        command:
+        - sh
+        - -c
+        - |
+          if [ ! -d /sites/default ]; then
+            echo "Creating sites directory structure..."
+            mkdir -p /sites/default/documents/logs
+            mkdir -p /sites/default/images
+            mkdir -p /sites/default/certs
+            touch /sites/default/sqlconf.php
+            chmod 666 /sites/default/sqlconf.php
+            echo "Sites directory initialized"
+          else
+            echo "Sites directory already exists"
+          fi
+          ls -la /sites/default/
+        volumeMounts:
+        - name: sites
+          mountPath: /sites
       containers:
       - name: openemr
         image: registry.trancloud.work/openemr-homelab:dev-v4

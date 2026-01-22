@@ -5,7 +5,8 @@ metadata:
   namespace: openemr-dev
 data:
   # Database configuration - MariaDB LXC in pve2
-  db_host: "192.168.10.30"  # MariaDB LXC to be created in pve2
+  # Use hostname (not IP) for SSL cert validation (CN=openemr-db.trancloud.work)
+  db_host: "openemr-db.trancloud.work"
   db_port: "3306"
   db_name: "openemr_dev"
 

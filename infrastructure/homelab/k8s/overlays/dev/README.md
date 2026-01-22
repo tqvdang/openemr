@@ -65,9 +65,27 @@ overlays/dev/
 | Username | Name | Role | Password |
 |----------|------|------|----------|
 | `openemr_admin` | Administrator | Super Admin | `OpenEMR@2026$ecure!` |
-| `dang.tran` | Dang Tran | Admin | `RehabWell@2026!Dang` |
-| `hoang.tran` | Hoang Tran | Admin | `RehabWell@2026!Hoang` |
-| `ben.dell` | Ben Dell | Admin | `RehabWell@2026!Ben` |
+| `dang.tran` | Dang Tran | Admin | Set via Admin UI |
+| `hoang.tran` | Hoang Tran | Admin | Set via Admin UI |
+| `ben.dell` | Ben Dell | Admin | Set via Admin UI |
+
+**Note**: New user passwords must be set via OpenEMR Admin UI after deployment:
+1. Login as `openemr_admin`
+2. Go to Admin → Users
+3. Select user → Set password
+
+### OpenEMR Authentication Tables
+
+OpenEMR requires entries in **4 tables** for a user to authenticate:
+
+| Table | Purpose |
+|-------|---------|
+| `users` | User profile (name, email, authorized, active) |
+| `users_secure` | Password hash storage (bcrypt) |
+| `groups` | **REQUIRED** - Maps user to a group (e.g., 'Default') |
+| `gacl_aro` + `gacl_groups_aro_map` | ACL permissions |
+
+The `groups` table is often missed - without it, `UserService::getAuthGroupForUser()` returns false and login fails even with correct password.
 
 ### Database
 

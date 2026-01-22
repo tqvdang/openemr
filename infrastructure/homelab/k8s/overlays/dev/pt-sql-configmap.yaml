@@ -141,6 +141,18 @@ data:
         ('hoang.tran', '$2y$10$placeholder', 1, 'Hoang', 'Tran', @facility_id, 1, 1, 'Admin', 'Administration / Physical Therapy', 'hoang.tran@rehabwell.vn', 1),
         ('ben.dell', '$2y$10$placeholder', 1, 'Ben', 'Dell', @facility_id, 1, 1, 'Admin', 'Administration', 'ben.dell@rehabwell.vn', 1);
 
+    -- Add users to 'groups' table (REQUIRED for authentication)
+    -- OpenEMR auth checks UserService::getAuthGroupForUser() which queries this table
+    INSERT IGNORE INTO `groups` (name, user) VALUES
+        ('Default', 'dang.tran'),
+        ('Default', 'hoang.tran'),
+        ('Default', 'ben.dell');
+
+    -- Add users to users_secure table (REQUIRED for password authentication)
+    -- Passwords must be set via OpenEMR Admin UI after deployment
+    INSERT IGNORE INTO users_secure (id, username, password, last_update_password)
+    SELECT id, username, '$2y$10$placeholder', NOW() FROM users WHERE username IN ('dang.tran', 'hoang.tran', 'ben.dell');
+
     -- Create AROs (get next available IDs)
     SET @max_aro = (SELECT COALESCE(MAX(id), 10) FROM gacl_aro);
     INSERT IGNORE INTO gacl_aro (id, section_value, value, name) VALUES
@@ -148,7 +160,7 @@ data:
         (@max_aro + 2, 'users', 'hoang.tran', 'Hoang Tran'),
         (@max_aro + 3, 'users', 'ben.dell', 'Ben Dell');
 
-    -- Assign to admin group
+    -- Assign to admin group (ACL permissions)
     SET @admin_group = (SELECT id FROM gacl_aro_groups WHERE value = 'admin' LIMIT 1);
     INSERT IGNORE INTO gacl_groups_aro_map (group_id, aro_id)
     SELECT @admin_group, id FROM gacl_aro WHERE value IN ('dang.tran', 'hoang.tran', 'ben.dell');

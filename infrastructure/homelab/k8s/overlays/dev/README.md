@@ -65,11 +65,11 @@ overlays/dev/
 | Username | Name | Role | Password |
 |----------|------|------|----------|
 | `openemr_admin` | Administrator | Super Admin | `OpenEMR@2026$ecure!` |
-| `dang.tran` | Dang Tran | Admin | Set via Admin UI |
-| `hoang.tran` | Hoang Tran | Admin | Set via Admin UI |
-| `ben.dell` | Ben Dell | Admin | Set via Admin UI |
+| `dang.tran` | Dang Tran | Admin | `RehabWell2026!` |
+| `hoang.tran` | Hoang Tran | Admin | `RehabWell2026!` |
+| `ben.dell` | Ben Dell | Admin | `RehabWell2026!` |
 
-**Note**: New user passwords must be set via OpenEMR Admin UI after deployment:
+**Note**: For new deployments, passwords must be set via OpenEMR Admin UI or PHP script:
 1. Login as `openemr_admin`
 2. Go to Admin → Users
 3. Select user → Set password

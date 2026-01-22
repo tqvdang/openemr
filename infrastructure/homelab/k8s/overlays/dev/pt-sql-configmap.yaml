@@ -133,13 +133,14 @@ data:
 
   06-pt-users.sql: |
     -- Admin Users: dang.tran, hoang.tran, ben.dell
-    -- Note: Passwords must be set via PHP after deployment (bcrypt hashing)
+    -- Password: RehabWell2026! (bcrypt hashed)
     SET @facility_id = (SELECT id FROM facility WHERE name = 'Rehab Well' LIMIT 1);
+    SET @admin_password = '$2y$10$rvNCan02RRUUoWRq6q8RpOgG.muR3lUJYMmPzuMiiPvCFrnV4rtne';
 
     INSERT IGNORE INTO users (username, password, authorized, fname, lname, facility_id, see_auth, active, title, specialty, email, calendar) VALUES
-        ('dang.tran', '$2y$10$placeholder', 1, 'Dang', 'Tran', @facility_id, 1, 1, 'Admin', 'System Admin', 'dang.tran@rehabwell.vn', 1),
-        ('hoang.tran', '$2y$10$placeholder', 1, 'Hoang', 'Tran', @facility_id, 1, 1, 'Admin', 'Administration / Physical Therapy', 'hoang.tran@rehabwell.vn', 1),
-        ('ben.dell', '$2y$10$placeholder', 1, 'Ben', 'Dell', @facility_id, 1, 1, 'Admin', 'Administration', 'ben.dell@rehabwell.vn', 1);
+        ('dang.tran', @admin_password, 1, 'Dang', 'Tran', @facility_id, 1, 1, 'Admin', 'System Admin', 'dang.tran@rehabwell.vn', 1),
+        ('hoang.tran', @admin_password, 1, 'Hoang', 'Tran', @facility_id, 1, 1, 'Admin', 'Administration / Physical Therapy', 'hoang.tran@rehabwell.vn', 1),
+        ('ben.dell', @admin_password, 1, 'Ben', 'Dell', @facility_id, 1, 1, 'Admin', 'Administration', 'ben.dell@rehabwell.vn', 1);
 
     -- Add users to 'groups' table (REQUIRED for authentication)
     -- OpenEMR auth checks UserService::getAuthGroupForUser() which queries this table
@@ -149,9 +150,8 @@ data:
         ('Default', 'ben.dell');
 
     -- Add users to users_secure table (REQUIRED for password authentication)
-    -- Passwords must be set via OpenEMR Admin UI after deployment
     INSERT IGNORE INTO users_secure (id, username, password, last_update_password)
-    SELECT id, username, '$2y$10$placeholder', NOW() FROM users WHERE username IN ('dang.tran', 'hoang.tran', 'ben.dell');
+    SELECT id, username, @admin_password, NOW() FROM users WHERE username IN ('dang.tran', 'hoang.tran', 'ben.dell');
 
     -- Create AROs (get next available IDs)
     SET @max_aro = (SELECT COALESCE(MAX(id), 10) FROM gacl_aro);
@@ -164,3 +164,134 @@ data:
     SET @admin_group = (SELECT id FROM gacl_aro_groups WHERE value = 'admin' LIMIT 1);
     INSERT IGNORE INTO gacl_groups_aro_map (group_id, aro_id)
     SELECT @admin_group, id FROM gacl_aro WHERE value IN ('dang.tran', 'hoang.tran', 'ben.dell');
+
+  07-pt-acl-group.sql: |
+    -- Create Physiotherapist ACL Group with proper nested set values
+    -- This MUST run before staff users are assigned to the group
+
+    -- Check if Physiotherapist group already exists
+    SET @physio_exists = (SELECT COUNT(*) FROM gacl_aro_groups WHERE value = 'physio');
+
+    -- Get the parent group (OpenEMR Users) info
+    SET @parent_id = (SELECT id FROM gacl_aro_groups WHERE value = 'users' LIMIT 1);
+    SET @parent_rgt = (SELECT rgt FROM gacl_aro_groups WHERE id = @parent_id);
+    SET @max_group_id = (SELECT COALESCE(MAX(id), 16) FROM gacl_aro_groups);
+    SET @new_group_id = @max_group_id + 1;
+
+    -- Create the Physiotherapist group if it doesn't exist
+    INSERT INTO gacl_aro_groups (id, parent_id, name, value, lft, rgt)
+    SELECT @new_group_id, @parent_id, 'Physiotherapist', 'physio', @parent_rgt, @parent_rgt + 1
+    FROM dual WHERE @physio_exists = 0;
+
+    -- Expand parent's rgt to include the new group
+    UPDATE gacl_aro_groups SET rgt = rgt + 2 WHERE id = @parent_id AND @physio_exists = 0;
+
+    -- Fix nested set if group exists but has wrong values (lft/rgt outside parent range)
+    UPDATE gacl_aro_groups g
+    SET g.lft = (SELECT rgt - 2 FROM gacl_aro_groups WHERE value = 'users'),
+        g.rgt = (SELECT rgt - 1 FROM gacl_aro_groups WHERE value = 'users')
+    WHERE g.value = 'physio'
+      AND g.lft >= (SELECT rgt FROM gacl_aro_groups WHERE value = 'users');
+
+    -- Fix group ID if it's 0 (invalid)
+    SET @physio_id = (SELECT id FROM gacl_aro_groups WHERE value = 'physio');
+    SET @new_id = (SELECT COALESCE(MAX(id), 16) + 1 FROM gacl_aro_groups WHERE id != 0);
+
+    UPDATE gacl_groups_aro_map SET group_id = @new_id WHERE group_id = 0 AND @physio_id = 0;
+    UPDATE gacl_aro_groups SET id = @new_id WHERE id = 0 AND value = 'physio';
+
+    -- Get the final Physiotherapist group ID
+    SET @physio_group_id = (SELECT id FROM gacl_aro_groups WHERE value = 'physio');
+
+    -- Create ACL entries for Physiotherapist (if they don't exist)
+    -- Uses IDs 28-31 for view, addonly, wsome, write permissions
+    SET @max_acl = (SELECT COALESCE(MAX(id), 27) FROM gacl_acl);
+
+    INSERT INTO gacl_acl (id, section_value, allow, enabled, note, updated_date)
+    SELECT @max_acl + 1, 'system', 1, 1, 'Things that physiotherapists can only read', UNIX_TIMESTAMP()
+    FROM dual WHERE NOT EXISTS (SELECT 1 FROM gacl_acl WHERE note LIKE '%physiotherapists can only read%');
+
+    INSERT INTO gacl_acl (id, section_value, allow, enabled, note, updated_date)
+    SELECT @max_acl + 2, 'system', 1, 1, 'Things that physiotherapists can read and enter but not modify', UNIX_TIMESTAMP()
+    FROM dual WHERE NOT EXISTS (SELECT 1 FROM gacl_acl WHERE note LIKE '%physiotherapists can read and enter%');
+
+    INSERT INTO gacl_acl (id, section_value, allow, enabled, note, updated_date)
+    SELECT @max_acl + 3, 'system', 1, 1, 'Things that physiotherapists can read and partly modify', UNIX_TIMESTAMP()
+    FROM dual WHERE NOT EXISTS (SELECT 1 FROM gacl_acl WHERE note LIKE '%physiotherapists can read and partly%');
+
+    INSERT INTO gacl_acl (id, section_value, allow, enabled, note, updated_date)
+    SELECT @max_acl + 4, 'system', 1, 1, 'Things that physiotherapists can read and modify', UNIX_TIMESTAMP()
+    FROM dual WHERE NOT EXISTS (SELECT 1 FROM gacl_acl WHERE note LIKE '%physiotherapists can read and modify%');
+
+    -- Get the ACL IDs for Physiotherapist
+    SET @physio_view = (SELECT id FROM gacl_acl WHERE note LIKE '%physiotherapists can only read%' LIMIT 1);
+    SET @physio_addonly = (SELECT id FROM gacl_acl WHERE note LIKE '%physiotherapists can read and enter%' LIMIT 1);
+    SET @physio_wsome = (SELECT id FROM gacl_acl WHERE note LIKE '%physiotherapists can read and partly%' LIMIT 1);
+    SET @physio_write = (SELECT id FROM gacl_acl WHERE note LIKE '%physiotherapists can read and modify%' LIMIT 1);
+
+    -- Link ACL entries to Physiotherapist group
+    INSERT IGNORE INTO gacl_aro_groups_map (acl_id, group_id) VALUES
+        (@physio_view, @physio_group_id),
+        (@physio_addonly, @physio_group_id),
+        (@physio_wsome, @physio_group_id),
+        (@physio_write, @physio_group_id);
+
+    -- Copy ACO permissions from Clinicians to Physiotherapist
+    -- Get Clinician ACL IDs
+    SET @clin_view = (SELECT id FROM gacl_acl WHERE note LIKE '%clinicians can only read%' LIMIT 1);
+    SET @clin_addonly = (SELECT id FROM gacl_acl WHERE note LIKE '%clinicians can read and enter%' LIMIT 1);
+    SET @clin_wsome = (SELECT id FROM gacl_acl WHERE note LIKE '%clinicians can read and partly%' LIMIT 1);
+    SET @clin_write = (SELECT id FROM gacl_acl WHERE note LIKE '%clinicians can read and modify%' LIMIT 1);
+
+    -- Copy ACO mappings: view permissions
+    INSERT IGNORE INTO gacl_aco_map (acl_id, section_value, value)
+    SELECT @physio_view, section_value, value FROM gacl_aco_map WHERE acl_id = @clin_view;
+
+    -- Copy ACO mappings: addonly permissions
+    INSERT IGNORE INTO gacl_aco_map (acl_id, section_value, value)
+    SELECT @physio_addonly, section_value, value FROM gacl_aco_map WHERE acl_id = @clin_addonly;
+
+    -- Copy ACO mappings: wsome permissions
+    INSERT IGNORE INTO gacl_aco_map (acl_id, section_value, value)
+    SELECT @physio_wsome, section_value, value FROM gacl_aco_map WHERE acl_id = @clin_wsome;
+
+    -- Copy ACO mappings: write permissions
+    INSERT IGNORE INTO gacl_aco_map (acl_id, section_value, value)
+    SELECT @physio_write, section_value, value FROM gacl_aco_map WHERE acl_id = @clin_write;
+
+    -- Update ACL sequence
+    UPDATE gacl_acl_seq SET id = (SELECT MAX(id) FROM gacl_acl) WHERE id < (SELECT MAX(id) FROM gacl_acl);
+
+  08-pt-staff.sql: |
+    -- Staff Users: linh.tang, an.pham (Physiotherapist + Front Office)
+    SET @facility_id = (SELECT id FROM facility WHERE name = 'Rehab Well' LIMIT 1);
+    SET @staff_password = '$2y$10$rvNCan02RRUUoWRq6q8RpOgG.muR3lUJYMmPzuMiiPvCFrnV4rtne';
+
+    INSERT IGNORE INTO users (username, password, authorized, fname, lname, facility_id, see_auth, active, title, specialty, email, calendar) VALUES
+        ('linh.tang', @staff_password, 1, 'Linh', 'Tang', @facility_id, 1, 1, 'PT', 'Physical Therapy', 'linh.tang@rehabwell.vn', 1),
+        ('an.pham', @staff_password, 1, 'An', 'Pham', @facility_id, 1, 1, 'PT', 'Physical Therapy', 'an.pham@rehabwell.vn', 1);
+
+    -- Add staff to 'groups' table (REQUIRED for authentication)
+    INSERT IGNORE INTO `groups` (name, user) VALUES
+        ('Default', 'linh.tang'),
+        ('Default', 'an.pham');
+
+    -- Add staff to users_secure table with password
+    INSERT IGNORE INTO users_secure (id, username, password, last_update_password)
+    SELECT id, username, @staff_password, NOW() FROM users WHERE username IN ('linh.tang', 'an.pham');
+
+    -- Create AROs for staff
+    SET @max_aro = (SELECT COALESCE(MAX(id), 10) FROM gacl_aro);
+    INSERT IGNORE INTO gacl_aro (id, section_value, value, name) VALUES
+        (@max_aro + 1, 'users', 'linh.tang', 'Linh Tang'),
+        (@max_aro + 2, 'users', 'an.pham', 'An Pham');
+
+    -- Assign to Physiotherapist group (ACL permissions)
+    SET @physio_group = (SELECT id FROM gacl_aro_groups WHERE value = 'physio' LIMIT 1);
+    INSERT IGNORE INTO gacl_groups_aro_map (group_id, aro_id)
+    SELECT @physio_group, id FROM gacl_aro WHERE value IN ('linh.tang', 'an.pham');
+
+    -- Also assign to Front Office group
+    SET @front_group = (SELECT id FROM gacl_aro_groups WHERE value = 'front' LIMIT 1);
+    INSERT IGNORE INTO gacl_groups_aro_map (group_id, aro_id)
+    SELECT @front_group, id FROM gacl_aro WHERE value IN ('linh.tang', 'an.pham');

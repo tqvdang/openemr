@@ -1,0 +1,242 @@
+[
+  {
+    "label": "Calendar",
+    "menu_id": "cal0",
+    "target": "cal",
+    "url": "/interface/main/main_info.php",
+    "children": [],
+    "requirement": 0,
+    "acl_req": ["patients", "appt"],
+    "global_req_strict": ["!disable_calendar"]
+  },
+  {
+    "label": "Finder",
+    "menu_id": "fin0",
+    "target": "fin",
+    "url": "/interface/main/finder/dynamic_finder.php",
+    "children": [],
+    "requirement": 0,
+    "acl_req": ["patients", "demo"]
+  },
+  {
+    "label": "Messages",
+    "menu_id": "msg0",
+    "target": "msg",
+    "url": "/interface/main/messages/messages.php?form_active=1",
+    "children": [],
+    "requirement": 0,
+    "acl_req": ["patients", "notes"]
+  },
+  {
+    "label": "Patient",
+    "menu_id": "patimg",
+    "children": [
+      {
+        "label": "New/Search",
+        "menu_id": "new0",
+        "target": "pat",
+        "url": "/interface/new/new.php",
+        "children": [],
+        "requirement": 0,
+        "acl_req": ["patients", "demo", "write", "addonly"]
+      },
+      {
+        "label": "Dashboard{{patient file}}",
+        "menu_id": "dem1",
+        "target": "pat",
+        "url": "/interface/patient_file/summary/demographics.php",
+        "children": [],
+        "requirement": 1,
+        "acl_req": ["patients", "demo"]
+      },
+      {
+        "label": "Visits",
+        "icon": "fa-caret-right",
+        "children": [
+          {
+            "label": "Create Visit",
+            "menu_id": "nen1",
+            "target": "enc",
+            "url": "/interface/forms/newpatient/new.php?autoloaded=1&calenc=",
+            "children": [],
+            "requirement": 1
+          },
+          {
+            "label": "Current",
+            "menu_id": "enc2",
+            "target": "enc",
+            "url": "/interface/patient_file/encounter/encounter_top.php",
+            "children": [],
+            "requirement": 3,
+            "acl_req": ["patients", "appt"]
+          },
+          {
+            "label": "Visit History",
+            "menu_id": "ens1",
+            "target": "enc",
+            "url": "/interface/patient_file/history/encounters.php",
+            "children": [],
+            "requirement": 1,
+            "acl_req": ["patients", "appt"]
+          }
+        ],
+        "requirement": 0
+      },
+      {
+        "label": "Documents",
+        "menu_id": "doc1",
+        "target": "pat",
+        "url": "/controller.php?document&list",
+        "children": [],
+        "requirement": 1,
+        "acl_req": ["patients", "docs"]
+      }
+    ],
+    "requirement": 0
+  },
+  {
+    "label": "Admin",
+    "menu_id": "admimg",
+    "children": [
+      {
+        "label": "Config",
+        "menu_id": "adm0",
+        "target": "adm",
+        "url": "/interface/super/edit_globals.php",
+        "children": [],
+        "requirement": 0,
+        "acl_req": ["admin", "super"]
+      },
+      {
+        "label": "Facilities",
+        "menu_id": "fac0",
+        "target": "adm",
+        "url": "/interface/usergroup/facilities.php",
+        "children": [],
+        "requirement": 0,
+        "acl_req": ["admin", "users"]
+      },
+      {
+        "label": "Users",
+        "menu_id": "usr0",
+        "target": "adm",
+        "url": "/interface/usergroup/usergroup_admin.php",
+        "children": [],
+        "requirement": 0,
+        "acl_req": ["admin", "users"]
+      },
+      {
+        "label": "Forms",
+        "icon": "fa-caret-right",
+        "children": [
+          {
+            "label": "Forms Administration",
+            "menu_id": "frm0",
+            "target": "adm",
+            "url": "/interface/forms_admin/forms_admin.php",
+            "children": [],
+            "requirement": 0,
+            "acl_req": ["admin", "forms"]
+          },
+          {
+            "label": "Lists",
+            "menu_id": "lst0",
+            "target": "adm",
+            "url": "/interface/super/edit_list.php",
+            "children": [],
+            "requirement": 0,
+            "acl_req": ["admin", "super"]
+          }
+        ],
+        "requirement": 0,
+        "acl_req": [["admin", "forms"], ["admin", "super"]]
+      },
+      {
+        "label": "System",
+        "icon": "fa-caret-right",
+        "children": [
+          {
+            "label": "Backup",
+            "menu_id": "bak0",
+            "target": "adm",
+            "url": "/interface/main/backup.php",
+            "children": [],
+            "requirement": 0,
+            "acl_req": ["admin", "super"]
+          },
+          {
+            "label": "Logs",
+            "menu_id": "log0",
+            "target": "adm",
+            "url": "/interface/logview/logview.php",
+            "children": [],
+            "requirement": 0,
+            "acl_req": ["admin", "users"]
+          }
+        ],
+        "requirement": 0,
+        "acl_req": [["admin", "super"], ["admin", "users"]]
+      },
+      {
+        "label": "ACL",
+        "menu_id": "acl0",
+        "target": "adm",
+        "url": "/interface/usergroup/adminacl.php",
+        "children": [],
+        "requirement": 0,
+        "acl_req": ["admin", "acl"]
+      }
+    ],
+    "requirement": 0,
+    "acl_req": [["admin", "calendar"], ["admin", "forms"], ["admin", "practice"], ["admin", "users"], ["admin", "acl"], ["admin", "super"]]
+  },
+  {
+    "label": "Reports",
+    "menu_id": "repimg",
+    "children": [
+      {
+        "label": "Clients",
+        "icon": "fa-caret-right",
+        "children": [
+          {
+            "label": "List",
+            "menu_id": "rep0",
+            "target": "rep",
+            "url": "/interface/reports/patient_list.php",
+            "children": [],
+            "requirement": 0,
+            "acl_req": ["patients", "demo"]
+          }
+        ],
+        "requirement": 0
+      },
+      {
+        "label": "Visits",
+        "icon": "fa-caret-right",
+        "children": [
+          {
+            "label": "Appointments",
+            "menu_id": "rep1",
+            "target": "rep",
+            "url": "/interface/reports/appointments_report.php",
+            "children": [],
+            "requirement": 0,
+            "acl_req": ["patients", "appt"],
+            "global_req": "!disable_calendar"
+          },
+          {
+            "label": "Encounters",
+            "menu_id": "rep2",
+            "target": "rep",
+            "url": "/interface/reports/encounters_report.php",
+            "children": [],
+            "requirement": 0,
+            "acl_req": ["encounters", "coding_a"]
+          }
+        ],
+        "requirement": 0
+      }
+    ],
+    "requirement": 0
+  }
+]

@@ -29,7 +29,46 @@ patches:
     kind: Deployment
     name: openemr
 
-# Mount PT menu ConfigMap via initContainer (ConfigMaps are read-only)
+# Mount sqlconf.php template and copy during init for consistent deployments
+- patch: |-
+    - op: add
+      path: /spec/template/spec/volumes/-
+      value:
+        name: sqlconf-template
+        configMap:
+          name: openemr-pt-config
+          items:
+          - key: sqlconf.php
+            path: sqlconf.php
+    - op: replace
+      path: /spec/template/spec/initContainers/0/command
+      value:
+        - sh
+        - -c
+        - |
+          if [ ! -d /sites/default ]; then
+            echo "Creating sites directory structure..."
+            mkdir -p /sites/default/documents/logs
+            mkdir -p /sites/default/images
+            mkdir -p /sites/default/certs
+          fi
+          # Always copy the sqlconf.php template to ensure correct format
+          echo "Copying sqlconf.php template..."
+          cp /sqlconf-template/sqlconf.php /sites/default/sqlconf.php
+          chmod 666 /sites/default/sqlconf.php
+          echo "Sites directory initialized with sqlconf.php"
+          ls -la /sites/default/
+    - op: add
+      path: /spec/template/spec/initContainers/0/volumeMounts/-
+      value:
+        name: sqlconf-template
+        mountPath: /sqlconf-template
+        readOnly: true
+  target:
+    kind: Deployment
+    name: openemr
+
+# PT menu customization - simplified menu for PT workflow
 - patch: |-
     - op: add
       path: /spec/template/spec/volumes/-

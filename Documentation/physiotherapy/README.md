@@ -24,6 +24,11 @@ End-user documentation for healthcare professionals:
 - **[Outcome Measures](./user-guides/OUTCOME_MEASURES.md)** - Recording and tracking patient outcomes
 - **[Reporting](./user-guides/REPORTING.md)** - Generating physiotherapy reports
 
+### 🚀 [Deployment](./deployment/)
+Production deployment guides for Rehab Well PT:
+- **[Rehab Well Deployment](./deployment/REHAB_WELL_DEPLOYMENT.md)** - Complete K8s deployment guide
+- **[Quick Reference](./deployment/QUICK_REFERENCE.md)** - Credentials, commands, troubleshooting
+
 ### 🔧 [Technical](./technical/)
 System administration and technical configuration:
 - **[Installation Guide](./technical/INSTALLATION.md)** - Step-by-step installation instructions
@@ -36,6 +41,10 @@ System administration and technical configuration:
 Screenshots, diagrams, and visual documentation assets
 
 ## 🚀 Quick Start Links
+
+### For Production (Rehab Well)
+- **[Quick Reference](./deployment/QUICK_REFERENCE.md)** - Credentials, commands, backup
+- **[Full Deployment Guide](./deployment/REHAB_WELL_DEPLOYMENT.md)** - Complete K8s deployment documentation
 
 ### For Developers
 - **[Development Environment Setup](./development/HYBRID_DEVELOPMENT_GUIDE.md)** - Start here to set up your development environment
@@ -120,6 +129,6 @@ Screenshots, diagrams, and visual documentation assets
 
 ---
 
-**Last Updated**: September 2025  
-**Version**: 1.0  
+**Last Updated**: January 2026
+**Version**: 1.1
 **Compatible with**: OpenEMR 7.0.0+

@@ -1,0 +1,98 @@
+apiVersion: batch/v1
+kind: Job
+metadata:
+  name: openemr-pt-setup
+  labels:
+    app: openemr
+    component: pt-setup
+  annotations:
+    # This job should run after the main deployment
+    argocd.argoproj.io/hook: PostSync
+    argocd.argoproj.io/hook-delete-policy: HookSucceeded
+spec:
+  ttlSecondsAfterFinished: 300
+  backoffLimit: 3
+  template:
+    metadata:
+      labels:
+        app: openemr
+        component: pt-setup
+    spec:
+      restartPolicy: OnFailure
+      # DNS resolution for MariaDB SSL
+      hostAliases:
+      - ip: "192.168.10.30"
+        hostnames:
+        - "openemr-db.trancloud.work"
+        - "openemr-db"
+      initContainers:
+      # Wait for OpenEMR to be ready before applying config
+      - name: wait-for-openemr
+        image: busybox
+        command:
+        - sh
+        - -c
+        - |
+          echo "Waiting for OpenEMR to be ready..."
+          until wget -q --spider http://openemr-svc:80/interface/login/login.php; do
+            echo "OpenEMR not ready yet, waiting..."
+            sleep 10
+          done
+          echo "OpenEMR is ready!"
+      containers:
+      - name: pt-setup
+        image: mariadb:10.11
+        command:
+        - bash
+        - -c
+        - |
+          set -e
+          echo "=== Vietnamese PT Configuration Setup (Staging) ==="
+
+          # Wait for database
+          until mariadb -h "$DB_HOST" -u root -p"$DB_ROOT_PASS" --ssl --ssl-verify-server-cert=0 -e "SELECT 1" > /dev/null 2>&1; do
+            echo "Waiting for database..."
+            sleep 5
+          done
+
+          echo "Applying PT SQL configurations..."
+
+          # Apply each SQL file
+          for sql_file in /sql/*.sql; do
+            if [ -f "$sql_file" ]; then
+              echo "Applying: $(basename $sql_file)"
+              mariadb -h "$DB_HOST" -u root -p"$DB_ROOT_PASS" --ssl --ssl-verify-server-cert=0 "$DB_NAME" < "$sql_file" || echo "Warning: Some statements may have failed in $sql_file"
+            fi
+          done
+
+          echo "=== PT SQL Configuration Complete ==="
+        env:
+        - name: DB_HOST
+          valueFrom:
+            configMapKeyRef:
+              name: openemr-config
+              key: db_host
+        - name: DB_ROOT_PASS
+          valueFrom:
+            secretKeyRef:
+              name: openemr-secrets
+              key: db_root_password
+        - name: DB_NAME
+          value: "openemr_staging"
+        volumeMounts:
+        - name: pt-sql
+          mountPath: /sql
+          readOnly: true
+        - name: mysql-ssl-ca
+          mountPath: /etc/mysql/ssl
+          readOnly: true
+      volumes:
+      - name: pt-sql
+        configMap:
+          name: openemr-pt-sql
+      - name: mysql-ssl-ca
+        secret:
+          secretName: mariadb-ssl-ca
+          items:
+          - key: ca.pem
+            path: ca.pem

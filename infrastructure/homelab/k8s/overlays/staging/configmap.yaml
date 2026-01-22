@@ -1,0 +1,15 @@
+apiVersion: v1
+kind: ConfigMap
+metadata:
+  name: openemr-config
+  namespace: openemr-staging
+data:
+  # Database configuration - MariaDB LXC in pve2
+  # Use hostname (not IP) for SSL cert validation (CN=openemr-db.trancloud.work)
+  db_host: "openemr-db.trancloud.work"
+  db_port: "3306"
+  db_name: "openemr_staging"
+
+  # Application settings
+  site_addr_oath: "https://openemr-staging.trancloud.work"
+  environment: "staging"

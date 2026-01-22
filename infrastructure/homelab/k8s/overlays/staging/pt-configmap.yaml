@@ -1,0 +1,232 @@
+apiVersion: v1
+kind: ConfigMap
+metadata:
+  name: openemr-pt-config
+  labels:
+    app: openemr
+    component: pt-config
+data:
+  # Simplified PT-focused menu
+  menu-standard.json: |
+    {
+        "default": [
+            {
+                "label": "Calendar",
+                "icon": "fa-calendar-check",
+                "target": "cal",
+                "url": "/interface/main/calendar/index.php",
+                "children": [],
+                "requirement": 0,
+                "acl_req": ["patients", "appt"],
+                "global_req": []
+            },
+            {
+                "label": "Finder",
+                "icon": "fa-search",
+                "target": "fin",
+                "url": "/interface/patient_file/encounter/find_code_popup.php",
+                "children": [],
+                "requirement": 0,
+                "acl_req": [],
+                "global_req": []
+            },
+            {
+                "label": "Messages",
+                "icon": "fa-envelope",
+                "target": "msg",
+                "url": "/interface/main/messages/messages.php?form_active=1",
+                "children": [],
+                "requirement": 0,
+                "acl_req": [],
+                "global_req": []
+            },
+            {
+                "label": "Patient",
+                "icon": "fa-user",
+                "target": "pat",
+                "url": "",
+                "children": [
+                    {
+                        "label": "New/Search",
+                        "icon": "fa-plus",
+                        "target": "pat0",
+                        "url": "/interface/new/new.php",
+                        "children": [],
+                        "requirement": 0,
+                        "acl_req": ["patients", "demo"],
+                        "global_req": []
+                    },
+                    {
+                        "label": "Summary",
+                        "icon": "fa-clipboard",
+                        "target": "pat1",
+                        "url": "/interface/patient_file/summary/demographics.php",
+                        "children": [],
+                        "requirement": 1,
+                        "acl_req": ["patients", "demo"],
+                        "global_req": []
+                    },
+                    {
+                        "label": "Appointments",
+                        "icon": "fa-calendar",
+                        "target": "pat2",
+                        "url": "/interface/reports/appointments_report.php?patient=",
+                        "children": [],
+                        "requirement": 1,
+                        "acl_req": ["patients", "appt"],
+                        "global_req": []
+                    },
+                    {
+                        "label": "Documents",
+                        "icon": "fa-folder-open",
+                        "target": "pat3",
+                        "url": "/interface/patient_file/summary/demographics.php?set_pid=&document_view=1",
+                        "children": [],
+                        "requirement": 1,
+                        "acl_req": ["patients", "docs"],
+                        "global_req": []
+                    }
+                ],
+                "requirement": 0,
+                "acl_req": ["patients", "demo"],
+                "global_req": []
+            },
+            {
+                "label": "Admin",
+                "icon": "fa-cog",
+                "target": "adm",
+                "url": "",
+                "children": [
+                    {
+                        "label": "Globals",
+                        "icon": "fa-globe",
+                        "target": "adm0",
+                        "url": "/interface/super/edit_globals.php",
+                        "children": [],
+                        "requirement": 0,
+                        "acl_req": ["admin", "super"],
+                        "global_req": []
+                    },
+                    {
+                        "label": "Facilities",
+                        "icon": "fa-building",
+                        "target": "adm1",
+                        "url": "/interface/usergroup/facilities.php",
+                        "children": [],
+                        "requirement": 0,
+                        "acl_req": ["admin", "users"],
+                        "global_req": []
+                    },
+                    {
+                        "label": "Users",
+                        "icon": "fa-users",
+                        "target": "adm2",
+                        "url": "/interface/usergroup/usergroup_admin.php",
+                        "children": [],
+                        "requirement": 0,
+                        "acl_req": ["admin", "users"],
+                        "global_req": []
+                    },
+                    {
+                        "label": "Forms",
+                        "icon": "fa-wpforms",
+                        "target": "adm3",
+                        "url": "/interface/forms_admin/forms_admin.php",
+                        "children": [],
+                        "requirement": 0,
+                        "acl_req": ["admin", "forms"],
+                        "global_req": []
+                    },
+                    {
+                        "label": "Lists",
+                        "icon": "fa-list-ul",
+                        "target": "adm4",
+                        "url": "/interface/super/edit_list.php",
+                        "children": [],
+                        "requirement": 0,
+                        "acl_req": ["admin", "super"],
+                        "global_req": []
+                    }
+                ],
+                "requirement": 0,
+                "acl_req": ["admin", "super"],
+                "global_req": []
+            },
+            {
+                "label": "Reports",
+                "icon": "fa-chart-pie",
+                "target": "rep",
+                "url": "",
+                "children": [
+                    {
+                        "label": "Patient List",
+                        "icon": "fa-users",
+                        "target": "rep0",
+                        "url": "/interface/reports/patient_list.php",
+                        "children": [],
+                        "requirement": 0,
+                        "acl_req": ["patients", "demo"],
+                        "global_req": []
+                    },
+                    {
+                        "label": "Appointments",
+                        "icon": "fa-calendar",
+                        "target": "rep1",
+                        "url": "/interface/reports/appointments_report.php",
+                        "children": [],
+                        "requirement": 0,
+                        "acl_req": ["patients", "appt"],
+                        "global_req": []
+                    },
+                    {
+                        "label": "Encounters",
+                        "icon": "fa-stethoscope",
+                        "target": "rep2",
+                        "url": "/interface/reports/encounters_report.php",
+                        "children": [],
+                        "requirement": 0,
+                        "acl_req": ["encounters", "notes"],
+                        "global_req": []
+                    }
+                ],
+                "requirement": 0,
+                "acl_req": [],
+                "global_req": []
+            }
+        ]
+    }
+
+  # PT setup script - runs SQL migrations
+  pt-setup.sh: |
+    #!/bin/bash
+    set -e
+
+    echo "=== Vietnamese PT Configuration Setup ==="
+    echo "Waiting for database to be ready..."
+
+    # Wait for MySQL/MariaDB to be available
+    until mariadb -h "$MYSQL_HOST" -u root -p"$MYSQL_ROOT_PASS" --ssl --ssl-verify-server-cert=0 -e "SELECT 1" > /dev/null 2>&1; do
+      echo "Waiting for database..."
+      sleep 5
+    done
+
+    DB_NAME="${MYSQL_DATABASE:-openemr_dev}"
+
+    echo "Applying PT configuration to database: $DB_NAME"
+
+    # Apply SQL migrations
+    for sql_file in /etc/openemr/pt-config/*.sql; do
+      if [ -f "$sql_file" ]; then
+        echo "Applying: $(basename $sql_file)"
+        mariadb -h "$MYSQL_HOST" -u root -p"$MYSQL_ROOT_PASS" --ssl --ssl-verify-server-cert=0 "$DB_NAME" < "$sql_file"
+      fi
+    done
+
+    # Copy custom menu JSON
+    if [ -f "/etc/openemr/pt-config/menu-standard.json" ]; then
+      echo "Installing custom PT menu..."
+      cp /etc/openemr/pt-config/menu-standard.json /var/www/localhost/htdocs/openemr/interface/main/tabs/menu/menus/standard.json
+      chown apache:apache /var/www/localhost/htdocs/openemr/interface/main/tabs/menu/menus/standard.json
+    fi
+
+    echo "=== PT Configuration Complete ==="

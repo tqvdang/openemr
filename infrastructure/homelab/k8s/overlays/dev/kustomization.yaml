@@ -29,24 +29,39 @@ patches:
     kind: Deployment
     name: openemr
 
-# Mount PT menu ConfigMap
+# Mount PT menu ConfigMap via initContainer (ConfigMaps are read-only)
 - patch: |-
     - op: add
       path: /spec/template/spec/volumes/-
       value:
-        name: pt-menu
+        name: pt-menu-source
         configMap:
           name: openemr-pt-config
           items:
           - key: menu-standard.json
             path: standard.json
     - op: add
+      path: /spec/template/spec/volumes/-
+      value:
+        name: pt-menu
+        emptyDir: {}
+    - op: add
+      path: /spec/template/spec/initContainers/-
+      value:
+        name: copy-pt-menu
+        image: busybox
+        command: ['sh', '-c', 'cp /menu-source/standard.json /menu/standard.json && chmod 644 /menu/standard.json']
+        volumeMounts:
+        - name: pt-menu-source
+          mountPath: /menu-source
+        - name: pt-menu
+          mountPath: /menu
+    - op: add
       path: /spec/template/spec/containers/0/volumeMounts/-
       value:
         name: pt-menu
         mountPath: /var/www/localhost/htdocs/openemr/interface/main/tabs/menu/menus/standard.json
         subPath: standard.json
-        readOnly: true
   target:
     kind: Deployment
     name: openemr
